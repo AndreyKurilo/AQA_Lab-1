@@ -15,8 +15,8 @@ namespace CurrencyExchange_ver2
         public Bank() {}
         public Bank(string request, Rates rates)
         {
-            operationalSum = double.Parse(request.Remove(request.Length - 4));
-            currencyType = request.Substring(request.Length - 4, 3);
+            operationalSum = double.Parse(request.Remove(request.Length - 3));
+            currencyType = request.Substring(request.Length - 3, 3);
             rateUSD = rates.getUSD();
             rateEUR = rates.getEUR();
             rateRUB = rates.getRUB();
@@ -29,10 +29,9 @@ namespace CurrencyExchange_ver2
         
         private void ShaherMaher(Double sum, string sourceCurrency, string finalCurrency)
         {
-            Console.WriteLine("operationalSumm :" + operationalSum);
-            Console.WriteLine("Summ :" + sum);
-
             Double rateOfSource, rateOfFinal;
+            sourceCurrency = sourceCurrency.ToUpper();
+            finalCurrency = finalCurrency.ToUpper();
 
             if (sourceCurrency.Equals("USD")) rateOfSource = rateUSD;
             else if (sourceCurrency.Equals("EUR")) rateOfSource = rateEUR;
@@ -42,7 +41,7 @@ namespace CurrencyExchange_ver2
             else if (finalCurrency.Equals("EUR")) rateOfFinal = rateEUR;
             else rateOfFinal = rateRUB;
 
-            resultSumm = Math.Round(((sum - sum*3/100) * rateOfSource / rateOfFinal), 2);
+            resultSumm = Math.Round((((sum - sum*3/100) * rateOfSource)/rateOfFinal), 2);
         }
 
         public void ShowResult()
