@@ -13,7 +13,7 @@ namespace CurrencyExchange_ver2
         double resultSumm;
 
         public Bank() {}
-        public Bank(string request, Rates rates)
+        public Bank(string request, CurrencyRates rates)
         {
             operationalSum = double.Parse(request.Remove(request.Length - 3));
             currencyType = request.Substring(request.Length - 3, 3);

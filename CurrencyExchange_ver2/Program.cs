@@ -8,7 +8,8 @@ namespace CurrencyExchange_ver2
         {
             string userRequest;
             Bot bot = new Bot();
-            Rates rates = new Rates();
+            CurrencyRates rates = new CurrencyRates();
+            var currency = rates.GetRates();
             RequestHandler request = new RequestHandler();
             rates.SetUSDrate(bot.askUSDrate());
             rates.SetEURrate(bot.askEURrate());
