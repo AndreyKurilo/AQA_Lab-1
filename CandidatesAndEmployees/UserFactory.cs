@@ -8,9 +8,18 @@ namespace users
     {
         public UserFactory(string typeOfClent)
         {
-            Candidate candidate = new 
+
             System.Guid guid = System.Guid.NewGuid();
             Console.WriteLine(guid.ToString());
+
+
+            Candidate candidate = new Candidate(int id, string name, string surname, string jobTitle,
+                string jobDescription, double jobSalary);
+
+            Employee employee = new Employee(int id, string name, string surname, string jobTittle,
+                string jobDescription, double jobSalary, string companyName, string companyCountry,
+                string companyCity, string companyStreet);
+
         }
 
     }
