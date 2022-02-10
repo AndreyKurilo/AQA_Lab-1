@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Users
+namespace CandidatesAndEmployees
 {
     class Employee : IUser
     {

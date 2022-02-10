@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Users
+namespace CandidatesAndEmployees
 {
     public class Candidate : IUser
     {
@@ -11,10 +11,10 @@ namespace Users
         private readonly string _surname;
         private readonly string _jobTittle;
         private readonly string _jobDescription;
-        private readonly double _jobSalary;
+        private readonly decimal _jobSalary;
 
         public Candidate(Guid id, string name, string surname, string jobTittle, string jobDescription,
-            double jobSalary)
+            decimal jobSalary)
         {
             _id = id;
             _name = name;

@@ -1,7 +1,7 @@
 ﻿using Bogus;
 using System;
 
-namespace Users
+namespace CandidatesAndEmployees
 {
     public class UserFactory
     {

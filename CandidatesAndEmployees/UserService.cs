@@ -4,8 +4,10 @@ using System.Text;
 
 namespace CandidatesAndEmployees
 {
-    public interface IUser
+    class UserService
     {
-        void DisplayInformation();
+        public UserService()
+        {
+        }
     }
 }

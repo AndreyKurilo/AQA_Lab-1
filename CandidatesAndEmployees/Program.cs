@@ -1,12 +1,14 @@
 ﻿using System;
 
-namespace Users
+namespace CandidatesAndEmployees
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            // Users.Generate();
+
+            // 
         }
     }
 }

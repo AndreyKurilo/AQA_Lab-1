@@ -1,4 +1,4 @@
-﻿namespace Users
+﻿namespace CandidatesAndEmployees
 {
     public enum UserType
     {
