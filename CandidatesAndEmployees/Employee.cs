@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace users
+namespace Users
 {
-    class Employee
+    class Employee : IUser
     {
         private readonly int _id;
         private readonly string _name;
@@ -32,7 +32,7 @@ namespace users
             _companyStreet = companyStreet;
         }
 
-        public int Id { get; }
+        public int Id => _id;
 
         public string Name { get; }
 

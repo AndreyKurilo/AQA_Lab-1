@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace users
+namespace Users
 {
-    public class Candidate : IUsers
+    public class Candidate : IUser
     {
-        private readonly int _id;
+        private readonly Guid _id;
         private readonly string _name;
         private readonly string _surname;
         private readonly string _jobTittle;
         private readonly string _jobDescription;
         private readonly double _jobSalary;
 
-        public Candidate(int id, string name, string surname, string jobTittle, string jobDescription,
+        public Candidate(Guid id, string name, string surname, string jobTittle, string jobDescription,
             double jobSalary)
         {
             _id = id;

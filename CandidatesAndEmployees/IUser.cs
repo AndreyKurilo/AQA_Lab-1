@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace users
+namespace Users
 {
-    interface IUsers
+    public interface IUser
     {
         void DisplayInformation();
     }

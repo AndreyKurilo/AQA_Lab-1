@@ -1,25 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Bogus;
+using System;
 
-namespace users
+namespace Users
 {
-    class UserFactory
+    public class UserFactory
     {
-        public UserFactory(string typeOfClent)
+        public IUser Create(UserType userType)
         {
+            IUser user = null;
 
-            System.Guid guid = System.Guid.NewGuid();
-            Console.WriteLine(guid.ToString());
+            switch(userType)
+            {
+                case UserType.Candidate:
+                    user = CreateCandidate();
+                    break;
+                case UserType.Employee:
+                    user = CreateEmployee();
+                    break;
+            }
 
+            return user;
+        }
 
-            Candidate candidate = new Candidate(int id, string name, string surname, string jobTitle,
-                string jobDescription, double jobSalary);
+        private Candidate CreateCandidate()
+        {
+            Guid guid = Guid.NewGuid();
 
-            Employee employee = new Employee(int id, string name, string surname, string jobTittle,
-                string jobDescription, double jobSalary, string companyName, string companyCountry,
-                string companyCity, string companyStreet);
+            var candidates = new Faker<Candidate>()
+                .CustomInstantiator(fake =>
+                    new Candidate(
+                        guid,
+                        fake.Name.FirstName(),
+                        fake.Name.LastName(),
+                        fake.PickRandom(JobMockData.Titles),
+                        fake.PickRandom(JobMockData.Descriptions),
+                        fake.Finance.Amount()));
 
+            return candidates.Generate();
+        }
+
+        private Employee CreateEmployee()
+        {
+            return null; 
         }
 
     }
