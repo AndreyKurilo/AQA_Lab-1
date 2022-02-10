@@ -2,20 +2,18 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CandidatesAndEmployees
+namespace users
 {
-    public class Candidate : Users
+    public class Candidate : IUsers
     {
-        int id;
-        string name;
-        string surname;
-        string jobTittle;
-        string jobDescription;
-        double jobSalary;
+        private readonly int id;
+        private readonly string name;
+        private readonly string surname;
+        private readonly string jobTittle;
+        private readonly string jobDescription;
+        private readonly double jobSalary;
 
-        public int Id
-        {
-            get 
+        public int Id { get 
             {
                 return id; 
             }
@@ -86,11 +84,11 @@ namespace CandidatesAndEmployees
         }
 
 
-        /*public void DisplayInformation()
+        public void DisplayInformation()
         {
             System.Guid guid = System.Guid.NewGuid();
             Console.WriteLine(guid.ToString());
 
-        }*/
+        }
     }
 }
