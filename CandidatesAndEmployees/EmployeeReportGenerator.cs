@@ -25,14 +25,16 @@ namespace CandidatesAndEmployees
         private void Print(List<Employee> employees)
         {
 
-            Console.WriteLine(("").PadRight(83, '-'));
-            Console.WriteLine("{0} {1,25} {0,16} {2, 15} {0,8} {3,10} {0,2}", "|", "Company Name", "Full name", "Salary");
-            Console.WriteLine(("").PadRight(83, '-'));
+            Console.WriteLine(("").PadRight(123, '-'));
+            Console.WriteLine("{0} {1,22 } {0,20} {2,21} {0,16} {3, 15} {0,8} {4,10} {0,2}", "|", "UserId", "Company Name", "Full name", "Salary");
+            Console.WriteLine(("").PadRight(123, '-'));
             foreach (var employee in employees)
             {
-                Console.WriteLine($"|\t{employee.CompanyName,35}|\t{employee.Name, 20}|\t${employee.JobSalary, 10}|");
+                var fullName = $"{employee.Name} {employee.Surname}";
+                var salary = $"$ {employee.JobSalary}";
+                Console.WriteLine($"|\t{employee.Id, 18}|\t{employee.CompanyName,35}|\t{fullName, 20}|\t{salary, 10}|");
             }
-            Console.WriteLine(("").PadRight(83, '-'));
+            Console.WriteLine(("").PadRight(123, '-'));
 
         }
 
