@@ -11,19 +11,27 @@ namespace CandidatesAndEmployees
         {
             var candidates = GetCandidatesFrom(users);
 
-            IEnumerable<IGrouping<string, Candidate>> groupsSortedByTitle = candidates.GroupBy(x => x.JobTitle);
+            var sortedCandidatesByTitleAndSalary = new List<Candidate>();
 
-            var newCandidates = new List<Candidate>();
-
-            foreach (var group in groupsSortedByTitle)
+            foreach (var groupSortedByTitle in candidates.GroupBy(x => x.JobTitle))
             {
-                var newList = group.ToList();
-                newList.Sort((a, b) => a.JobSalary.CompareTo(b.JobSalary));
-                newCandidates.AddRange(newList);
+                var sortedByTitleAndSalary = SortBySalary(groupSortedByTitle.ToList());
+                sortedCandidatesByTitleAndSalary.AddRange(sortedByTitleAndSalary);
             }
 
-            foreach (var candidate in newCandidates)
+            Print(sortedCandidatesByTitleAndSalary);
+        }
+
+        private void Print(List<Candidate> candidates)
+        {
+            foreach (var candidate in candidates)
                 candidate.DisplayInformation();
+        }
+
+        private List<Candidate> SortBySalary(List<Candidate> candidates)
+        {
+            candidates.Sort((a, b) => a.JobSalary.CompareTo(b.JobSalary));
+            return candidates;
         }
 
         private List<Candidate> GetCandidatesFrom(IEnumerable<IUser> users)
