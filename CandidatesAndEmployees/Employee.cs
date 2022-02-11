@@ -6,19 +6,19 @@ namespace CandidatesAndEmployees
 {
     class Employee : IUser
     {
-        private readonly int _id;
+        private readonly Guid _id;
         private readonly string _name;
         private readonly string _surname;
         private readonly string _jobTittle;
         private readonly string _jobDescription;
-        private readonly double _jobSalary;
+        private readonly decimal _jobSalary;
         private readonly string _companyName;
         private readonly string _companyCountry;
         private readonly string _companyCity;
         private readonly string _companyStreet;
 
-        public Employee(int id, string name, string surname, string jobTittle, string jobDescription,
-            double jobSalary, string companyName, string companyCountry, string companyCity, string companyStreet)
+        public Employee(Guid id, string name, string surname, string jobTittle, string jobDescription,
+            decimal jobSalary, string companyName, string companyCountry, string companyCity, string companyStreet)
         {
             _id = id;
             _name = name;

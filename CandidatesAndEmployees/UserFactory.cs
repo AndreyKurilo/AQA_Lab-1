@@ -26,7 +26,7 @@ namespace CandidatesAndEmployees
         {
             Guid guid = Guid.NewGuid();
 
-            var candidates = new Faker<Candidate>()
+            var candidate = new Faker<Candidate>()
                 .CustomInstantiator(fake =>
                     new Candidate(
                         guid,
@@ -36,11 +36,27 @@ namespace CandidatesAndEmployees
                         fake.PickRandom(JobMockData.Descriptions),
                         fake.Finance.Amount()));
 
-            return candidates.Generate();
+            return candidate.Generate();
         }
 
         private Employee CreateEmployee()
         {
+            Guid guid = Guid.NewGuid();
+
+            var employee = new Faker<Employee>()
+                .CustomInstantiator(fake =>
+                   new Employee(
+                       guid,
+                       fake.Name.FirstName(),
+                       fake.Name.LastName(),
+                       fake.Name.JobTitle(),
+                       fake.Name.JobDescriptor(),
+                       fake.Finance.Amount(),
+                       fake.Company.CompanyName(),
+                       fake.Address.Country(),
+                       fake.Address.City(),
+                       fake.Address.StreetAddress()));                       
+
             return null; 
         }
 
