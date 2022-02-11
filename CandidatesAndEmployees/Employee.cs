@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CandidatesAndEmployees
 {
-    class Employee : IUser
+    class Employee : IUser, IDisplayInformation
     {
         private readonly Guid _id;
         private readonly decimal _jobSalary;
@@ -17,18 +17,19 @@ namespace CandidatesAndEmployees
         private readonly string _companyCity;
         private readonly string _companyStreet;
 
-        public Employee(Guid id, decimal jobSalary, params string[] emlpoyeeArguments)
+        public Employee(Guid id, decimal jobSalary, string name, string surname, string jobTittle, string jobDescription,
+            string companyName, string companyCountry, string companyCity, string companyStreet)
         {
             _id = id;
             _jobSalary = jobSalary;
-            _name = emlpoyeeArguments[0];
-            _surname = emlpoyeeArguments[1];
-            _jobTittle = emlpoyeeArguments[2];
-            _jobDescription = emlpoyeeArguments[3];            
-            _companyName = emlpoyeeArguments[4];
-            _companyCountry = emlpoyeeArguments[5];
-            _companyCity = emlpoyeeArguments[6];
-            _companyStreet = emlpoyeeArguments[7];
+            _name = name;
+            _surname = surname;
+            _jobTittle = jobTittle;
+            _jobDescription = jobDescription;
+            _companyName = companyName;
+            _companyCountry = companyCountry;
+            _companyCity = companyCity;
+            _companyStreet = companyStreet;
         }
 
         public Guid Id { get; }
@@ -39,7 +40,7 @@ namespace CandidatesAndEmployees
 
         public string Surname { get; }
 
-        public string JobTittle { get; }
+        public string JobTitle { get; }
 
         public string JobDescription { get; }
 
@@ -54,7 +55,7 @@ namespace CandidatesAndEmployees
 
         public void DisplayInformation()
         {
-            Console.WriteLine($"Hello, I am {Name} {Surname}, {JobTittle} in {CompanyName} ({CompanyCountry}, " +
+            Console.WriteLine($"Hello, I am {Name} {Surname}, {JobTitle} in {CompanyName} ({CompanyCountry}, " +
                 $"{CompanyCity}, {CompanyStreet}) and my salary is {JobSalary}");
         }
 

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CandidatesAndEmployees
 {
-    public class Candidate : IUser
+    public class Candidate : IUser, IDisplayInformation
     {
         private readonly Guid _id;
         private readonly decimal _jobSalary;
@@ -13,14 +13,14 @@ namespace CandidatesAndEmployees
         private readonly string _jobTittle;
         private readonly string _jobDescription;
 
-        public Candidate(Guid id, decimal jobSalary, params string[] candidateArguments)
+        public Candidate(Guid id, decimal jobSalary, string name, string surname, string jobTittle, string jobDescription)
         {
             _id = id;
             _jobSalary = jobSalary;
-            _name = candidateArguments[0];
-            _surname = candidateArguments[1];
-            _jobTittle = candidateArguments[2];
-            _jobDescription = candidateArguments[3];
+            _name = name;
+            _surname = surname;
+            _jobTittle = jobTittle;
+            _jobDescription = jobDescription;
         }
 
         public Guid Id => _id;
@@ -31,14 +31,14 @@ namespace CandidatesAndEmployees
 
         public string Surname => _surname;
 
-        public string JobTittle => _jobTittle;
+        public string JobTitle => _jobTittle;
 
         public string JobDescription => _jobDescription;
 
 
         public void DisplayInformation()
         {
-            Console.WriteLine($"Hello, I am {Name} {Surname} I want to be a {JobTittle} ({JobDescription}) with a salary from {JobSalary}");
+            Console.WriteLine($"Hello, I am {Name} {Surname} I want to be a {JobTitle} ({JobDescription}) with a salary from { JobSalary}");
         }
     }
 }

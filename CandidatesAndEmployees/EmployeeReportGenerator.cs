@@ -6,7 +6,7 @@ namespace CandidatesAndEmployees
 {
     public class EmployeeReportGenerator: IReportGenerator
     {
-        public void Sort()
+        public void Sort(IEnumerator<IUser> users)
         {
 
         }

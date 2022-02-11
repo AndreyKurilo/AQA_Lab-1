@@ -6,6 +6,5 @@ namespace CandidatesAndEmployees
 {
     public interface IUser
     {
-        void DisplayInformation();
     }
 }

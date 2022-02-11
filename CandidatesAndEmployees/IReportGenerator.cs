@@ -6,6 +6,6 @@ namespace CandidatesAndEmployees
 {
     interface IReportGenerator
     {
-        void Sort();
+        void Sort(IEnumerable<IUser> users);
     }
 }

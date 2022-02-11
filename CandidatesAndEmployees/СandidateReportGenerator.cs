@@ -6,24 +6,23 @@ namespace CandidatesAndEmployees
 {
     public class СandidateReportGenerator: IReportGenerator
     {
-        Candidate[] candidatesArray;
-        public СandidateReportGenerator(List<Candidate> candidates)
+        public void Sort(IEnumerable<IUser> users)
         {
-            candidatesArray = candidates.ToArray();
-        }
-        public void Sort()
-        {
-            List<Candidate> companyList = new List<Candidate>();
-
-
-            for (int i = 0; i < candidatesArray.Length; i++)
+            foreach(var user in users)
             {
-                if(String.Equals(candidatesArray[i].JobTittle, candidatesArray[i + 1].JobTittle)
-                {
-
-
+                if(user is Candidate)
+                { 
                 }
             }
+
+            //for (int i = 0; i < candidatesArray.Length; i++)
+            //{
+            //    if(String.Equals(candidatesArray[i].JobTittle, candidatesArray[i + 1].JobTittle))
+            //    {
+
+
+            //    }
+            //}
         }
     }
 }

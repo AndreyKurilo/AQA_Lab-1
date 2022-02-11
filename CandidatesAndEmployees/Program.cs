@@ -6,9 +6,13 @@ namespace CandidatesAndEmployees
     {
         static void Main(string[] args)
         {
-            // Users.Generate();
+            var userFactory = new UserFactory();
+            var userHolder = new UserHolder(userFactory);
 
-            // 
+            foreach (IUser user in userHolder.Users)
+            {
+                user.DisplayInformation();
+            }
         }
     }
 }
