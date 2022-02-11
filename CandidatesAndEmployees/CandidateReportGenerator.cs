@@ -7,7 +7,7 @@ namespace CandidatesAndEmployees
 {
     public class CandidateReportGenerator : IReportGenerator
     {
-        public void GeneratesReportFor(IEnumerable<IUser> users)
+        public void GenerateReportFor(IEnumerable<IUser> users)
         {
             var candidates = GetCandidatesFrom(users);
 

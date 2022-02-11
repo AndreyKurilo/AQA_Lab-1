@@ -7,7 +7,7 @@ namespace CandidatesAndEmployees
 {
     public class EmployeeReportGenerator: IReportGenerator
     {
-        public void GeneratesReportFor(IEnumerable<IUser> users)
+        public void GenerateReportFor(IEnumerable<IUser> users)
         {
             var employees = GetEmployeesFrom(users);
 
@@ -24,8 +24,16 @@ namespace CandidatesAndEmployees
         }
         private void Print(List<Employee> employees)
         {
+
+            Console.WriteLine(("").PadRight(83, '-'));
+            Console.WriteLine("{0} {1,25} {0,16} {2, 15} {0,8} {3,10} {0,2}", "|", "Company Name", "Full name", "Salary");
+            Console.WriteLine(("").PadRight(83, '-'));
             foreach (var employee in employees)
-                employee.DisplayInformation();
+            {
+                Console.WriteLine($"|\t{employee.CompanyName,35}|\t{employee.Name, 20}|\t${employee.JobSalary, 10}|");
+            }
+            Console.WriteLine(("").PadRight(83, '-'));
+
         }
 
         private List<Employee> SortBySalary(List<Employee> employees)

@@ -47,7 +47,6 @@ namespace CandidatesAndEmployees
         public string CompanyName => _companyName;
 
         public string CompanyCountry => _companyCountry;
-;
 
         public string CompanyCity => _companyCity;
 
