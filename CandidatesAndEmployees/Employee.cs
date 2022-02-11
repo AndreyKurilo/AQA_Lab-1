@@ -32,26 +32,26 @@ namespace CandidatesAndEmployees
             _companyStreet = companyStreet;
         }
 
-        public Guid Id { get; }
+        public Guid Id => _id;
 
-        public decimal JobSalary { get; }
+        public decimal JobSalary => _jobSalary;
 
-        public string Name { get; }
+        public string Name => _name;
 
-        public string Surname { get; }
+        public string Surname => _surname;
 
-        public string JobTitle { get; }
+        public string JobTitle => _jobTittle;
 
-        public string JobDescription { get; }
+        public string JobDescription => _jobDescription;
 
-        public string CompanyName { get; }
+        public string CompanyName => _companyName;
 
-        public string CompanyCountry { get; }
+        public string CompanyCountry => _companyCountry;
+;
 
-        public string CompanyCity { get; }
+        public string CompanyCity => _companyCity;
 
-        public string CompanyStreet { get; }
-        
+        public string CompanyStreet => _companyStreet;
 
         public void DisplayInformation()
         {
