@@ -6,5 +6,6 @@ namespace CandidatesAndEmployees
 {
     interface IReportGenerator
     {
+        void Sort();
     }
 }

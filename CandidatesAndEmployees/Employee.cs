@@ -7,32 +7,33 @@ namespace CandidatesAndEmployees
     class Employee : IUser
     {
         private readonly Guid _id;
+        private readonly decimal _jobSalary;
         private readonly string _name;
         private readonly string _surname;
         private readonly string _jobTittle;
         private readonly string _jobDescription;
-        private readonly decimal _jobSalary;
         private readonly string _companyName;
         private readonly string _companyCountry;
         private readonly string _companyCity;
         private readonly string _companyStreet;
 
-        public Employee(Guid id, string name, string surname, string jobTittle, string jobDescription,
-            decimal jobSalary, string companyName, string companyCountry, string companyCity, string companyStreet)
+        public Employee(Guid id, decimal jobSalary, params string[] emlpoyeeArguments)
         {
             _id = id;
-            _name = name;
-            _surname = surname;
-            _jobTittle = jobTittle;
-            _jobDescription = jobDescription;
             _jobSalary = jobSalary;
-            _companyName = companyName;
-            _companyCountry = companyCountry;
-            _companyCity = companyCity;
-            _companyStreet = companyStreet;
+            _name = emlpoyeeArguments[0];
+            _surname = emlpoyeeArguments[1];
+            _jobTittle = emlpoyeeArguments[2];
+            _jobDescription = emlpoyeeArguments[3];            
+            _companyName = emlpoyeeArguments[4];
+            _companyCountry = emlpoyeeArguments[5];
+            _companyCity = emlpoyeeArguments[6];
+            _companyStreet = emlpoyeeArguments[7];
         }
 
-        public int Id => _id;
+        public Guid Id { get; }
+
+        public decimal JobSalary { get; }
 
         public string Name { get; }
 
@@ -41,8 +42,6 @@ namespace CandidatesAndEmployees
         public string JobTittle { get; }
 
         public string JobDescription { get; }
-
-        public double JobSalary { get; }
 
         public string CompanyName { get; }
 
@@ -55,9 +54,8 @@ namespace CandidatesAndEmployees
 
         public void DisplayInformation()
         {
-            System.Guid guid = System.Guid.NewGuid();
-            Console.WriteLine(guid.ToString());
-
+            Console.WriteLine($"Hello, I am {Name} {Surname}, {JobTittle} in {CompanyName} ({CompanyCountry}, " +
+                $"{CompanyCity}, {CompanyStreet}) and my salary is {JobSalary}");
         }
 
     }

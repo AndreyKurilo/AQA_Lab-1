@@ -30,11 +30,11 @@ namespace CandidatesAndEmployees
                 .CustomInstantiator(fake =>
                     new Candidate(
                         guid,
+                        fake.Finance.Amount(),
                         fake.Name.FirstName(),
                         fake.Name.LastName(),
-                        fake.PickRandom(JobMockData.Titles),
-                        fake.PickRandom(JobMockData.Descriptions),
-                        fake.Finance.Amount()));
+                        fake.Name.JobTitle(),
+                        fake.Name.JobDescriptor()));
 
             return candidate.Generate();
         }
@@ -47,18 +47,17 @@ namespace CandidatesAndEmployees
                 .CustomInstantiator(fake =>
                    new Employee(
                        guid,
+                       fake.Finance.Amount(),
                        fake.Name.FirstName(),
                        fake.Name.LastName(),
                        fake.Name.JobTitle(),
                        fake.Name.JobDescriptor(),
-                       fake.Finance.Amount(),
                        fake.Company.CompanyName(),
                        fake.Address.Country(),
                        fake.Address.City(),
                        fake.Address.StreetAddress()));                       
 
-            return null; 
+            return employee; 
         }
-
     }
 }

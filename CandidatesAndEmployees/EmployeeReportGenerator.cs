@@ -4,7 +4,11 @@ using System.Text;
 
 namespace CandidatesAndEmployees
 {
-    class EmployeeReportGenerator
+    public class EmployeeReportGenerator: IReportGenerator
     {
+        public void Sort()
+        {
+
+        }
     }
 }
