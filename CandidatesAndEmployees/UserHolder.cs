@@ -6,6 +6,8 @@ namespace CandidatesAndEmployees
 {
     public class UserHolder
     {
+        private const int MinUsersCount = 10;
+        private const int MaxUsersCount = 20;
         private readonly List<IUser> users = new List<IUser>();
         private UserFactory _userFactory;
 
@@ -18,10 +20,10 @@ namespace CandidatesAndEmployees
             Generate();
         }
 
-        private byte GenenerateNumberOfUsers()
+        private int GenenerateNumberOfUsers()
         {
-            Random rnd = new Random();
-            byte usersRandomAmount = (byte) rnd.Next(10, Byte.MaxValue/2);
+            Random random = new Random();
+            int usersRandomAmount = random.Next(MinUsersCount, MaxUsersCount);
 
             return usersRandomAmount;
         }
