@@ -8,11 +8,9 @@ namespace CandidatesAndEmployees
         {
             var userFactory = new UserFactory();
             var userHolder = new UserHolder(userFactory);
+            var candidateReportGenerator = new CandidateReportGenerator();
 
-            foreach (IUser user in userHolder.Users)
-            {
-                user.DisplayInformation();
-            }
+            candidateReportGenerator.Sort(userHolder.Users);
         }
     }
 }
