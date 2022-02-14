@@ -397,3 +397,4 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 CandidatesAndEmployees/.idea
+Lessons_3_4/.idea
