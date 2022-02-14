@@ -1,4 +1,6 @@
-﻿namespace Task3_Drivers;
+﻿using Bogus;
+
+namespace Task3_Drivers;
 
 public static class Program
 {
