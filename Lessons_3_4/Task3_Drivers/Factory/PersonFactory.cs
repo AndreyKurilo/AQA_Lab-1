@@ -1,34 +1,36 @@
 ﻿using Bogus;
+using Person = Task3_Drivers.Model.Person;
 
-namespace Task3_Drivers;
+namespace Task3_Drivers.Factory;
 
 public class PersonFactory
 {
-    public Person create()
+    private readonly Faker _faker;
+
+    public PersonFactory()
+    {
+        _faker = new Faker();
+    }
+    
+    public Person Create()
     {
         var person = new Person();
-        var faker = new Faker();
         
-        person.Name = faker.Name.FirstName();
-        person.Surname = faker.Name.LastName();
+        person.Name = _faker.Name.FirstName();
+        person.Surname = _faker.Name.LastName();
         person.DateOfBirth = EstablishDate();
-        person.Driver = new DriverLicenseFactory(person.DateOfBirth).Equals(null);
+        //person.IsDriver = _driverFactory.Create(person.DateOfBirth) != null;
 
         return person;
     }
 
     private DateTime EstablishDate()
     {
-        var faker = new Faker();
-            
         DateTime startDate = DateTime.Parse("10/01/1954");
         DateTime finishDate = DateTime.Now;
-        DateTime date;
 
-        date = faker.Date.BetweenOffset(
+        DateTime date = _faker.Date.BetweenOffset(
             new DateTimeOffset(startDate), new DateTimeOffset(finishDate)).Date;
-        
-        throw new NotImplementedException();
 
         return date;
     }

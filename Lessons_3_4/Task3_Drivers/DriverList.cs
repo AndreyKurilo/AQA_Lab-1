@@ -1,4 +1,6 @@
-﻿namespace Task3_Drivers;
+﻿using Task3_Drivers.Model;
+
+namespace Task3_Drivers;
 
 public class DriverList
 {
@@ -8,7 +10,7 @@ public class DriverList
 
         foreach (var person in persons)
         {
-            if (person.Driver)
+            if (person.IsDriver)
             {
                 drivers.Add(person);
             }
