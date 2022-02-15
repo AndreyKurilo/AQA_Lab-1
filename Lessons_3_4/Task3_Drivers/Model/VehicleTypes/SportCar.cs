@@ -1,8 +1,8 @@
-﻿namespace Task3_Drivers.Model;
+﻿namespace Task3_Drivers.Model.VehicleTypes;
 
 public class SportCar : Vehicle
 {
-    public override Driver SetOwner(Driver driver)
+    public override Driver? SetOwner(Driver driver)
     {
         if (HasDrivingExperience(driver))
         {
@@ -14,12 +14,6 @@ public class SportCar : Vehicle
         return null;
     }
 
-    private bool HasDrivingExperience(Driver driver)
-    {
-        if ((DateTime.Now.Year - driver.DateDriverLicense.Year) > 5)
-        {
-            return true;
-        }
-        return false;
-    }
+    private bool HasDrivingExperience(Driver driver) => 
+        DateTime.Now.Year - driver.DateDriverLicense.Year > 5;
 }

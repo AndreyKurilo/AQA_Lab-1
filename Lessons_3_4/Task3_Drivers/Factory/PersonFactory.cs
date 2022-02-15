@@ -21,10 +21,13 @@ public class PersonFactory
             DateOfBirth = EstablishDate()
         };
 
-        person.IsDriver = DriverFactory.ReleasePermition(person);
+        person.IsDriver = ReleasePermission(person);
 
         return person;
     }
+    
+    private bool ReleasePermission(Person person) => 
+        person.DateOfBirth.AddYears(16).Year <= DateTime.Now.Year;
 
     private DateTime EstablishDate()
     {

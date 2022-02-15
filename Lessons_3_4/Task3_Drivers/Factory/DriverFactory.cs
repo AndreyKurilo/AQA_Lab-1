@@ -27,11 +27,6 @@ public class DriverFactory
         return driver;
     }
 
-    public static  bool ReleasePermition(Person person)
-    {
-        return person.DateOfBirth.AddYears(16).Year <= DateTime.Now.Year;
-    }
-
     private DateTime ReleaseLicenseDate( Person person)
     {
         DateTime startDate = person.DateOfBirth.AddYears(16);

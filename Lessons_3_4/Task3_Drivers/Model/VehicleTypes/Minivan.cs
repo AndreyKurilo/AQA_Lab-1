@@ -1,4 +1,4 @@
-﻿namespace Task3_Drivers.Model;
+﻿namespace Task3_Drivers.Model.VehicleTypes;
 
 public class Minivan : Vehicle
 {

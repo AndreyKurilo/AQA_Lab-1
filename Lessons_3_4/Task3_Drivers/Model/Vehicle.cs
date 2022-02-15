@@ -10,5 +10,5 @@ public abstract class Vehicle
     
     public int MaxSpeed { get; set; }
 
-    public abstract Driver SetOwner(Driver driver);
+    public abstract Driver? SetOwner(Driver driver);
 }

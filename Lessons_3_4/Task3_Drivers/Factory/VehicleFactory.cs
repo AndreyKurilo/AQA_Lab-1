@@ -1,5 +1,6 @@
 ﻿using Bogus;
 using Task3_Drivers.Model;
+using Task3_Drivers.Model.VehicleTypes;
 
 namespace Task3_Drivers.Factory;
 
