@@ -1,5 +1,6 @@
 ﻿using Bogus;
 using Task3_Drivers.Model;
+using Person = Task3_Drivers.Model.Person;
 
 namespace Task3_Drivers.Factory;
 
@@ -12,25 +13,29 @@ public class DriverFactory
         _faker = new Faker();
     }
 
-    public Driver Create()
+    public Driver Create(Person person)
     {
         var driver = new Driver();
 
         driver.Name = _faker.Name.FirstName();
         driver.Surname = _faker.Name.LastName();
-        driver.DateOfBirth = EstablishDate();
+        driver.DateOfBirth = person.DateOfBirth;
         driver.LicenseID = new Guid();
-        driver.DateDriverLicense = _faker.Date.Between(driver.DateOfBirth + 16, DateTime.Now);
+        driver.DateDriverLicense = ReleaseLicenseDate(person);
         driver.IsDriver = true;
 
         return driver;
     }
 
-    private DateTime EstablishDate()
+    public static  bool ReleasePermition(Person person)
     {
-        DateTime startDate = DateTime.Parse("10/01/1954");
-        DateTime finishDate = DateTime.Now;
+        return person.DateOfBirth.AddYears(16).Year <= DateTime.Now.Year;
+    }
 
+    private DateTime ReleaseLicenseDate( Person person)
+    {
+        DateTime startDate = person.DateOfBirth.AddYears(16);
+        DateTime finishDate = DateTime.Now;
         DateTime date = _faker.Date.BetweenOffset(
             new DateTimeOffset(startDate), new DateTimeOffset(finishDate)).Date;
 
