@@ -1,28 +1,36 @@
-﻿using Bogus;
-using Task3_Drivers.Factory;
+﻿using Task3_Drivers.Factory;
 using Task3_Drivers.Model;
-using Person = Task3_Drivers.Model.Person;
 
 namespace Task3_Drivers;
 
 public static class Program
 {
-    private const int DriversCount = 3;
-
     public static void Main(string[] args)
     {
-        var driverFactory = new DriverFactory2();
-        var drivers = new List<Driver>();
+        var driverFactory = new DriverFactory();
+        var vehicleFactory = new VehicleFactory();
+        var creator = new Creator(vehicleFactory, driverFactory);
+        var menu = new Menu();
 
-        for (int i = 0; i < DriversCount; i++)
-        {
-            drivers.Add(driverFactory.Create());            
-        }
+        var drivers = creator.CreateDrivers(menu.AskDriversCountToCreate());
+        creator.CreateVehiclesFor(drivers);
 
-        // Menu.AskForDriverNumber(DriversCount);
-        // int driverNumber = Input.GetDriverNumber(DriversCount);
-        // Menu.AskForTechnicalStats();
-        // 
+        menu.PrintDrivers(drivers);
         
+        Driver pickedDriver = menu.PickDriver(drivers);
+        VehicleDetailsType pickedVehicleDetailsTypeType = menu.PickVehicleInformationType();
+        Vehicle? driverVehicle = pickedDriver.Vehicle;
+
+        switch (pickedVehicleDetailsTypeType)
+        {
+            case VehicleDetailsType.Technical:
+                driverVehicle.PrintTechnicalDetails();
+                break;
+            case VehicleDetailsType.Consumption:
+                var distance = menu.AskForDistance();
+                driverVehicle.PrintConsumptionDetails();
+                driverVehicle.PrintCalculatedTripDetails(distance);
+                break;
+        }
     }
 }
