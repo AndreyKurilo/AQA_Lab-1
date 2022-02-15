@@ -5,14 +5,30 @@ namespace Task3_Drivers.Factory;
 
 public class VehicleFactory
 {
-    public void CreateTruck()
+    private readonly Faker _faker;
+
+    public void CreateSportCar(Driver driver)
+    {
+        var vehicle = new SportCar();
+        vehicle,
+    }
+    public void CreateTruck(Driver driver)
     {
         var vehicle = new Truck();
-        var faker = new Faker();
 
-        vehicle.Model = faker.Vehicle.Model();
-        vehicle.Type = faker.Vehicle.Type();
-        vehicle.YearOfRelease = faker.Date.Past().Year;
-        vehicle.SetOwner(null);
+        vehicle.Model = _faker.Vehicle.Model();
+        vehicle.YearOfRelease = _faker.Date.Past().Year;
+        vehicle.MaxSpeed = new Random().Next(100, 150);
+        vehicle.HasPricep = AllowPricep(driver);
+        vehicle.SetOwner(driver);
+    }
+
+    private bool AllowPricep(Driver driver)
+    {
+        if ((DateTime.Now.Year - driver.DateDriverLicense.Year) >= 10)
+        {
+            return true;
+        }
+        return false;
     }
 }
