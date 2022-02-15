@@ -6,6 +6,7 @@ public class Truck : Vehicle
     
     public override Driver SetOwner(Driver driver)
     {
+        Owner = driver;
         return driver;
     }
 }

@@ -6,6 +6,7 @@ public class SportCar : Vehicle
     {
         if (HasDrivingExperience(driver))
         {
+            Owner = driver;
             return driver;
         }
 
