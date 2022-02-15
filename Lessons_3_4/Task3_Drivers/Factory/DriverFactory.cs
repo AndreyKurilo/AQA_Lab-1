@@ -3,11 +3,11 @@ using Task3_Drivers.Model;
 
 namespace Task3_Drivers.Factory;
 
-public class DriverFactory2
+public class DriverFactory
 {
     private readonly Faker _faker;
 
-    public DriverFactory2()
+    public DriverFactory()
     {
         _faker = new Faker();
     }
@@ -19,7 +19,7 @@ public class DriverFactory2
             Name = _faker.Name.FirstName(),
             Surname = _faker.Name.LastName(),
             DateOfBirth = GetDateOfBirth(),
-            LicenseID = new Guid()
+            LicenseId = Guid.NewGuid()
         };
 
         driver.DateDriverLicense = GetDateDriverLicense(driver.DateOfBirth);
@@ -30,7 +30,7 @@ public class DriverFactory2
 
     private DateTime GetDateDriverLicense(DateTime dateOfBirth)
     {
-        DateTime startDate = dateOfBirth.AddYears(21);
+        DateTime startDate = dateOfBirth.AddYears(16);
         DateTime finishDate = DateTime.Now;
         DateTime date = _faker.Date.BetweenOffset(
             new DateTimeOffset(startDate), new DateTimeOffset(finishDate)).Date;
