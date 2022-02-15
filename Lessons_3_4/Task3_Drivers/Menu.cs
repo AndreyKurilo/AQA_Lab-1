@@ -4,54 +4,74 @@ namespace Task3_Drivers;
 
 public class Menu
 {
-    public int AskDriversNumberToCreate()
+    public void PrintDrivers(List<Driver> drivers)
     {
-        int numberOfDrivers;
-        
+        for (var i = 0; i < drivers.Count; i++)
+        {
+            Driver driver = drivers[i];
+            Console.WriteLine($"Driver #{i + 1}");
+            driver.Print();
+            Console.WriteLine(string.Empty);
+        }
+    }
+
+    public int AskDriversCountToCreate()
+    {
         Console.WriteLine("Enter number of drivers");
-        numberOfDrivers = Int32.Parse(Console.ReadLine());
-        return numberOfDrivers;
+        var driversCount = Int32.Parse(Console.ReadLine());
+        return driversCount;
     }
 
     public Driver PickDriver(List<Driver> drivers)
     {
         do
         {
-            Console.WriteLine($"Choose driver from the list (1-{0}", drivers.Count);
+            Console.WriteLine($"Choose driver from the list (1-{drivers.Count})");
             int choice = Int32.Parse(Console.ReadLine());
             if (choice > 0 && choice <= drivers.Count)
             {
-                return drivers[choice];
+                return drivers[choice - 1];
             }
         } while (true);
     }
 
-    public int PickTechicalStat()
+    public VehicleDetailsType PickVehicleInformationType()
     {
         do
         {
-            Console.WriteLine("Choose specificity You need to know from this roster:");
-            Console.WriteLine("1 - Model;\n 2 - Year of production;\n 3 - Engine capacity;\n" +
-                              "4 - Engine consumption;\n 5 - Max speed");
+            Console.WriteLine(@"Enter 1 for display vehicle technical details or  
+                                2 to display consumption information");
             int choice = Int32.Parse(Console.ReadLine());
-            if (choice > 0 && choice <= 6)
+            if (choice < 1 && choice > 2)
             {
-                return choice;
+                Console.WriteLine("Wrong choice.");
+                continue;
+            }
+
+            switch (choice)
+            {
+                case 1:
+                    return VehicleDetailsType.Technical;
+                default:
+                    return VehicleDetailsType.Consumption;
             }
         } while (true);
     }
 
-    public int PickConsumtionInformation()
+    public int AskForDistance()
     {
         do
         {
-            Console.WriteLine("Choose specificity You need to know from this roster:");
-            Console.WriteLine("1 - Driver's experience;\n 2 - Fuel consumption;\n 3 - Time for trip;" );
-            int choice = Int32.Parse(Console.ReadLine());
-            if (choice > 0 && choice <= 4)
+            Console.WriteLine("Enter distance to ride: ");
+            int distance = Int32.Parse(Console.ReadLine());
+
+            if (distance <= 0)
             {
-                return choice;
+                Console.WriteLine("Distance can't be below 0");
+                continue;
             }
+
+            return distance;
         } while (true);
     }
 }
