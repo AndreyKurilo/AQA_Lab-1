@@ -14,19 +14,21 @@ public class PersonFactory
     
     public Person Create()
     {
-        var person = new Person();
-        
-        person.Name = _faker.Name.FirstName();
-        person.Surname = _faker.Name.LastName();
-        person.DateOfBirth = EstablishDate();
-        //person.IsDriver = _driverFactory.Create(person.DateOfBirth) != null;
+        var person = new Person
+        {
+            Name = _faker.Name.FirstName(),
+            Surname = _faker.Name.LastName(),
+            DateOfBirth = EstablishDate()
+        };
+
+        person.IsDriver = DriverFactory.ReleasePermition(person);
 
         return person;
     }
 
     private DateTime EstablishDate()
     {
-        DateTime startDate = DateTime.Parse("10/01/1954");
+        DateTime startDate = DateTime.Now.AddYears(-100);
         DateTime finishDate = DateTime.Now;
 
         DateTime date = _faker.Date.BetweenOffset(
