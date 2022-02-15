@@ -20,22 +20,14 @@ namespace Task4
             Generate();
         }
 
-        private int GenenerateNumberOfUsers()
-        {
-            Random random = new Random();
-            int usersRandomAmount = random.Next(MinUsersCount, MaxUsersCount);
-
-            return usersRandomAmount;
-        }
-
         private void Generate()
         {
-            for (byte i = 0; i < GenenerateNumberOfUsers(); i++)
+            for (byte i = 0; i < Randomizer.GetRandomNumberBetween(MinUsersCount, MaxUsersCount); i++)
             {
                 users.Add(_userFactory.Create(UserType.Candidate));
             }
 
-            for (byte i = 0; i < GenenerateNumberOfUsers(); i++)
+            for (byte i = 0; i < Randomizer.GetRandomNumberBetween(MinUsersCount, MaxUsersCount); i++)
             {
                 users.Add(_userFactory.Create(UserType.Employee));
             }
