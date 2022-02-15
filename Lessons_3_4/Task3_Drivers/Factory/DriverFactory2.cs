@@ -29,16 +29,22 @@ public class DriverFactory2
 
     private DateTime GetDateDriverLicense(DateTime dateOfBirth)
     {
-        // Вернешь валидную дату лицензии
-        
-        return new DateTime();
+        DateTime startDate = dateOfBirth.AddYears(16);
+        DateTime finishDate = DateTime.Now;
+        DateTime date = _faker.Date.BetweenOffset(
+            new DateTimeOffset(startDate), new DateTimeOffset(finishDate)).Date;
+
+        return date;
     }
 
     private DateTime GetDateOfBirth()
     {
-        // Вернешь дату рождения подходящая чтобы стать водителем
-        
-        return new DateTime();
+        var date = new DateTime();
+        date = _faker.Date.BetweenOffset(
+            new DateTimeOffset(DateTime.Now.AddYears(-100)), 
+            new DateTimeOffset(DateTime.Now.AddYears(-17))).Date;
+
+        return date;
     }
 
     private DateTime ReleaseLicenseDate( Person person)
