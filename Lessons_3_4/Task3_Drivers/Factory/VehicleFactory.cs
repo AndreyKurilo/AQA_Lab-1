@@ -7,19 +7,40 @@ public class VehicleFactory
 {
     private readonly Faker _faker;
 
+    public void CreateMinivan(Driver driver)
+    {
+        var vehicle = new Minivan();
+        int min = 100;
+        int max = 150;
+
+        SetAttributes(driver, vehicle, min, max);
+        vehicle.Seats = new Random().Next(1, 10);
+    }
+    
     public void CreateSportCar(Driver driver)
     {
         var vehicle = new SportCar();
-        vehicle,
+        int min = 200;
+        int max = 350;
+
+        SetAttributes(driver, vehicle, min, max);
+        
     }
     public void CreateTruck(Driver driver)
     {
         var vehicle = new Truck();
+        int min = 100;
+        int max = 150;
 
+        SetAttributes(driver, vehicle, min, max);
+        vehicle.HasPricep = AllowPricep(driver);
+    }
+
+    private void SetAttributes(Driver driver, Vehicle vehicle, int intervalMin, int intervalMax)
+    {
         vehicle.Model = _faker.Vehicle.Model();
         vehicle.YearOfRelease = _faker.Date.Past().Year;
-        vehicle.MaxSpeed = new Random().Next(100, 150);
-        vehicle.HasPricep = AllowPricep(driver);
+        vehicle.MaxSpeed = new Random().Next(intervalMin, intervalMax);
         vehicle.SetOwner(driver);
     }
 
