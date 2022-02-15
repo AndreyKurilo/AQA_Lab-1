@@ -1,16 +1,19 @@
-﻿namespace Task3_Drivers.Model;
+﻿using Bogus;
+
+namespace Task3_Drivers.Model;
 
 public class Driver : Person
 {
     public DateTime DateDriverLicense { get; set; }
-    public Guid LicenseID { get; set; }
+    public Guid LicenseId { get; set; }
+    public Vehicle Vehicle { get; set; } = null!;
 
-    public void PrintDriver(Driver driver)
+    public void Print()
     {
-        Console.WriteLine("Surname: " + driver.Surname);
-        Console.WriteLine("Name: " + driver.Name);
-        Console.WriteLine("Age: " + (DateTime.Now.Year - driver.DateOfBirth.Year));
-        Console.WriteLine("Date of release driver's license: " + driver.DateDriverLicense);
-        Console.WriteLine("License ID: " + driver.LicenseID);
+        Console.WriteLine("Surname: " + Surname);
+        Console.WriteLine("Name: " + Name);
+        Console.WriteLine("Age: " + (DateTime.Now.Year - DateOfBirth.Year));
+        Console.WriteLine("Date of release driver's license: " + DateDriverLicense);
+        Console.WriteLine("License ID: " + LicenseId);
     }
 }

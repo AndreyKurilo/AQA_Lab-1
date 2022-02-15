@@ -1,12 +1,15 @@
-﻿namespace Task3_Drivers.Model;
+﻿using JetBrains.Annotations;
 
+namespace Task3_Drivers.Model;
+
+[UsedImplicitly]
 public class Engine
 {
-    public int Capacity { get; set; }
-    
-    public int Power { get; set; }
-    
-    public string FuelType { get; set; }
-    
-    public string Consumption { get; set; }
+    public int Capacity { get; [UsedImplicitly] set; }
+
+    public int Power { get; [UsedImplicitly] set; }
+
+    public string? FuelType { get; [UsedImplicitly] set; }
+
+    public float Consumption { get; [UsedImplicitly] set; }
 }
