@@ -4,8 +4,8 @@ public class Truck : Vehicle
 {
     public bool HasPricep { get; set; }
     
-    public override void SetOwner(Driver owner)
+    public override Driver SetOwner(Driver driver)
     {
-        Owner = owner;
+        return driver;
     }
 }
