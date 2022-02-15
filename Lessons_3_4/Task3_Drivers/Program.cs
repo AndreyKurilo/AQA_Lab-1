@@ -23,10 +23,10 @@ public static class Program
 
         switch (pickedVehicleDetailsTypeType)
         {
-            case VehicleDetailsType.Technical:
+            case VehicleDetailsType.TechnicalDetails:
                 driverVehicle.PrintTechnicalDetails();
                 break;
-            case VehicleDetailsType.Consumption:
+            case VehicleDetailsType.ConsumptionDetails:
                 var distance = menu.AskForDistance();
                 driverVehicle.PrintConsumptionDetails();
                 driverVehicle.PrintCalculatedTripDetails(distance);

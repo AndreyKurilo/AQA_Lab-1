@@ -51,9 +51,9 @@ public class Menu
             switch (choice)
             {
                 case 1:
-                    return VehicleDetailsType.Technical;
+                    return VehicleDetailsType.TechnicalDetails;
                 default:
-                    return VehicleDetailsType.Consumption;
+                    return VehicleDetailsType.ConsumptionDetails;
             }
         } while (true);
     }

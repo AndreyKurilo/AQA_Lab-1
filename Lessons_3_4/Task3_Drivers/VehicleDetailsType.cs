@@ -2,5 +2,5 @@
 
 public enum VehicleDetailsType
 {
-    Technical, Consumption
+    TechnicalDetails, ConsumptionDetails
 }
