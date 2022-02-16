@@ -19,9 +19,10 @@ namespace CurrencyExchange_ver2
             string currencyType = value.Substring(value.Length - 4);
             value = value.Remove(value.Length - 4);
 
-            long numderFromString = WordsToNumbers.ConvertToNumbers(value);
+            var converter = new SimpleReplacementStrategy();
+            var numberFromString = converter.ConvertWordsToNumbers(value);
 
-            string handledString = numderFromString + " " + currencyType;
+            string handledString = numberFromString + " " + currencyType;
 
             return handledString;
         }
