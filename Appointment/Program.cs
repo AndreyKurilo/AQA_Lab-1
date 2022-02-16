@@ -8,9 +8,9 @@ namespace Appointment
         {
             var user = new User();
             var bot = new Bot();
-            user.SetName(bot.AskForName());
-            user.SetSurname(bot.AskForSurname());
-            user.SetDate(bot.AskForDate());
+            user.Name = bot.AskForName();
+            user.Surname = bot.AskForSurname();
+            user.Date = bot.AskForDate();
             bot.ReplyTo(user);
         }
     }

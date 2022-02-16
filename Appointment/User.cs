@@ -7,75 +7,55 @@ namespace Appointment
 {
     public class User
     {
-        string name;
-        string surname;
+        private string _name;
+        private string _surname;
         string date;
+
+        public string Name
+        {
+            get => _name;
+            set => _name = CorrectUserString(value);
+        }
+
+        public string Surname
+        {
+            get => _surname;
+            set => _surname = CorrectUserString(value);
+        }
         
-        //public string Name { get; set; }
-        public void SetName(string name)
+        private string CorrectUserString(string inputString)
         {
-            for (int i = 0; i < name.Length; i++)
+            for (int i = 0; i < inputString.Length; i++)
             {
-                if (!Char.IsLetter(name[i]))
+                if (!Char.IsLetter(inputString[i]))
                 {
-                    name = CheckAndCorrect(name);
+                    CheckAndCorrect(inputString);
                     break;
                 }
             }
 
-            this.name = name;
+            return inputString;
         }
 
-        public void SetSurname(string surname)
-        {
-            for (byte i = 0; i < surname.Length; i++)
-            {
-                if (!Char.IsLetter(surname[i]))
-                {
-                    surname = CheckAndCorrect(surname);
-                    break;
-                }
-            }
+        
+        public string Date { get; set; }
 
-            this.surname = surname;
-        }
-
-        public void SetDate(string date)
-        {
-            this.date = date;
-        }
-
-        public string GetName()
-        {
-            return name;
-        }
-         public string GetSurname()
-        {
-            return surname;
-        }
-
-        public string GetDate()
-        {
-            return date;
-        }
 
         public void RegistrationTime()
         {
             Random rnd = new Random();
             int hour = rnd.Next(9, 18);
             int min = rnd.Next(0, 59);
-            Console.WriteLine(name + " " + surname + " has registration " + date + " on " + hour + ":" + min);
+            Console.WriteLine(_name + " " + _surname + " has registration " + date + " on " + hour + ":" + min);
         }
-        
-        private static string CheckAndCorrect(string userInput)
+
+        private void CheckAndCorrect(string userInput)
         {
             Console.WriteLine("Entered: " + userInput);
             Console.WriteLine("Name/surname must have letters only - input processing...");
             Regex regex = new Regex("[^a-zA-ZА-Яа-я]");
             userInput = regex.Replace(userInput, "");
             Console.WriteLine("After processing: " + userInput);
-            return userInput;
         }
-
     }
 }
