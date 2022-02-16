@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CurrencyExchange_ver2
 {
-    class CurrencyRates
+    public class CurrencyRates
     {
         double rateUSD, rateEUR, rateRUB;
 
