@@ -1,21 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Appointment
 {
-    public class Bot
+    public class Input
     {
-        public Bot()
-        {
-            var user = new User();
-        }
+        public string Name() => GetNameOrSurname("Enter Your name");
         
-        public string AskForName() => GetNameOrSurnName("Enter Your name");
+        public string Surname() => GetNameOrSurname("Enter Your surname");
         
-        public string AskForSurname() => GetNameOrSurnName("Enter Your surname");
-        
-        public string AskForDate()
+        public string Date()
         {
             string date;
             do
@@ -28,12 +21,7 @@ namespace Appointment
             return date;
         }
 
-        public void ReplyTo(User user)
-        {
-            user.RegistrationTime();
-        }
-        
-        private static string GetNameOrSurnName(string message)
+        private static string GetNameOrSurname(string message)
         {
             string name;
             do

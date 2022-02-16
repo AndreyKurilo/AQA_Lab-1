@@ -1,42 +1,42 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.RegularExpressions;
 
 namespace Appointment
 {
-    class Validate
+    public static class Validate
     {
         public static bool Input(string value)
         {
+            var isValid = true;
+            
             foreach (char c in value)
             {
-                if (Char.IsLetter(c))
+                if (!char.IsLetter(c))
                 {
-                    return true;
+                    isValid = false;
                 }
             }
+            
+            if (value.Length < 1) isValid = false;
+            
             Console.WriteLine("Name/surname has to have 1 letter at least!");
-            return false;
+            return isValid;
         }
 
         public static bool Appointment(string value)
         {
-            DateTime dt;
-            if (DateTime.TryParse(value, out dt))
+            if (DateTime.TryParse(value, out DateTime dateTime))
             {
-                if (DateTime.Now.CompareTo(DateTime.Parse(value)) < 1) { return true; }
-                else
+                if (DateTime.Now.CompareTo(dateTime) < 1)
                 {
-                    Console.WriteLine("Appointed day must be later then now!");
-                    return false;
+                    return true;
                 }
-            }
-            else
-            {
-                Console.WriteLine("Entered date is wrong");
+
+                Console.WriteLine("Appointed day must be later then now!");
                 return false;
             }
+
+            Console.WriteLine("Entered date is wrong");
+            return false;
         }
     }
 }
