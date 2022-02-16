@@ -9,7 +9,7 @@ namespace Task4
         private const int MinUsersCount = 10;
         private const int MaxUsersCount = 20;
         private readonly List<IUser> users = new List<IUser>();
-        private UserFactory _userFactory;
+        private readonly UserFactory _userFactory;
 
         public IEnumerable<IUser> Users => users;
 

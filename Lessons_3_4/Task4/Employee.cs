@@ -2,7 +2,7 @@
 
 namespace Task4
 {
-    class Employee : IUser, IDisplayInformation
+    public class Employee : IUser, IDisplayInformation
     {
         public Employee(Guid id, decimal jobSalary, string name, string surname, string jobTittle, string jobDescription,
             string companyName, string companyCountry, string companyCity, string companyStreet)
