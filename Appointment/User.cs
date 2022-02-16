@@ -5,23 +5,20 @@ using System.Text.RegularExpressions;
 
 namespace Appointment
 {
-    class User
+    public class User
     {
         string name;
         string surname;
         string date;
         
+        //public string Name { get; set; }
         public void SetName(string name)
         {
-            for (byte i = 0; i < name.Length; i++)
+            for (int i = 0; i < name.Length; i++)
             {
                 if (!Char.IsLetter(name[i]))
                 {
-                    Console.WriteLine("Entered: " + name);
-                    Console.WriteLine("Name/surname must have letters only - input processing...");
-                    Regex regex = new Regex("[^a-zA-ZА-Яа-я]");
-                    name = regex.Replace(name, "");
-                    Console.WriteLine("After processing: " + name);
+                    name = CheckAndCorrect(name);
                     break;
                 }
             }
@@ -35,11 +32,7 @@ namespace Appointment
             {
                 if (!Char.IsLetter(surname[i]))
                 {
-                    Console.WriteLine("Entered: " + surname);
-                    Console.WriteLine("Name/surname must have letters only - input processing...");
-                    Regex regex = new Regex("[^a-zA-ZА-Яа-я]");
-                    surname = regex.Replace(surname, "");
-                    Console.WriteLine("After processing: " + surname);
+                    surname = CheckAndCorrect(surname);
                     break;
                 }
             }
@@ -66,12 +59,23 @@ namespace Appointment
             return date;
         }
 
-        public void Info()
+        public void RegistrationTime()
         {
             Random rnd = new Random();
             int hour = rnd.Next(9, 18);
             int min = rnd.Next(0, 59);
             Console.WriteLine(name + " " + surname + " has registration " + date + " on " + hour + ":" + min);
         }
+        
+        private static string CheckAndCorrect(string userInput)
+        {
+            Console.WriteLine("Entered: " + userInput);
+            Console.WriteLine("Name/surname must have letters only - input processing...");
+            Regex regex = new Regex("[^a-zA-ZА-Яа-я]");
+            userInput = regex.Replace(userInput, "");
+            Console.WriteLine("After processing: " + userInput);
+            return userInput;
+        }
+
     }
 }

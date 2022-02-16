@@ -4,33 +4,26 @@ using System.Text;
 
 namespace Appointment
 {
-    class Bot
+    public class Bot
     {
         public Bot()
         {
-            User user = new User();
+            var user = new User();
         }
+        
         public string AskForName()
         {
             string name;
-            do
-            {
-                Console.WriteLine("Enter Your name");
-                name = Console.ReadLine();
-            } 
-            while (!Validate.Input(name));
+            var message = "Enter Your name";
+            name = GetNameOrSurnName(message);
             return name;
         }
 
         public string AskForSurname()
         {
             string surname;
-            do
-            {
-                Console.WriteLine("Enter Your surname");
-                surname = Console.ReadLine();
-            }
-            while (!Validate.Input(surname));
+            var message = "Enter Your surname";
+            surname = GetNameOrSurnName(message);
             return surname;
         }
 
@@ -40,6 +33,7 @@ namespace Appointment
             do
             {
                 Console.WriteLine("Enter date for appointment");
+                Console.WriteLine("in such format: dd/mm/yyyy");
                 date = Console.ReadLine();
             }
             while (!Validate.Appointment(date));
@@ -48,7 +42,20 @@ namespace Appointment
 
         public void ReplyTo(User user)
         {
-            user.Info();
+            user.RegistrationTime();
         }
+        
+        private static string GetNameOrSurnName(string message)
+        {
+            string name;
+            do
+            {
+                Console.WriteLine(message);
+                name = Console.ReadLine();
+            } while (!Validate.Input(name));
+
+            return name;
+        }
+
     }
 }

@@ -2,12 +2,12 @@
 
 namespace Appointment
 {
-    class Program
+   public class Program
     {
         static void Main(string[] args)
         {
-            User user = new User();
-            Bot bot = new Bot();
+            var user = new User();
+            var bot = new Bot();
             user.SetName(bot.AskForName());
             user.SetSurname(bot.AskForSurname());
             user.SetDate(bot.AskForDate());

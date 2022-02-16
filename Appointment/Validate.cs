@@ -12,7 +12,9 @@ namespace Appointment
             foreach (char c in value)
             {
                 if (Char.IsLetter(c))
-                    return true;                
+                {
+                    return true;
+                }
             }
             Console.WriteLine("Name/surname has to have 1 letter at least!");
             return false;
@@ -23,7 +25,7 @@ namespace Appointment
             DateTime dt;
             if (DateTime.TryParse(value, out dt))
             {
-                if (DateTime.Now.CompareTo(DateTime.Parse(value)) < 1) return true;
+                if (DateTime.Now.CompareTo(DateTime.Parse(value)) < 1) { return true; }
                 else
                 {
                     Console.WriteLine("Appointed day must be later then now!");
