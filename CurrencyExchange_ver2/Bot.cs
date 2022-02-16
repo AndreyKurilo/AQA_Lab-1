@@ -6,35 +6,35 @@ namespace CurrencyExchange_ver2
 {
     class Bot
     {
-        public string askUSDrate()
+        public string AskUsdRate()
         {
             Console.WriteLine("Enter USD excange rate");
 
             return Console.ReadLine();
         }
 
-        public string askEURrate()
+        public string AskEurRate()
         {
             Console.WriteLine("Enter EUR excange rate");
 
             return Console.ReadLine();
         }
 
-        public string askRUBrate()
+        public string AskRubRate()
         {
             Console.WriteLine("Enter RUB excange rate");
 
             return Console.ReadLine();
         }
 
-        public string askExchangeSum()
+        public string AskExchangeSum()
         {
             Console.WriteLine("Enter excange sum like this \"1000 USD\" or \"one thousand USD\"");
 
             return Console.ReadLine();
         }
 
-        public string askFinalCurrency()
+        public string AskFinalCurrency()
         {
             string answer;
 

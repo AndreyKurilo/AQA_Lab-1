@@ -2,22 +2,28 @@
 
 namespace CurrencyExchange_ver2
 {
-    class Program
+    public static class Program
     {
-        static void Main(string[] args)
+        private static void Main()
         {
-            string userRequest;
-            Bot bot = new Bot();
-            CurrencyRates rates = new CurrencyRates();
-            var currency = rates.GetRates();
-            RequestHandler request = new RequestHandler();
-            rates.SetUSDrate(bot.askUSDrate());
-            rates.SetEURrate(bot.askEURrate());
-            rates.SetRUBrate(bot.askRUBrate());
-            userRequest = request.Handler(bot.askExchangeSum());
-            Bank bank = new Bank(userRequest, rates);
-            bank.SetCurrencyType(bot.askFinalCurrency());
-            bank.ShowResult();
+            var bot = new Bot();
+            var rates = new CurrencyRates();
+            var bank = new Bank(rates);
+
+            rates.AddCurrency(CurrencyType.USD, double.Parse(bot.AskUsdRate()));
+            rates.AddCurrency(CurrencyType.RUB, double.Parse(bot.AskRubRate()));
+            rates.AddCurrency(CurrencyType.EUR, double.Parse(bot.AskEurRate()));
+
+            var exchangeRequest = ExchangeParser.ConvertToNumbers(bot.AskExchangeSum());
+            var requestedCurrencyTo = bot.AskFinalCurrency();
+
+            var exchangeSum = ExchangeParser.GetSum(exchangeRequest);
+            var currencyFrom = ExchangeParser.GetCurrencyType(exchangeRequest);
+            var currencyTo = (CurrencyType) Enum.Parse(typeof(CurrencyType), requestedCurrencyTo);
+
+            var convertedSum = bank.Convert(exchangeSum, currencyFrom, currencyTo);
+            
+            Console.WriteLine("Converted sum is: " + convertedSum + " " + currencyTo);
         }
     }
 }
