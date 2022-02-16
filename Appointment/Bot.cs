@@ -11,22 +11,10 @@ namespace Appointment
             var user = new User();
         }
         
-        public string AskForName()
-        {
-            string name;
-            var message = "Enter Your name";
-            name = GetNameOrSurnName(message);
-            return name;
-        }
-
-        public string AskForSurname()
-        {
-            string surname;
-            var message = "Enter Your surname";
-            surname = GetNameOrSurnName(message);
-            return surname;
-        }
-
+        public string AskForName() => GetNameOrSurnName("Enter Your name");
+        
+        public string AskForSurname() => GetNameOrSurnName("Enter Your surname");
+        
         public string AskForDate()
         {
             string date;
