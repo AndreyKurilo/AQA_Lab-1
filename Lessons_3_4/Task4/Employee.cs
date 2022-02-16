@@ -4,51 +4,40 @@ namespace Task4
 {
     class Employee : IUser, IDisplayInformation
     {
-        private readonly Guid _id;
-        private readonly decimal _jobSalary;
-        private readonly string _name;
-        private readonly string _surname;
-        private readonly string _jobTittle;
-        private readonly string _jobDescription;
-        private readonly string _companyName;
-        private readonly string _companyCountry;
-        private readonly string _companyCity;
-        private readonly string _companyStreet;
-
         public Employee(Guid id, decimal jobSalary, string name, string surname, string jobTittle, string jobDescription,
             string companyName, string companyCountry, string companyCity, string companyStreet)
         {
-            _id = id;
-            _jobSalary = jobSalary;
-            _name = name;
-            _surname = surname;
-            _jobTittle = jobTittle;
-            _jobDescription = jobDescription;
-            _companyName = companyName;
-            _companyCountry = companyCountry;
-            _companyCity = companyCity;
-            _companyStreet = companyStreet;
+            Id = id;
+            JobSalary = jobSalary;
+            Name = name;
+            Surname = surname;
+            JobTitle = jobTittle;
+            JobDescription = jobDescription;
+            CompanyName = companyName;
+            CompanyCountry = companyCountry;
+            CompanyCity = companyCity;
+            CompanyStreet = companyStreet;
         }
 
-        public Guid Id => _id;
+        public Guid Id { get; }
 
-        public decimal JobSalary => _jobSalary;
+        public decimal JobSalary { get; }
 
-        public string Name => _name;
+        public string Name { get; }
 
-        public string Surname => _surname;
+        public string Surname { get; }
 
-        public string JobTitle => _jobTittle;
+        public string JobTitle { get; }
 
-        public string JobDescription => _jobDescription;
+        public string JobDescription { get; }
 
-        public string CompanyName => _companyName;
+        public string CompanyName { get; }
 
-        public string CompanyCountry => _companyCountry;
+        public string CompanyCountry { get; }
 
-        public string CompanyCity => _companyCity;
+        public string CompanyCity { get; }
 
-        public string CompanyStreet => _companyStreet;
+        public string CompanyStreet { get; }
 
         public void DisplayInformation()
         {
