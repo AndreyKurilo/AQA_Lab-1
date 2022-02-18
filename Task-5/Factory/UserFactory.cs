@@ -14,12 +14,25 @@ public class UserFactory
 
     public User Create()
     {
+        var randomNumber = new Random();
         var user = new User()
         {
             PassportId = Guid.NewGuid(),
             FullName = _faker.Name.FullName(),
-            Age = new Random().Next(10, 100)
+            Age = randomNumber.Next(10, 100)
         };
         return user;
+    }
+    
+    public static void PrintUsersList(List<User> users)
+    {
+        int counter = 0;
+        Console.WriteLine("   List of users");
+        Console.WriteLine("____________________________________________________________");
+        foreach (var user in users)
+        {
+            counter++;
+            Console.WriteLine($" {0} | {1}", counter, user.FullName);
+        }
     }
 }
