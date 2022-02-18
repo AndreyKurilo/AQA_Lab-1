@@ -10,6 +10,7 @@ public class ProductFactory: DataSet
     public ProductFactory()
     {
         _product = new Product();
+        
     }
 
     public Product Create()
@@ -17,10 +18,10 @@ public class ProductFactory: DataSet
         _product.Category = Category();
         string[] names =  categories[_product.Category];
         _product.Name = Random.ArrayElement(names);
-        int 
-        int priceMax = 50;
-        Random rnd = new Random(priceMax);
-        _product.Price = (float) rnd.NextDouble();
+        int priceMin = 1;
+        int priceMax = 20;
+        var faker = new Faker();
+        _product.Price = faker.Random.Float(priceMin, priceMax);
         
         return null;
     }
@@ -112,7 +113,7 @@ public class ProductFactory: DataSet
 
     private static readonly string[] Drink =
     {
-        "Soda", "Water", "Beer", "Wine", "Coffee", "Lemonade", "Milk"
+        "Soda", "Juice", "Beer", "Wine", "Coffee", "Lemonade", "Milk", "Whisky", "Vodka"
     };
 
     public string Drinks()
