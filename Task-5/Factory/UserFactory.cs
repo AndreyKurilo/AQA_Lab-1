@@ -27,12 +27,14 @@ public class UserFactory
     public static void PrintUsersList(List<User> users)
     {
         int counter = 0;
-        Console.WriteLine("   List of users");
+        Console.WriteLine("/n   List of users");
         Console.WriteLine("____________________________________________________________");
         foreach (var user in users)
         {
             counter++;
             Console.WriteLine(counter + " | " + user.FullName);
         }
+
+        Console.WriteLine();
     }
 }

@@ -13,10 +13,9 @@ public class Bucket
     {
         _user = user;
         _goods = new List<Product>();
-        _product = new Product();
-        var productFactory = new ProductFactory();
         for (int i = 0; i < startSet; i++)
         {
+            var productFactory = new ProductFactory();
             _product = productFactory.Create();
             AddProduct();
         }
@@ -49,8 +48,7 @@ public class Bucket
             sum += good.Price;
             Console.WriteLine($"   {good.Category}    |       {good.Name}     |        ${Math.Round(good.Price, 2)}");
         }
-
-        
-        Console.WriteLine("                                               Total sum:   $" + Math.Round(sum,2));
+        Console.WriteLine("\tTotal sum:   $" + Math.Round(sum,2));
+        Console.WriteLine();
     }
 }
