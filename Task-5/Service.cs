@@ -10,9 +10,11 @@ public class Service
 
     public Service()
     {
-        var _userFactory = new UserFactory();
-
+        _userFactory = new UserFactory();
+        _users = new List<User>();
     }
+
+    public List<User> Users { get; set; }
 
     public void CreateListOfUsers(int usersCount)
     {
@@ -22,7 +24,7 @@ public class Service
         }
     }
 
-    public static  int GetChoice()
+    public static int GetChoice()
     {
         return Int32.Parse(Console.ReadLine());
     }
@@ -55,6 +57,7 @@ public class Service
                     {
                         Console.WriteLine("User with same ID already exists");
                     }
+
                     break;
                 case 4:
                     Console.WriteLine("Enter user's number for bucket update");
@@ -67,7 +70,7 @@ public class Service
                     break;
             }
 
-            if (choice != 0) 
+            if (choice != 0)
             {
                 Menu.PrintOptions();
             }
@@ -90,6 +93,7 @@ public class Service
                     Console.WriteLine($"Now bucket of {bucket.User.FullName} contains:");
                     bucket.PrintListGoods();
                 }
+
                 break;
             case 2:
                 ChoseAndRemoveProduct(bucket);

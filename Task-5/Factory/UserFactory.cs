@@ -32,7 +32,7 @@ public class UserFactory
         foreach (var user in users)
         {
             counter++;
-            Console.WriteLine($" {0} | {1}", counter, user.FullName);
+            Console.WriteLine(counter + " | " + user.FullName);
         }
     }
 }
