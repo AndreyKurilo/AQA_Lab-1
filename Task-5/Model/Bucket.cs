@@ -4,15 +4,22 @@ namespace Store.Model;
 
 public class Bucket
 {
-    private User _user;
-    private List<Product> _goods;
+    private readonly User _user;
+    private readonly List<Product> _goods;
     private Product _product;
+    private const int startSet = 10;
     
     public Bucket(User user)
     {
         _user = user;
         _goods = new List<Product>();
-        var _product = new ProductFactory();
+        _product = new Product();
+        var productFactory = new ProductFactory();
+        for (int i = 0; i < startSet; i++)
+        {
+            _product = productFactory.Create();
+            AddProduct();
+        }
     }
     
     public Bucket(){}
@@ -40,9 +47,10 @@ public class Bucket
         foreach (var good in _goods)
         {
             sum += good.Price;
-            Console.WriteLine($"   {good.Category}    |       {good.Name}     |        ${good.Price}");
+            Console.WriteLine($"   {good.Category}    |       {good.Name}     |        ${Math.Round(good.Price, 2)}");
         }
 
-        Console.WriteLine("                                               Total sum:   $" + sum);
+        
+        Console.WriteLine("                                               Total sum:   $" + Math.Round(sum,2));
     }
 }
