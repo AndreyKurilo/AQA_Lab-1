@@ -22,37 +22,82 @@ public class Service
         }
     }
 
-    public int GetChoice()
+    public static  int GetChoice()
     {
         return Int32.Parse(Console.ReadLine());
     }
 
-    public void AnalyzeChoice(int choice)
+    public void HandlesChoice()
     {
+        int choice;
+        do
+        {
+            choice = GetChoice();
+
+            switch (choice)
+            {
+                case 1:
+                    UserFactory.PrintUsersList(_users);
+                    break;
+                case 2:
+                    Console.WriteLine("Enter users number");
+                    var bucket = new Bucket(_users[GetChoice() - 1]);
+                    bucket.PrintListGoods();
+                    break;
+                case 3:
+                    var newUser = _userFactory.Create();
+                    _users.Add(newUser);
+                    Console.WriteLine($"New user {newUser.FullName} created");
+                    break;
+                case 4:
+                    Console.WriteLine("Enter user's number for bucket update");
+                    var chosenUser = _users[GetChoice() - 1];
+                    BucketsOperations(chosenUser);
+                    break;
+                default:
+                    Console.WriteLine("Process stopped by You");
+                    choice = 0;
+                    break;
+            }
+
+            if (choice != 0) 
+            {
+                Menu.PrintOptions();
+            }
+        } while (choice != 0);
+    }
+
+    private void BucketsOperations(User user)
+    {
+        var bucket = new Bucket(user);
+        bucket.PrintListGoods();
+        Console.WriteLine("Would You like add(1) or remove(2) product");
+        var choice = GetChoice();
         switch (choice)
         {
             case 1:
-                UserFactory.PrintUsersList(_users);
-                break;
-            case 2:
-                Console.WriteLine("Enter users number");
-                GetChoice();
-                var bucket = new Bucket(_users[choice - 1]);
+                var product = new ProductFactory().CreateDefiniteProduct();
+                bucket.Goods.Add(product);
+                Console.WriteLine($"Now bucket of {bucket.User.FullName} contains:");
                 bucket.PrintListGoods();
                 break;
-            case 3:
-                var newUser = _userFactory.Create();
-                _users.Add(newUser);
-                Console.WriteLine($"New user {newUser.FullName} created");
-                break;
-            case 4:
-                Console.WriteLine("Enter user's number for bucket update");
-                var userNumber = GetChoice();
-                
+            case 2:
+                ChoseAndRemoveProduct(bucket);
+                Console.WriteLine($"Now bucket of {bucket.User.FullName} contains:");
+                bucket.PrintListGoods();
                 break;
             default:
-                Console.WriteLine("Process stopped by You");
+                Console.WriteLine("Wrong choice number, process stopped");
                 break;
         }
+    }
+
+    private void ChoseAndRemoveProduct(Bucket bucket)
+    {
+        Console.WriteLine("What product You want to remove? - chose the number");
+        var numberChosenProduct = GetChoice();
+        var chosenProduct = bucket.Goods[numberChosenProduct - 1];
+        Console.WriteLine($"{chosenProduct.Name} removing from the bucket...");
+        bucket.RemoveProduct(numberChosenProduct);
     }
 }
