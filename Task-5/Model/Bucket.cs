@@ -14,10 +14,20 @@ public class Bucket
         _goods = new List<Product>();
         var _product = new ProductFactory();
     }
+    
+    public Bucket(){}
+
+    public User User { get; set; }
+    public List<Product> Goods { get; set; }
 
     public void AddProduct()
     {
         _goods.Add(_product);
+    }
+
+    public void RemoveProduct(int index)
+    {
+        _goods.RemoveAt(index);
     }
 
     public void PrintListGoods()
