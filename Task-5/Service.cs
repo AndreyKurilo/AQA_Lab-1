@@ -46,8 +46,15 @@ public class Service
                     break;
                 case 3:
                     var newUser = _userFactory.Create();
-                    _users.Add(newUser);
-                    Console.WriteLine($"New user {newUser.FullName} created");
+                    if (Validate.Candidate(newUser, _users))
+                    {
+                        _users.Add(newUser);
+                        Console.WriteLine($"New user {newUser.FullName} created");
+                    }
+                    else
+                    {
+                        Console.WriteLine("User with same ID already exists");
+                    }
                     break;
                 case 4:
                     Console.WriteLine("Enter user's number for bucket update");
@@ -77,9 +84,12 @@ public class Service
         {
             case 1:
                 var product = new ProductFactory().CreateDefiniteProduct();
-                bucket.Goods.Add(product);
-                Console.WriteLine($"Now bucket of {bucket.User.FullName} contains:");
-                bucket.PrintListGoods();
+                if (Validate.Aprove(user, product))
+                {
+                    bucket.Goods.Add(product);
+                    Console.WriteLine($"Now bucket of {bucket.User.FullName} contains:");
+                    bucket.PrintListGoods();
+                }
                 break;
             case 2:
                 ChoseAndRemoveProduct(bucket);
