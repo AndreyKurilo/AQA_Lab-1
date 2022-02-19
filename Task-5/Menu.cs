@@ -6,7 +6,7 @@ namespace Store;
 
 public class Menu
 {
-    public void PrintOptions()
+    public static void PrintOptions()
     {
         Console.WriteLine(" Enter number of option You need");
         Console.WriteLine(" 1 - display list of buyers");
