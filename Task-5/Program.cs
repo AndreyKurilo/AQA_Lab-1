@@ -7,12 +7,12 @@ public class StoreOps
     public static void Main(string[] args)
     {
         var service = new Service();
-        var menu = new Menu();
         Console.WriteLine("Enter number of users to create");
-
-        var usersCount = service.GetChoice();
-        service.CreateListOfUsers(usersCount);
-        menu.PrintOptions();
+        var usersCount = Service.GetChoice();
         
+        service.CreateListOfUsers(usersCount);
+        
+        Menu.PrintOptions();
+        service.HandlesChoice();
     }
 }
