@@ -21,7 +21,7 @@ public class ProductFactory : DataSet
     {
         _product.Category = Category();
         var productsInThisCategory = categories[_product.Category];
-        _product.Name = Random.ArrayElement(productsInThisCategory);
+        _product.Name = _faker.PickRandom(productsInThisCategory);
         _product.Price = _faker.Random.Float(priceMin, priceMax);
 
         return _product;
@@ -88,7 +88,7 @@ public class ProductFactory : DataSet
 
     public string Category()
     {
-        return Random.ArrayElement(Categories);
+        return _faker.PickRandom(Categories);
     }
 
 
