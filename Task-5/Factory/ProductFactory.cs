@@ -3,39 +3,87 @@ using Store.Model;
 
 namespace Store.Factory;
 
-public class ProductFactory: DataSet
+public class ProductFactory : DataSet
 {
-            private Product _product;
+    private Product _product;
+    private Faker _faker;
+    private const int priceMin = 1;
+    private const int priceMax = 20;
+
 
     public ProductFactory()
     {
         _product = new Product();
-        
+        _faker = new Faker();
     }
 
     public Product Create()
     {
         _product.Category = Category();
-        string[] names =  categories[_product.Category];
-        _product.Name = Random.ArrayElement(names);
-        int priceMin = 1;
-        int priceMax = 20;
-        var faker = new Faker();
-        _product.Price = faker.Random.Float(priceMin, priceMax);
-        
+        var productsInThisCategory = categories[_product.Category];
+        _product.Name = Random.ArrayElement(productsInThisCategory);
+        _product.Price = _faker.Random.Float(priceMin, priceMax);
+
+        return _product;
+    }
+
+    public Product CreateDefiniteProduct()
+    {
+        _product.Category = GetCategory();
+        _product.Name = GetProductName(categories[_product.Category]);
+        _product.Price = _faker.Random.Float(priceMin, priceMax);
+
         return null;
     }
 
-    private readonly Dictionary<string,string[]> categories = new Dictionary<string, string[]>()
+    private string GetCategory()
+    {
+        Console.WriteLine("Enter category: ");
+        int counter = 0;
+        foreach (var categoryName in categories)
+        {
+            Console.WriteLine($"{counter++}. {categoryName}");
+        }
+        
+        var inputCategoryName = Console.ReadLine();
+        while (!categories.ContainsKey(inputCategoryName))
+        {
+            Console.WriteLine("Wrong input category, reenter please");
+            inputCategoryName = Console.ReadLine();
+        }
+
+        return inputCategoryName;
+    }
+
+    private string GetProductName(string[] categoryGoods)
+    {
+        int choice;
+        do
+        {
+            Console.WriteLine("Chose number of the product you want to add");
+            int counter = 0;
+            foreach (var productName in categoryGoods)
+            {
+                Console.WriteLine($"{counter++}. {productName}");
+            }
+
+            choice = Service.GetChoice();
+
+        } while (choice >= 1 || choice <= categoryGoods.Length);
+        
+        return categoryGoods[choice - 1];
+    }
+
+    private readonly Dictionary<string, string[]> categories = new Dictionary<string, string[]>()
     {
         {"Dairy", Dairy}, {"MeatProduct", MeatProduct}, {"Fruit", Fruit}, {"Vegetable", Vegetable},
-        {"Bakery", Bakery}, {"Candy", Candy}, {"Drink", Drink}
+        {"Bakery", Bakery}, {"Candy", Candy}, {"Drink", Drink}, {"Alcohol", Alcohol}
     };
-    
+
 
     private static readonly string[] Categories =
     {
-        "Dairy", "MeatProduct", "Fruit", "Vegetable", "Bakery", "Candy", "Drink"
+        "Dairy", "MeatProduct", "Fruit", "Vegetable", "Bakery", "Candy", "Drink", "Alcohol"
     };
 
     public string Category()
@@ -57,7 +105,7 @@ public class ProductFactory: DataSet
 
     private static readonly string[] MeatProduct =
     {
-        "Beef", "Pork", "Сhicken", "Sausage", "Meatball"
+        "Beef", "Pork", "Chicken", "Sausage", "Meatball"
     };
 
     public string MeatProducts()
@@ -113,10 +161,20 @@ public class ProductFactory: DataSet
 
     private static readonly string[] Drink =
     {
-        "Soda", "Juice", "Beer", "Wine", "Coffee", "Lemonade", "Milk", "Whisky", "Vodka"
+        "Soda", "Juice",  "Coffee", "Lemonade", "Milk",  "Сocoa"
     };
 
     public string Drinks()
+    {
+        return Random.ArrayElement(Drink);
+    }
+    
+    private static readonly string[] Alcohol =
+    {
+        "Beer", "Wine",  "Whisky", "Vodka"
+    };
+
+    public string Alcoholic()
     {
         return Random.ArrayElement(Drink);
     }
