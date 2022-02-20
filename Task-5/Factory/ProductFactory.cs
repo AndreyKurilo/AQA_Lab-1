@@ -39,7 +39,7 @@ public class ProductFactory : DataSet
     private string GetCategory()
     {
         Console.WriteLine("Enter category: ");
-        int counter = 0;
+        int counter = 1;
         foreach (var categoryName in categories)
         {
             Console.WriteLine($"{counter++}. {categoryName}");

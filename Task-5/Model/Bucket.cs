@@ -39,16 +39,21 @@ public class Bucket
     public void PrintListGoods()
     {
         double sum = 0;
-        Console.WriteLine($"{0}'s bucket content ", _user.FullName);
-        Console.WriteLine("_____________________________________________________________________");
-        Console.WriteLine("         Category                   Name                Price        ");
+        int count = 0;
+        Console.WriteLine("{0}'s bucket content ", _user.FullName);
+        Console.WriteLine("_________________________________________________________________________________");
+        Console.WriteLine("|  {4} | \t{0} \t{1} \t{2} \t\t\t{1} \t{3} \t{1}", "Category ", "|", "Name", "Price", "Pos.");
+        Console.WriteLine("_________________________________________________________________________________");
 
         foreach (var good in _goods)
         {
+            count++;
             sum += good.Price;
-            Console.WriteLine($"   {good.Category}    |       {good.Name}     |        ${Math.Round(good.Price, 2)}");
+            Console.WriteLine($"|  {count, -5}|   {good.Category, -15} \t| \t{good.Name, -20} \t| \t${Math.Round(good.Price, 2)} \t|");
         }
-        Console.WriteLine("\tTotal sum:   $" + Math.Round(sum,2));
+        Console.WriteLine("----------------------------------------------------------------------------------");
+
+        Console.WriteLine("\t\t\t\t\t\t\tTotal sum:      $" + Math.Round(sum,2));
         Console.WriteLine();
     }
 }
