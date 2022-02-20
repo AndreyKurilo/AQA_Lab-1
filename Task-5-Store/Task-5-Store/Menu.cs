@@ -28,11 +28,11 @@ public class Menu
         _services
             .Output()
             .PrintCustomers(_services.CustomerRepository().GetCustomers());
-                    
+
         _services.Output().PrintCustomerSelection();
 
         int choice;
-        
+
         while (true)
         {
             choice = _services.Input().ReadNumber() - 1;
@@ -41,7 +41,7 @@ public class Menu
             {
                 break;
             }
-            
+
             _services.Output().PrintWrongIndexMessage();
         }
 
@@ -53,9 +53,19 @@ public class Menu
 
     public void HandleAddNewCustomer()
     {
+        _services.Output().PrintEnterNameMessage();
+        var fullname = _services.Input().ReadLine();
+
+        _services.Output().PrintEnterAgeMessage();
+        var age = _services.Input().ReadNumberInRange(1, 100);
+        
         while (true)
         {
-            Customer customer = _services.CustomerFactory().Create();
+            _services.Output().PrintEnterPassportIdMessage();
+            var passportId = _services.Input().ReadNumberInRange(1, int.MaxValue);
+
+            var customer = new Customer(passportId, fullname, age);
+
             var customers = _services.CustomerRepository().GetCustomers();
             var users = new List<User>(customers);
 
@@ -64,7 +74,7 @@ public class Menu
                 _services.CustomerRepository().AddCustomer(customer);
                 break;
             }
-            
+
             _services.Output().PrintSameUserIdMessage(customer);
         }
     }

@@ -2,11 +2,11 @@
 
 public class User
 {
-    public Guid PassportId { get; }
+    public int PassportId { get; }
     public string FullName { get; }
     public int Age { get; }
 
-    public User(Guid passportId, string fullName, int age)
+    public User(int passportId, string fullName, int age)
     {
         PassportId = passportId;
         FullName = fullName;

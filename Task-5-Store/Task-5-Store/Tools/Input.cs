@@ -30,6 +30,32 @@ public class Input
 
         return number;
     }
+    
+    public int ReadNumberInRange(int min, int max)
+    {
+        int number;
+
+        while (true)
+        {
+            var line = Console.ReadLine();
+            var isParsed = int.TryParse(line, out number);
+
+            if (!isParsed)
+            {
+                _output.PrintNumberInputErrorMessage();
+            }
+            if (number < min || number > max)
+            {
+                _output.PrintNumberInputInSpecificRangeMessage(min, max);
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        return number;
+    }
 
     public string ReadLine()
     {

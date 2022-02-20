@@ -17,7 +17,7 @@ public class CustomerRepository
 
     public Customer AddCustomer()
     {
-        Customer customer = _customerFactory.Create();
+        Customer customer = _customerFactory.CreateRandom();
         _customers.Add(customer);
 
         return customer;
