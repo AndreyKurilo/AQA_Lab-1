@@ -81,7 +81,7 @@ public class Menu
 
     public void HandleAddProduct()
     {
-        var customers = _services.CustomerRepository().GetCustomers();
+        var customers = _services.CustomerRepository().GetCustomers().ToList();
         _services.Output().PrintCustomers(customers);
 
         _services.Output().PrintEnterCustomerIndex();
@@ -113,10 +113,42 @@ public class Menu
         if (product != null)
         {
             bucket.AddProduct(product);
+            _services.Output().PrintProductAdded();
         }
         else
         {
             _services.Output().PrintNoSuchProductMessage(productName);
+        }
+    }
+
+    public void HandleRemoveProduct()
+    {
+        var customers = _services.CustomerRepository().GetCustomers().ToList();
+        _services.Output().PrintCustomers(customers);
+
+        _services.Output().PrintEnterCustomerIndex();
+
+        var index = _services.Input().ReadNumberInRange(1, customers.Count()) - 1;
+
+        Customer customer = customers.ToList().ElementAt(index);
+        var bucket = customer.Bucket;
+
+        _services.Output().PrintBucket(bucket, customer);
+        _services.Output().PrintEnterBucketPositionMessage();
+
+        var bucketProducts = bucket.GetProducts().ToList();
+        
+        index = _services.Input().ReadNumberInRange(1, bucketProducts.Count) - 1;
+
+        var isRemoved = bucket.RemoveProduct(index);
+
+        if (isRemoved)
+        {
+            _services.Output().PrintProductRemovedMessage();
+        }
+        else
+        {
+            _services.Output().PrintProductNotRemovedMessage();
         }
     }
 }

@@ -48,6 +48,7 @@ public static class Program
                     services.Menu().HandleAddProduct();
                     break;
                 case 5:
+                    services.Menu().HandleRemoveProduct();
                     break;
                 default:
                     services.Output().PrintWrongMenuOperation();

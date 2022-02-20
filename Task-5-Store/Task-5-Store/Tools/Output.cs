@@ -97,4 +97,13 @@ public class Output
     {
         Console.WriteLine($"Product with name {productName} is not exist\n");
     }
+
+    public void PrintEnterBucketPositionMessage() =>
+        Console.WriteLine("Enter position index you want to remove:\n");
+
+    public void PrintProductRemovedMessage() => Console.WriteLine("Product removed!\n");
+    public void PrintProductNotRemovedMessage() => 
+        Console.WriteLine("Something went wrong, product not removed\n");
+
+    public void PrintProductAdded() => Console.WriteLine("Product added!");
 }
