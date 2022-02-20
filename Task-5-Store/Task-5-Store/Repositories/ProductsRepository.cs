@@ -20,19 +20,20 @@ public class ProductsRepository
 
     private void CreateProducts()
     {
-        foreach (var categoryProducts in _productsData.GetAssortment())
+        foreach (Product newProduct in GetEachProduct())
         {
-            foreach (var product in categoryProducts.Value)
-            {
-                Product newProduct = _productFactory.Create(categoryProducts.Key, product);
-                _products.Add(newProduct);
-            }
+            _products.Add(newProduct);
         }
     }
 
+    private IEnumerable<Product> GetEachProduct() =>
+        from categoryProducts in _productsData.GetAssortment()
+        from product in categoryProducts.Value
+        select _productFactory.Create(categoryProducts.Key, product);
+
     public IEnumerable<Product> GetProducts() => _products;
 
-    public Product? GetProductByName(string productName)
+    public Product GetProductByName(string productName)
     {
         Product? product = _products.Find(x => x.Name == productName);
 
