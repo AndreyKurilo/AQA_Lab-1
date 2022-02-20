@@ -63,4 +63,11 @@ public class Output
         Console.WriteLine("\t\t\t\t\t\t\tTotal sum:      $" + Math.Round(sum,2));
         Console.WriteLine();
     }
+
+    public void PrintAlcoholProhibition(User user) => Console.WriteLine($"{user.FullName} too young to buy alcohol");
+
+    public void PrintSameUserIdMessage(User user)
+    {
+        Console.WriteLine($"User with id {user.PassportId} is already exists!\n");
+    }
 }

@@ -42,6 +42,7 @@ public static class Program
                     services.Menu().HandlePrintBucket();
                     break;
                 case 3:
+                    services.Menu().HandleAddNewCustomer();
                     break;
                 case 4:
                     break;

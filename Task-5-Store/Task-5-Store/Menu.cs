@@ -50,4 +50,22 @@ public class Menu
 
         _services.Output().PrintBucket(customer.Bucket, customer);
     }
+
+    public void HandleAddNewCustomer()
+    {
+        while (true)
+        {
+            Customer customer = _services.CustomerFactory().Create();
+            var customers = _services.CustomerRepository().GetCustomers();
+            var users = new List<User>(customers);
+
+            if (!_services.Validation().IsAlreadyExists(customer, users))
+            {
+                _services.CustomerRepository().AddCustomer(customer);
+                break;
+            }
+            
+            _services.Output().PrintSameUserIdMessage(customer);
+        }
+    }
 }

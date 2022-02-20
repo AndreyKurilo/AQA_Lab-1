@@ -20,7 +20,7 @@ public class ProductsData
             {"Drink", _drink},
             {"Alcohol", _alcohol}
         };
-
+        
         _faker = new Faker();
     }
 

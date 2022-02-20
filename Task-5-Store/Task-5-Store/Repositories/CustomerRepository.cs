@@ -12,6 +12,8 @@ public class CustomerRepository
     {
         _customerFactory = customerFactory;
     }
+    
+    public void AddCustomer(Customer customer) => _customers.Add(customer);
 
     public Customer AddCustomer()
     {

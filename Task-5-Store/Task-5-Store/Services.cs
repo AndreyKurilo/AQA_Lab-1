@@ -15,6 +15,7 @@ public class Services
     private Output? _output;
     private Input? _input;
     private Menu? _menu;
+    private Validation? _validation;
 
     public ProductsData ProductsData() => _productsData ??= new ProductsData();
 
@@ -33,4 +34,6 @@ public class Services
     public Input Input() => _input ??= new Input(Output());
 
     public Menu Menu() => _menu ??= new Menu(this);
+
+    public Validation Validation() => _validation ??= new Validation(Output());
 }
