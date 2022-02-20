@@ -11,15 +11,9 @@ public class Validation
     {
         _output = output;
     }
-    
+
     public bool IsAlreadyExists(User user, IEnumerable<User> users) => users.Contains(user);
 
-    public bool CanBuyAlcohol(User user, Product product)
-    {
-        if (user.Age >= 18 || !product.Category.Equals("Alcohol")) return true;
-
-        _output.PrintAlcoholProhibition(user);
-        return false;
-
-    }
+    public bool CanBuyAlcohol(User user, Product product) =>
+        user.Age >= 18 || !product.Category.Equals("Alcohol");
 }

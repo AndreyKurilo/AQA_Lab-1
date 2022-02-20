@@ -110,14 +110,20 @@ public class Menu
 
         Product? product = _services.ProductsRepository().GetProductByName(productName);
 
-        if (product != null)
+        if (product == null)
+        {
+            _services.Output().PrintNoSuchProductMessage(productName);
+            return;
+        }
+
+        if (_services.Validation().CanBuyAlcohol(customer, product))
         {
             bucket.AddProduct(product);
             _services.Output().PrintProductAdded();
         }
         else
         {
-            _services.Output().PrintNoSuchProductMessage(productName);
+            _services.Output().PrintAlcoholProhibition(customer);
         }
     }
 
