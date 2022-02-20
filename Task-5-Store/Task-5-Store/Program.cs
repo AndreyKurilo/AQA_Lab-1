@@ -1,4 +1,5 @@
-﻿using Task_5_Store.Data;
+﻿using Bogus;
+using Task_5_Store.Data;
 using Task_5_Store.Factories;
 using Task_5_Store.Models;
 using Task_5_Store.Repositories;
@@ -12,23 +13,24 @@ public static class Program
         var productData = new ProductsData();
         var customerFactory = new CustomerFactory();
         var customerRepository = new CustomerRepository(customerFactory);
-        var productFactory = new ProductFactory(productData);
+        var productFactory = new ProductFactory();
+        var productRepository = new ProductsRepository(productData, productFactory);
         
         AddCustomers(customerRepository, 5);
-        SupplyBucketsFor(customerRepository.GetCustomers(), productFactory, 10);
-
-        var customers = customerRepository.GetCustomers();
+        SupplyBucketsFor(customerRepository.GetCustomers(), productRepository, 10);
     }
 
-    private static void SupplyBucketsFor(IEnumerable<Customer> customers, ProductFactory productFactory, int count)
+    private static void SupplyBucketsFor(IEnumerable<Customer> customers, ProductsRepository productRepository, int quantity)
     {
         foreach (Customer customer in customers)
         {
             Bucket bucket = customer.Bucket;
+            var faker = new Faker();
 
-            for (var i = 0; i < count; i++)
+            for (var i = 0; i < quantity; i++)
             {
-                bucket.AddProduct(productFactory.CreateRandom());
+                Product? product = faker.PickRandom(productRepository.GetProducts());
+                bucket.AddProduct(product);
             }
         }
     }

@@ -1,8 +1,11 @@
-﻿namespace Task_5_Store.Data;
+﻿using Bogus;
+
+namespace Task_5_Store.Data;
 
 public class ProductsData
 {
     private readonly Dictionary<string, string[]> _assortment;
+    private readonly Faker _faker;
 
     public ProductsData()
     {
@@ -17,10 +20,14 @@ public class ProductsData
             {"Drink", _drink},
             {"Alcohol", _alcohol}
         };
+
+        _faker = new Faker();
     }
 
+    public Dictionary<string, string[]> GetAssortment() => _assortment;
     public IEnumerable<string> GetCategories() => _assortment.Keys;
     public IEnumerable<string> GetProductsNames(string categoryName) => _assortment[categoryName];
+
 
     private readonly string[] _dairy =
     {
