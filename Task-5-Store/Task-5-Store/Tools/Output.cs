@@ -10,8 +10,8 @@ public class Output
         Console.WriteLine(" 1 - Display list of customers");
         Console.WriteLine(" 2 - Display customer bucket");
         Console.WriteLine(" 3 - Add new customer");
-        Console.WriteLine(" 4 - Remove product");
-        Console.WriteLine(" 5 - Add product");
+        Console.WriteLine(" 4 - Add product");
+        Console.WriteLine(" 5 - Remove product");
         Console.WriteLine(" 0 - Exit");
     }
 
@@ -75,4 +75,26 @@ public class Output
     public void PrintEnterNameMessage() => Console.WriteLine("Please, enter full name:\n");
     public void PrintEnterPassportIdMessage() => Console.WriteLine("Please, enter passport id:\n");
     public void PrintEnterAgeMessage() => Console.WriteLine("Please, enter age:\n");
+
+    public void PrintEnterCustomerIndex() =>
+        Console.WriteLine("Please, select customer whose bucket you want to update:\n");
+
+    public void PrintCollection(List<string> collection)
+    {
+        for (var i = 0; i < collection.Count; i++)
+        {
+            Console.WriteLine($"{i + 1}. {collection[i]}");
+        }
+    }
+
+    public void PrintEnterCategoryMessage() =>
+        Console.WriteLine("Please, enter category index:\n");
+
+    public void PrintEnterProductMessage() =>
+        Console.WriteLine("Please, enter product index:\n");
+
+    public void PrintNoSuchProductMessage(string productName)
+    {
+        Console.WriteLine($"Product with name {productName} is not exist\n");
+    }
 }

@@ -58,7 +58,7 @@ public class Menu
 
         _services.Output().PrintEnterAgeMessage();
         var age = _services.Input().ReadNumberInRange(1, 100);
-        
+
         while (true)
         {
             _services.Output().PrintEnterPassportIdMessage();
@@ -76,6 +76,47 @@ public class Menu
             }
 
             _services.Output().PrintSameUserIdMessage(customer);
+        }
+    }
+
+    public void HandleAddProduct()
+    {
+        var customers = _services.CustomerRepository().GetCustomers();
+        _services.Output().PrintCustomers(customers);
+
+        _services.Output().PrintEnterCustomerIndex();
+
+        var index = _services.Input().ReadNumberInRange(1, customers.Count()) - 1;
+
+        Customer customer = customers.ToList().ElementAt(index);
+        var bucket = customer.Bucket;
+
+        var categories = _services.ProductsData().GetCategories().ToList();
+        _services.Output().PrintCollection(categories);
+        _services.Output().PrintEnterCategoryMessage();
+
+        index = _services.Input().ReadNumberInRange(1, categories.Count) - 1;
+
+        var category = categories.ElementAt(index);
+
+        var productsNames = _services.ProductsData().GetProductsNames(category).ToList();
+
+        _services.Output().PrintCollection(productsNames);
+        _services.Output().PrintEnterProductMessage();
+
+        index = _services.Input().ReadNumberInRange(1, productsNames.Count) - 1;
+
+        var productName = productsNames.ElementAt(index);
+
+        Product? product = _services.ProductsRepository().GetProductByName(productName);
+
+        if (product != null)
+        {
+            bucket.AddProduct(product);
+        }
+        else
+        {
+            _services.Output().PrintNoSuchProductMessage(productName);
         }
     }
 }

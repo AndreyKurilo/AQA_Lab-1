@@ -31,4 +31,13 @@ public class ProductsRepository
     }
 
     public IEnumerable<Product> GetProducts() => _products;
+
+    public Product? GetProductByName(string productName)
+    {
+        Product? product = _products.Find(x => x.Name == productName);
+
+        if (product == null) throw new NullReferenceException();
+
+        return product;
+    }
 }

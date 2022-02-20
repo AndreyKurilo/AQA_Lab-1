@@ -45,6 +45,7 @@ public static class Program
                     services.Menu().HandleAddNewCustomer();
                     break;
                 case 4:
+                    services.Menu().HandleAddProduct();
                     break;
                 case 5:
                     break;
