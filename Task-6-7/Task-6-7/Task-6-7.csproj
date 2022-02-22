@@ -8,4 +8,15 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Json.Net" Version="1.0.33" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Data\appsettings.json" />
+      <EmbeddedResource Include="Data\appsettings.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </EmbeddedResource>
+    </ItemGroup>
+
 </Project>
