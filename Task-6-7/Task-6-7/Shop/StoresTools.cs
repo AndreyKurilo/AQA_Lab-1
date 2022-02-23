@@ -50,9 +50,9 @@ public class StoresTools
 
             if (store.Name != storeName) continue;
             Console.WriteLine($"Order for \"{phone.Model}\" total sum: {phone.Price} is made successfully!");
-            return true;
+            return false;
         }
 
-        return false;
+        return true;
     }
 }
