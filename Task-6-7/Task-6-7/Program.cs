@@ -1,6 +1,7 @@
-﻿using Json.Net;
-using Task_6_7;
-using Task_6_7.Model;
+﻿using Task_6_7.Shop;
+using Task_6_7.Shop.Models;
+
+namespace Task_6_7;
 
 public static class Program
 {
@@ -8,12 +9,19 @@ public static class Program
     {
         var output = new Output();
         const string filename = "appsettings.json";
-        var action = new DoThis();
-        
-        ShopsDto shopsDto = action.ReadJsonFile(filename);
-        
-        output.ShowShopsAssortment(shopsDto);
-        
-        output.AvailablePnones(shopsDto.Shops);
+        var menu = new Menu();
+        var doThis = new DoThis();
+        var shopsTools = new ShopsTools();
+
+        ShopsDto shopsDto = doThis.TryConvertToShopsDto(filename);
+
+         output.ShowShopsAssortment(shopsDto);
+        //
+        // output.AvailablePnones(shopsDto.Shops);
+
+        var phonesInShops = shopsTools
+            .GetPhonesByModel(shopsDto, "Samsung Galaxy S9");
+
+        output.PrintPhonesAvailability(phonesInShops);
     }
 }

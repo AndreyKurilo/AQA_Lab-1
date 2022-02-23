@@ -6,4 +6,17 @@ public class Input
     {
         return Int32.Parse(Console.ReadLine());
     }
+
+    public string GetPhoneModel()
+    {
+        Console.WriteLine("Enter phone's model");
+        
+        return Console.ReadLine();
+    }
+
+    public string GetShopName()
+    {
+        Console.WriteLine("Enter shop name");
+        return Console.ReadLine();
+    }
 }

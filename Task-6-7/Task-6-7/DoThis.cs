@@ -1,12 +1,14 @@
 ﻿using System.Xml;
 using Json.Net;
-using Task_6_7.Model;
+using Task_6_7.Phones.Exceptions;
+using Task_6_7.Phones.Models;
+using Task_6_7.Shop.Models;
 
 namespace Task_6_7;
 
 public class DoThis
 {
-    public ShopsDto ReadJsonFile(string filename)
+    public ShopsDto TryConvertToShopsDto(string filename)
     {
         var path = Path.Combine(Environment.CurrentDirectory, @"Data\", filename);
         // https://stackoverflow.com/questions/816566/how-do-you-get-the-current-project-directory-from-c-sharp-code-when-creating-a-c
@@ -31,8 +33,29 @@ public class DoThis
         return JsonNet.Deserialize<ShopsDto>(json);
     }
 
+
+    public PhoneDto GetPhoneLinq(ShopsDto shops, string phoneModel)
+    {
+        PhoneDto phone;
+
+        try
+        {
+            phone = shops.Shops
+                .SelectMany(x => x.Phones)
+                .Single(x => x.Model == phoneModel);
+        }
+        catch (InvalidOperationException)
+        {
+            throw new PhoneNotFoundException();
+        }
+
+        return phone;
+    }
+
     public void SearchModelInShopList(ShopsDto shops, string phoneModel)
     {
+        bool searchSuccess = false;
+
         foreach (ShopDto shopData in shops.Shops)
         {
             Console.WriteLine($"Result of searching in {shopData.Name}:");
@@ -42,18 +65,38 @@ public class DoThis
                 if (phoneData.Model.Contains(phoneModel))
                 {
                     Console.WriteLine($"This model {phoneData.Model} is in the shop's list");
+
+                    var availablePhones = shopData.Phones.FindAll(x => x.IsAvailable);
+                    
                     if (PhoneModelIsAvailable(shops, shopData.Name, phoneModel))
                     {
-                        
+                        Console.WriteLine($"Model {phoneData.Model} is available");
+                        searchSuccess = true;
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Model {phoneData.Model} is NOT available");
+                        Output.EnterOtherModel();
+                        break;
                     }
                 }
+                else
+                {
+                    Console.WriteLine($"Model {phoneData.Model} not present at the {shopData.Name}'s list");
+                }
             }
+        }
+
+        if (!searchSuccess)
+        {
+            Output.EnterOtherModel();
         }
     }
 
     public bool PhoneModelIsAvailable(ShopsDto shops, string shopName, string phoneModel)
     {
-        foreach (ShopDto shop  in shops.Shops)
+        foreach (ShopDto shop in shops.Shops)
         {
             if (shop.Name.Equals(shopName))
             {
@@ -73,6 +116,7 @@ public class DoThis
                 }
             }
         }
+
         return false;
     }
 }
