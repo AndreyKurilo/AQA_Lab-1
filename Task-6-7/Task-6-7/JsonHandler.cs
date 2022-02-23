@@ -6,8 +6,9 @@ using Task_6_7.Shop.Models;
 
 namespace Task_6_7;
 
-public class DoThis
+public class JsonHandler
 {
+    public static string jsonText;
     public ShopsDto TryConvertToShopsDto(string filename)
     {
         var path = Path.Combine(Environment.CurrentDirectory, @"Data\", filename);
@@ -32,8 +33,30 @@ public class DoThis
 
         return JsonNet.Deserialize<ShopsDto>(json);
     }
+    
+    public string SerializeData(Dictionary<ShopDto, PhoneDto> storesList, string storeName)
+    {
+        var invoice = new InvoceDto();
+        string output = null;
+        
+        foreach (var stores in storesList)
+        {
+            PhoneDto phone = stores.Value;
+            ShopDto store = stores.Key;
 
+            if (store.Name != storeName) continue;
+            invoice.PhoneModel = phone.Model;
+            invoice.StoreName = store.Name;
+            invoice.Price = phone.Price;
 
+            output = JsonNet.Serialize(invoice);
+        }
+
+        return output;
+    }
+    
+    
+    
     public PhoneDto GetPhoneLinq(ShopsDto shops, string phoneModel)
     {
         PhoneDto phone;

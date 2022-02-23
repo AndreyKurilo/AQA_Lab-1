@@ -12,6 +12,7 @@ public class Menu
         var input = new Input();
         var output = new Output();
         var storesTools = new StoresTools();
+        var jsonSerializer = new JsonHandler();
         var condition = true;
 
         switch (userChoice)
@@ -28,6 +29,10 @@ public class Menu
                 output.PrintFoundPhone(storesList);
                 var storeName = input.GetStoreName();
                 condition = storesTools.BuyPhone(storesList, storeName);
+                if (condition)
+                {
+                    JsonHandler.jsonText = jsonSerializer.SerializeData(storesList, storeName);
+                }
                 break;
             default:
                 condition = false;

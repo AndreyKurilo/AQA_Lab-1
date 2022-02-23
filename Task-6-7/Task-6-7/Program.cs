@@ -7,16 +7,20 @@ public static class Program
 {
     public static void Main()
     {
-        var output = new Output();
         const string filename = "appsettings.json";
-        var doThis = new DoThis();
 
-        ShopsDto shopsDto = doThis.TryConvertToShopsDto(filename);
+        var output = new Output();
+        var jsonHandler = new JsonHandler();
+        var storeTools = new StoresTools();
+
+        ShopsDto shopsDto = jsonHandler.TryConvertToShopsDto(filename);
         
-        var loop = new ProgramLoop(shopsDto);
+        var programLoop = new ProgramLoop(shopsDto);
 
         output.MenuOptions();
         
-        loop.Run();
+        programLoop.Run();
+        
+        storeTools.MakeInvoice(JsonHandler.jsonText);
     }
 }

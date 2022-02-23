@@ -55,4 +55,15 @@ public class StoresTools
 
         return true;
     }
+
+    public async void MakeInvoice(string jsonText)
+    {
+        string filename = "note.json";
+        string path = Path.Combine(Environment.CurrentDirectory, @"Data\", filename);
+        
+        using (StreamWriter writer = new StreamWriter(path, false))
+        {
+            await writer.WriteLineAsync(jsonText);
+        }
+    }
 }

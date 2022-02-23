@@ -26,7 +26,6 @@ public class Output
         Console.WriteLine(" 1 - display whole assortment ");
         Console.WriteLine(" 2 - display quantity available phones selected by OS type");
         Console.WriteLine(" 3 - specify phones's model You want to buy");
-        Console.WriteLine(" 4 - enter name of shop for shopping");
         Console.WriteLine(" 0 - for exit");
     }
     
