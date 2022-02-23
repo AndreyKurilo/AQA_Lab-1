@@ -1,4 +1,6 @@
-﻿namespace Task_6_7.Model;
+﻿using Task_6_7.Phones.Models;
+
+namespace Task_6_7.Shop.Models;
 
 [Serializable]
 public class ShopDto

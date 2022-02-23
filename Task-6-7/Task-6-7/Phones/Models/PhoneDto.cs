@@ -1,4 +1,4 @@
-﻿namespace Task_6_7.Model;
+﻿namespace Task_6_7.Phones.Models;
 
 [Serializable]
 public class PhoneDto

@@ -1,6 +1,4 @@
-﻿using Task_6_7.Model;
-
-namespace Task_6_7;
+﻿namespace Task_6_7.Shop.Models;
 
 public class ShopsDto
 {
