@@ -4,26 +4,26 @@ using Task_6_7.Shop.Models;
 
 namespace Task_6_7.Shop;
 
-public class ShopsTools
+public class StoresTools
 {
     private Output _output;
 
-    public ShopsTools()
+    public StoresTools()
     {
         _output = new Output();
     }
 
-    public Dictionary<ShopDto, PhoneDto> GetPhonesByModel(ShopsDto shops, string phoneModel)
+    public Dictionary<ShopDto, PhoneDto> GetPhonesByModel(ShopsDto stores, string phoneModel)
     {
         var phonesInShops = new Dictionary<ShopDto, PhoneDto>();
 
-        foreach (ShopDto shop in shops.Shops)
+        foreach (ShopDto store in stores.Shops)
         {
-            foreach (PhoneDto phone in shop.Phones)
+            foreach (PhoneDto phone in store.Phones)
             {
                 if (phone.Model == phoneModel)
                 {
-                    phonesInShops.Add(shop, phone);
+                    phonesInShops.Add(store, phone);
                     break;
                 }
             }
@@ -41,14 +41,14 @@ public class ShopsTools
         return phonesInShops;
     }
 
-    public bool BuyPhone(Dictionary<ShopDto, PhoneDto> shopsList, string shopName)
+    public bool BuyPhone(Dictionary<ShopDto, PhoneDto> storesList, string storeName)
     {
-        foreach (var shops in shopsList)
+        foreach (var stores in storesList)
         {
-            PhoneDto phone = shops.Value;
-            ShopDto shop = shops.Key;
+            PhoneDto phone = stores.Value;
+            ShopDto store = stores.Key;
 
-            if (shop.Name != shopName) continue;
+            if (store.Name != storeName) continue;
             Console.WriteLine($"Order for \"{phone.Model}\" total sum: {phone.Price} is made successfully!");
             return true;
         }

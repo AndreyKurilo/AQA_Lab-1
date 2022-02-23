@@ -11,7 +11,7 @@ public static class Program
         const string filename = "appsettings.json";
         var menu = new Menu();
         var doThis = new DoThis();
-        var shopsTools = new ShopsTools();
+        var shopsTools = new StoresTools();
 
         ShopsDto shopsDto = doThis.TryConvertToShopsDto(filename);
 

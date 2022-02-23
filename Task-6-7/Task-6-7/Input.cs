@@ -14,9 +14,9 @@ public class Input
         return Console.ReadLine();
     }
 
-    public string GetShopName()
+    public string GetStoreName()
     {
-        Console.WriteLine("Enter shop name");
+        Console.WriteLine("Enter store name");
         return Console.ReadLine();
     }
 }
