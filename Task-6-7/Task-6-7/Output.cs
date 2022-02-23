@@ -1,4 +1,5 @@
-﻿using Task_6_7.Model;
+﻿using Task_6_7.Phones.Models;
+using Task_6_7.Shop.Models;
 
 namespace Task_6_7;
 
@@ -13,7 +14,45 @@ public class Output
     {
         Console.WriteLine("At what shop You are going to bye phone?");
     }
+
+    public static void EnterOtherModel()
+    {
+        Console.WriteLine("Please enter other model");
+    }
+
+    public void MenuOptions()
+    {
+        Console.WriteLine("Chose the option You need:");
+        Console.WriteLine(" 1 - display whole assortment ");
+        Console.WriteLine(" 2 - display quantity available phones selected by OS type");
+        Console.WriteLine(" 3 - specify phones's model You want to buy");
+        Console.WriteLine(" 4 - enter name of shop for shopping");
+        Console.WriteLine(" 0 - for exit");
+    }
     
+    public void PrintPhonesAvailability(Dictionary<ShopDto, PhoneDto> phonesInShops)
+    {
+        foreach (var phoneInShop in phonesInShops)
+        {
+            PhoneDto phone = phoneInShop.Value;
+            ShopDto shop = phoneInShop.Key;
+
+            Console.WriteLine(phoneInShop.Value.IsAvailable == false
+                ? $"{phone.Model} is not available in {shop.Name}"
+                : $"You can purchase {phone.Model} in {shop.Name}");
+        }
+    }
+
+    public void PrintFoundPhone(Dictionary<ShopDto, PhoneDto> phonesInShops)
+    {
+        foreach (var phoneInShop in phonesInShops)
+        {
+            PhoneDto phone = phoneInShop.Value;
+            ShopDto shop = phoneInShop.Key;
+
+            Console.WriteLine($"In \"{shop.Name}\" this model \"{phone.Model}\" costs {phone.Price}");
+        }
+    }
 
     public void ShowShopsAssortment(ShopsDto shopsDto)
     {
