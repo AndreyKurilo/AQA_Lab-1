@@ -6,7 +6,7 @@ namespace Task_6_7;
 
 public class Menu
 {
-    public void Handle(ShopsDto shopsDto, string userChoice)
+   /* public void Handle(ShopsDto shopsDto, string userChoice)
     {
         var input = new Input();
         var output = new Output();
@@ -30,6 +30,6 @@ public class Menu
             case 4:
                 
         }
-    }
+    }*/
 
 }

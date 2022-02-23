@@ -8,7 +8,7 @@ public class ShopsTools
 {
     private Output _output;
 
-    public ShopsTools
+    public ShopsTools()
     {
         _output = new Output();
     }
