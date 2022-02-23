@@ -6,15 +6,15 @@ namespace Task_6_7;
 
 public class Menu
 {
-  /* public void Handle(ShopsDto shopsDto, string userChoice)
+
+    public bool Handle(ShopsDto shopsDto, int userChoice)
     {
         var input = new Input();
         var output = new Output();
-        var shopTools = new StoresTools();
-        var command = Int32.Parse(userChoice);
-        var chosenModel = "some model";
-        var shopsList = new Dictionary<ShopDto, PhoneDto>();
-        switch (command)
+        var storesTools = new StoresTools();
+        var condition = true;
+
+        switch (userChoice)
         {
             case 1:
                 output.ShowShopsAssortment(shopsDto);
@@ -23,14 +23,17 @@ public class Menu
                 output.AvailablePnones(shopsDto.Shops);
                 break;
             case 3:
-                chosenModel = input.GetPhoneModel();
-                shopsList = shopTools.GetPhonesByModel(shopsDto, chosenModel);
-                output.PrintFoundPhone(shopsList);
-                break;
-            case 4:
+                var chosenModel = input.GetPhoneModel();
+                var storesList = storesTools.GetPhonesByModel(shopsDto, chosenModel);
+                output.PrintFoundPhone(storesList);
                 var storeName = input.GetStoreName();
-                
+                condition = storesTools.BuyPhone(storesList, storeName);
+                break;
+            default:
+                condition = false;
+                break;
         }
-    }*/
 
+        return condition;
+    }
 }
