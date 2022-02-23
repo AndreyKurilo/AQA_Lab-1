@@ -9,19 +9,14 @@ public static class Program
     {
         var output = new Output();
         const string filename = "appsettings.json";
-        var menu = new Menu();
         var doThis = new DoThis();
-        var shopsTools = new StoresTools();
 
         ShopsDto shopsDto = doThis.TryConvertToShopsDto(filename);
+        
+        var loop = new ProgramLoop(shopsDto);
 
-         output.ShowShopsAssortment(shopsDto);
-        //
-        // output.AvailablePnones(shopsDto.Shops);
-
-        var phonesInShops = shopsTools
-            .GetPhonesByModel(shopsDto, "Samsung Galaxy S9");
-
-        output.PrintPhonesAvailability(phonesInShops);
+        output.MenuOptions();
+        
+        loop.Run();
     }
 }
