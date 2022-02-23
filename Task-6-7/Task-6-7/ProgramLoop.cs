@@ -1,23 +1,25 @@
-﻿namespace Task_6_7;
+﻿using Task_6_7.Shop;
+using Task_6_7.Shop.Models;
+
+namespace Task_6_7;
 
 public class ProgramLoop
 {
-    private readonly Output _output;
-    private readonly Input _input;
+    private readonly ShopsDto _shopsDto;
 
-    public ProgramLoop(Input input, Output output)
+    public ProgramLoop(ShopsDto shopsDto)
     {
-        _input = input;
-        _output = output;
+        _shopsDto = shopsDto;
     }
     
     public void Run()
     {
-        while (true)
+        var menu = new Menu();
+        var condition = true;
+        while (condition)
         {
-            // menu.DisplayOptions();
-            // var command = menu.AskForCommand();
-            // menu.Handle(command);
+            int userChoice = Int32.Parse(Console.ReadLine());
+            condition = menu.Handle(_shopsDto, userChoice);
         }
     }
 }
