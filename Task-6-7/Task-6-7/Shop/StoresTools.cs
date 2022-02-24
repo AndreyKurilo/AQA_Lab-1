@@ -1,4 +1,5 @@
-﻿using Task_6_7.Phones.Exceptions;
+﻿using SimpleLogger;
+using Task_6_7.Phones.Exceptions;
 using Task_6_7.Phones.Models;
 using Task_6_7.Shop.Models;
 
@@ -29,13 +30,21 @@ public class StoresTools
             }
         }
 
-        if (phonesInShops.Count == 0)
+        try
         {
-            throw new PhoneNotFoundException();
+            if (phonesInShops.Count == 0)
+            {
+                throw new PhoneNotFoundException();
+            }
+            else
+            {
+                _output.PrintPhonesAvailability(phonesInShops);
+            }
         }
-        else
+        catch (Exception e)
         {
-            _output.PrintPhonesAvailability(phonesInShops);
+            Logger.Log(e);
+            throw;
         }
 
         return phonesInShops;
@@ -49,7 +58,7 @@ public class StoresTools
             ShopDto store = stores.Key;
 
             if (store.Name != storeName) continue;
-            Console.WriteLine($"Order for \"{phone.Model}\" total sum: {phone.Price} is made successfully!");
+            Logger.Log($"Order for \"{phone.Model}\" total sum: {phone.Price} is made successfully!");
             return false;
         }
 

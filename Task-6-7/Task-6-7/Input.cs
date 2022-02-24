@@ -1,4 +1,6 @@
-﻿namespace Task_6_7;
+﻿using SimpleLogger;
+
+namespace Task_6_7;
 
 public class Input
 {
@@ -9,14 +11,14 @@ public class Input
 
     public string GetPhoneModel()
     {
-        Console.WriteLine("Enter phone's model");
+        Logger.Log("Enter phone's model");
         
         return Console.ReadLine();
     }
 
     public string GetStoreName()
     {
-        Console.WriteLine("Enter store name");
+        Logger.Log("Enter store name");
         return Console.ReadLine();
     }
 }

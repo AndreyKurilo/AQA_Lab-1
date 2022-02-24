@@ -1,5 +1,6 @@
 ﻿using System.Xml;
 using Json.Net;
+using SimpleLogger;
 using Task_6_7.Phones.Exceptions;
 using Task_6_7.Phones.Models;
 using Task_6_7.Shop.Models;
@@ -22,12 +23,12 @@ public class JsonHandler
         }
         catch (FileNotFoundException)
         {
-            Console.WriteLine("File not found.");
+            Logger.Log("File not found.");
             return null;
         }
         catch (IOException)
         {
-            Console.WriteLine("Something went wrong on file reading.");
+            Logger.Log("Something went wrong on file reading.");
             return null;
         }
 
@@ -81,32 +82,32 @@ public class JsonHandler
 
         foreach (ShopDto shopData in shops.Shops)
         {
-            Console.WriteLine($"Result of searching in {shopData.Name}:");
+            Logger.Log($"Result of searching in {shopData.Name}:");
 
             foreach (PhoneDto phoneData in shopData.Phones)
             {
                 if (phoneData.Model.Contains(phoneModel))
                 {
-                    Console.WriteLine($"This model {phoneData.Model} is in the shop's list");
+                    Logger.Log($"This model {phoneData.Model} is in the shop's list");
 
                     var availablePhones = shopData.Phones.FindAll(x => x.IsAvailable);
                     
                     if (PhoneModelIsAvailable(shops, shopData.Name, phoneModel))
                     {
-                        Console.WriteLine($"Model {phoneData.Model} is available");
+                        Logger.Log($"Model {phoneData.Model} is available");
                         searchSuccess = true;
                         break;
                     }
                     else
                     {
-                        Console.WriteLine($"Model {phoneData.Model} is NOT available");
+                        Logger.Log($"Model {phoneData.Model} is NOT available");
                         Output.EnterOtherModel();
                         break;
                     }
                 }
                 else
                 {
-                    Console.WriteLine($"Model {phoneData.Model} not present at the {shopData.Name}'s list");
+                    Logger.Log($"Model {phoneData.Model} not present at the {shopData.Name}'s list");
                 }
             }
         }
