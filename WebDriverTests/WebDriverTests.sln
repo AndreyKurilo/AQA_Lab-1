@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BodyCalculator", "BodyCalculator\BodyCalculator.csproj", "{0D403D46-9B66-4DF7-A26A-E01F8026F057}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestsTask8", "TestsTask8\TestsTask8.csproj", "{0D403D46-9B66-4DF7-A26A-E01F8026F057}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

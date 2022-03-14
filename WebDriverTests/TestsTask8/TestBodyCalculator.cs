@@ -1,14 +1,9 @@
-﻿using System;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
+﻿using System.Text;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Support.UI;
 
-namespace BodyCalculator
+namespace TestsTask8
 
 {
     [TestFixture]
@@ -21,7 +16,7 @@ namespace BodyCalculator
         private bool acceptNextAlert = true;
 
         [SetUp]
-        public void SetupTest()
+        public void Setup()
         {
             _wd = new ChromeDriver();
             //baseURL = "https://www.google.com/";
@@ -29,7 +24,7 @@ namespace BodyCalculator
         }
 
         [TearDown]
-        public void TeardownTest()
+        public void Teardown()
         {
             try
             {
