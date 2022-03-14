@@ -76,6 +76,7 @@ namespace SeleniumTests
             _wd.FindElement(By.Id("direction-laminate-id1")).Click();
             _wd.FindElement(By.LinkText("Рассчитать")).Click();
             //IWebElement result = _wd.FindElement(By.PartialLinkText("Требуемое количество досок ламината:"));
+            Thread.Sleep(5000);
             IWebElement result = _wd.FindElement(By.XPath("//div[2]/div/span"));
 
             /*var result =
