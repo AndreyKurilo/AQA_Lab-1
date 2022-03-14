@@ -12,7 +12,7 @@ namespace BodyCalculator
 
 {
     [TestFixture]
-    public class TestResultMessage
+    public class BodyCalculator
     {
 
         private IWebDriver _wd;
@@ -44,7 +44,7 @@ namespace BodyCalculator
         }
 
         [Test]
-        public void TestBodyCalculator()
+        public void TestResultMessageBodyCalculator()
         {
             _wd.Navigate().GoToUrl("https://calc.by/weight-and-calories/body-mass-index-calculator.html");
             _wd.FindElement(By.Id("bmiVar1")).Click();
