@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using NUnit.Framework;
 
 namespace TestProject1
@@ -33,6 +34,39 @@ namespace TestProject1
         {
             Assert.AreEqual(5, _calculator.Sum(1, 4));
         }
+        
+        [TestCase(1, 3)]
+        [TestCase(6, 9)]
+        [TestCase(3, 5)]
+        public void WhenSumPositiveNumbers_ThenResultIsPositive(int a, int b)
+        {
+            // Act
+            var result = _calculator.Sum(a, b);
+
+            // Assert
+            Assert.Positive(result);
+        }
+
+        [TestCaseSource(typeof(Tests), nameof(NumbersForTest))]
+        public void WhenSumPositiveNumbers_ThenResultIsPositive1(Tuple<int, int> numbers)
+        {
+            // Act
+            var result = _calculator.Sum(numbers.Item1, numbers.Item2);
+
+            // Assert
+            Assert.Positive(result);
+        }
+
+        public static IEnumerable NumbersForTest()
+        {
+            yield return new Tuple<int, int>(1, 2);
+            yield return new Tuple<int, int>(6, 5);
+            yield return new Tuple<int, int>(2, 7);
+            yield return new Tuple<int, int>(22, 23);
+        }
+
+
+
 
         [Test]
         [Property("Priority", 2)]
