@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace TestProject1
 {
-    public class Tests
+    public class UnitTests1
     {
         private Calculator _calculator;
 
@@ -47,7 +47,7 @@ namespace TestProject1
             Assert.Positive(result);
         }
 
-        [TestCaseSource(typeof(Tests), nameof(NumbersForTest))]
+        [TestCaseSource(typeof(UnitTests1), nameof(NumbersForTest))]
         public void WhenSumPositiveNumbers_ThenResultIsPositive1(Tuple<int, int> numbers)
         {
             // Act
