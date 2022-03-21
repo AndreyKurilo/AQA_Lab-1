@@ -105,6 +105,9 @@ public class CalculatorTests
             Assert.IsTrue(Double.IsNaN(_calculator.Div(0d, 0d)));
         });
     }
+    
+    
+    
 
     [TearDown]
     public void TearDown()
