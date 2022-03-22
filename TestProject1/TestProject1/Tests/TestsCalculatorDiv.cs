@@ -107,8 +107,23 @@ public class TestsCalculatorDiv
         });
     }
     
-    
+    [Test]
+    public void TestDoubleDiv()
+    {
+        Assert.Multiple(() =>
+        {
+            double a = TestContext.CurrentContext.Random.NextDouble(100);
+            double b = TestContext.CurrentContext.Random.NextDouble(10, 20);
 
+            TestContext.Out.WriteLineAsync("First Double is " + a);
+            TestContext.Out.WriteLineAsync($"Second Double is {b}");
+            Assert.AreEqual(a / b, _calculator.Div(a, b));
+            Assert.AreEqual(3.7737556561085972d, _calculator.Div(8.34, 2.21));
+            Assert.True(Double.IsPositiveInfinity(_calculator.Div(8d, 0d)));
+            Assert.IsTrue(Double.IsNegativeInfinity(_calculator.Div(-8d, 0d)));
+            Assert.IsTrue(Double.IsNaN(_calculator.Div(0d, 0d)));
+        });
+    }
 
     [TearDown]
     public void TearDown()

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using NUnit.Framework;
 
 namespace TestProject1.Tests;
@@ -85,35 +86,35 @@ public class CalculatorTests
         Assert.AreEqual(4, _calculator.Div(8, 2));
         Assert.Throws<DivideByZeroException>(
             delegate { _calculator.Div(8, 0); });
-        
+
         Assert.Throws<DivideByZeroException>(
             () => { _calculator.Div(8, 0); });
 
         TestDelegate divByZero = () => _calculator.Div(8, 0);
-        
+
         Assert.Throws<DivideByZeroException>(divByZero);
     }
 
     [Test]
-    public void TestDoubleDiv()
+    public void TestDoubleDivFluent()
     {
-        Assert.Multiple(() =>
+        using (new AssertionScope())
         {
             double a = TestContext.CurrentContext.Random.NextDouble(100);
             double b = TestContext.CurrentContext.Random.NextDouble(10, 20);
 
             TestContext.Out.WriteLineAsync("First Double is " + a);
             TestContext.Out.WriteLineAsync($"Second Double is {b}");
-            Assert.AreEqual(a / b, _calculator.Div(a, b));
-            Assert.AreEqual(3.7737556561085972d, _calculator.Div(8.34, 2.21));
-            Assert.True(Double.IsPositiveInfinity(_calculator.Div(8d, 0d)));
-            Assert.IsTrue(Double.IsNegativeInfinity(_calculator.Div(-8d, 0d)));
-            Assert.IsTrue(Double.IsNaN(_calculator.Div(0d, 0d)));
-        });
+            (3.7737556561085972d).Should().Be(_calculator.Div(8.34, 2.21));
+            //Assert.True(Double.IsPositiveInfinity(_calculator.Div(8d, 0d)));
+            Double.IsInfinity(_calculator.Div(-10d, 0d)).Should().BeTrue();
+            Double.IsNegativeInfinity(_calculator.Div(-10d, 0d)).Should().BeTrue();
+
+            (a / b).Should().Be(_calculator.Div(a, b));
+            Double.IsNaN(_calculator.Div(0d, 0d)).Should().BeTrue();
+        }
     }
-    
-    
-    
+
 
     [TearDown]
     public void TearDown()
