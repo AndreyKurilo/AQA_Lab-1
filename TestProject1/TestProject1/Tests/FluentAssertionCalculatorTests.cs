@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using FluentAssertions;
 using NUnit.Framework;
 
 namespace TestProject1.Tests;
@@ -32,13 +33,16 @@ public class CalculatorTests
     [TestCase(1, 3)]
     [TestCase(6, 9)]
     [TestCase(3, 5)]
+    [TestCase(13, 5)]
     public void WhenSumPositiveNumbers_ThenResultIsPositive(int a, int b)
     {
         // Act
         var result = _calculator.Sum(a, b);
 
         // Assert
-        Assert.Positive(result);
+        //Assert.Positive(result);
+
+        result.Should().BePositive();
     }
 
     [TestCase(1, 3, 4)]
@@ -51,7 +55,8 @@ public class CalculatorTests
         var result = _calculator.Sum(a, b);
 
         // Assert
-        Assert.AreEqual(expectedSum, result);
+        // Assert.AreEqual(expectedSum, result);
+        result.Should().Be(expectedSum);
     }
 
     [TestCaseSource(typeof(CalculatorTests), nameof(NumbersForTest))]
@@ -61,7 +66,8 @@ public class CalculatorTests
         var result = _calculator.Sum(numbers.Item1, numbers.Item2);
 
         // Assert
-        Assert.Positive(result);
+        //Assert.Positive(result);
+        result.Should().BePositive();
     }
 
     public static IEnumerable NumbersForTest()
