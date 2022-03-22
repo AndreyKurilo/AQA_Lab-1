@@ -7,7 +7,7 @@ namespace TestProject1.Tests;
 public class TestsCalculatorDiv
 {
     private Calculator _calculator;
-    
+
     [OneTimeSetUp]
     public void OneTimeSetup()
     {
@@ -28,48 +28,46 @@ public class TestsCalculatorDiv
     {
         //Act
         var result = _calculator.Div(6, 2);
-        
+
         // Assert
         Assert.AreEqual(3, result);
     }
 
     [TestCase(14, 4, 3.5)]
-    [TestCase(9.3,3, 3.1)]
+    [TestCase(9.3, 3, 3.1)]
     [TestCase(29.61, 6.3, 4.7)]
     public void TestPositiveDoubleNumbersDiv(double a, double b, double expectedResult)
     {
         // Act
         var result = _calculator.Div(a, b);
-        
+
         // Assert
         Assert.AreEqual(expectedResult, result, "Result of division doesn't equal to expected");
     }
-    
+
     [TestCase(14, -4, -3.5)]
-    [TestCase(9.3,-3, -3.1)]
+    [TestCase(9.3, -3, -3.1)]
     [TestCase(29.61, -6.3, -4.7)]
     public void TestPositiveDoubleNumbersDivNegativeNumber(double a, double b, double expectedResult)
     {
         // Act
         var result = _calculator.Div(a, b);
-        
+
         // Assert
         Assert.AreEqual(expectedResult, result, "Result of division doesn't equal to expected");
     }
-    
+
     [TestCase(-14, -4, 3.5)]
-    [TestCase(-9.3,-3, 3.1)]
+    [TestCase(-9.3, -3, 3.1)]
     [TestCase(-29.61, -6.3, 4.7)]
     public void TestNegativeNumbersDivision(double a, double b, double expectedResult)
     {
         // Act
         var result = _calculator.Div(a, b);
-        
+
         // Assert
         Assert.AreEqual(expectedResult, result, "Result of division doesn't equal to expected");
     }
-
-
 
     [TestCaseSource(typeof(TestsCalculatorDiv), nameof(NumbersForTest))]
     public void TestIntegersDivisionWithDobleResult(Tuple<int, int, double> numbers)
@@ -88,7 +86,7 @@ public class TestsCalculatorDiv
         yield return new Tuple<int, int, double>(27, 3, 9.0);
         yield return new Tuple<int, int, double>(22, 22, 1.0);
     }
-    
+
     [Test]
     [Property("Priority", 2)]
     public void TestDivZero()
@@ -106,7 +104,7 @@ public class TestsCalculatorDiv
             Assert.Throws<DivideByZeroException>(divByZero);
         });
     }
-    
+
     [Test]
     public void TestDoubleDiv()
     {
