@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Reflection;
+using System.Threading;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -84,10 +85,9 @@ public class Tests
             _webDriver.FindElement(By.Id("bas")).Click();
             _webDriver.FindElement(By.Name("button")).Click();
 
+            Thread.Sleep(2000);
             var result = _webDriver.FindElement(By.Id("boiler")).GetAttribute("value");
-            Console.WriteLine("Result text is " + result);
-
-        Assert.Pass();
+            Assert.AreEqual("22", result);
     }
     
         [TearDown]
