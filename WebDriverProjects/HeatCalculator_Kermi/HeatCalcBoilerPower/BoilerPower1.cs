@@ -1,52 +1,54 @@
 using System;
-using System.IO;
-using System.Reflection;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
-namespace HeatCalculator_Kermi;
-
-public class Tests
+namespace SeleniumTests
 {
-    private IWebDriver _webDriver;
-    
-    [OneTimeSetUp]
-    public void OneTimeSetup()
+    [TestFixture]
+    public class BoilerPower1
     {
-        // Вариант 1: через установку в папку Resources - правый клик по драйверу
-        // ->Properties->Build action = Content; Copy to output directory = Copy always
-        // Должно отобразиться в папке проекта bin (если не оттображается бин - сделать Build проекта)
-        var basePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-        var fullPathToBrowserDriver = $"{basePath}{Path.DirectorySeparatorChar}Resources{Path.DirectorySeparatorChar}";
+        private IWebDriver _webDriver;
+        private StringBuilder verificationErrors;
+        private string baseURL;
+        private bool acceptNextAlert = true;
         
-        _webDriver = new ChromeDriver(fullPathToBrowserDriver);
-        //_webDriver = new FirefoxDriver(fullPathToBrowserDriver);
+        [SetUp]
+        public void SetupTest()
+        {
+            _webDriver = new FirefoxDriver();
+            baseURL = "https://www.google.com/";
+            verificationErrors = new StringBuilder();
+        }
         
-        // Вариант 2 - поставить Хромдрайвер через Нугет,
-        // тогда _webDriver = new ChromeDriver() - пас не указывается;
+        [TearDown]
+        public void TeardownTest()
+        {
+            try
+            {
+                _webDriver.Quit();
+            }
+            catch (Exception)
+            {
+                // Ignore errors if unable to close the browser
+            }
+            Assert.AreEqual("", verificationErrors.ToString());
+        }
         
-        _webDriver.Navigate().GoToUrl("https://kermi-fko.ru/raschety.aspx");
-    }
-
-    [SetUp]
-    public void Setup()
-    {
-    }
-
-    [Test]
-    public void PowerBoilerCalcilationTest()
-    {
-        _webDriver
-            .Navigate()
-            .GoToUrl("https://kermi-fko.ru/raschety/raschet-kotla-otopleniya.aspx");
-        _webDriver.FindElement(By.XPath("//span[contains(.,'Расчет котла отопления')]")).Click();
-        _webDriver.FindElement(By.Id("country")).Click();
-        new SelectElement(_webDriver.FindElement(By.Id("country"))).SelectByText("Казахстан");
-        _webDriver.FindElement(By.Id("city3")).Click();
-                    new SelectElement(_webDriver.FindElement(By.Id("city3"))).SelectByText("Астана");
+        [Test]
+        public void TheBoilerPower1Test()
+        {
+            _webDriver.Navigate().GoToUrl("https://kermi-fko.ru/raschety.aspx");
+            _webDriver.FindElement(By.XPath("//div[@id='ctl00_updatePanel']/table/tbody/tr[2]/td[2]/div[2]/table/tbody/tr[2]/td/div/a/div/span")).Click();
+            _webDriver.Navigate().GoToUrl("https://kermi-fko.ru/raschety/raschet-kotla-otopleniya.aspx");
+            _webDriver.FindElement(By.Id("country")).Click();
+            new SelectElement(_webDriver.FindElement(By.Id("country"))).SelectByText("Казахстан");
+            _webDriver.FindElement(By.Id("city3")).Click();
+            new SelectElement(_webDriver.FindElement(By.Id("city3"))).SelectByText("Астана");
             _webDriver.FindElement(By.Id("outdoor_t")).Click();
             _webDriver.FindElement(By.Id("outdoor_t")).Click();
             _webDriver.FindElement(By.Id("outdoor_t")).Clear();
@@ -83,25 +85,46 @@ public class Tests
             _webDriver.FindElement(By.Id("wind_area")).SendKeys("30");
             _webDriver.FindElement(By.Id("bas")).Click();
             _webDriver.FindElement(By.Name("button")).Click();
-
-            var result = _webDriver.FindElement(By.Id("boiler")).GetAttribute("value");
-            Console.WriteLine("Result text is " + result);
-
-        Assert.Pass();
+        }
+        private bool IsElementPresent(By by)
+        {
+            try
+            {
+                _webDriver.FindElement(by);
+                return true;
+            }
+            catch (NoSuchElementException)
+            {
+                return false;
+            }
+        }
+        
+        private bool IsAlertPresent()
+        {
+            try
+            {
+                _webDriver.SwitchTo().Alert();
+                return true;
+            }
+            catch (NoAlertPresentException)
+            {
+                return false;
+            }
+        }
+        
+        private string CloseAlertAndGetItsText() {
+            try {
+                IAlert alert = _webDriver.SwitchTo().Alert();
+                string alertText = alert.Text;
+                if (acceptNextAlert) {
+                    alert.Accept();
+                } else {
+                    alert.Dismiss();
+                }
+                return alertText;
+            } finally {
+                acceptNextAlert = true;
+            }
+        }
     }
-    
-        [TearDown]
-        public void TearDown()
-        {
-            Console.Out.WriteLineAsync("TearDown after test metod");
-        }
-    
-        [OneTimeTearDown]
-        public void OneTimeTearDown()
-        {
-            Console.Out.WriteLineAsync("OneTimeTearDown finishes");
-            _webDriver.Quit();
-        }
-
-    
 }
