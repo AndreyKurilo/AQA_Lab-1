@@ -15,26 +15,17 @@ public class Tests
     [OneTimeSetUp]
     public void OneTimeSetup()
     {
+        // Вариант 1: через установку в папку Resources - правый клик по драйверу
+        // ->Properties->Build action = Content; Copy to output directory = Copy always
+        // Должно отобразиться в папке проекта bin (если не оттображается бин - сделать Build проекта)
         var basePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         var fullPathToBrowserDriver = $"{basePath}{Path.DirectorySeparatorChar}Resources{Path.DirectorySeparatorChar}";
         
-      /*  Console.WriteLine("Choose browser (Chrome default):");
-        Console.WriteLine("1 - Chrome");
-        Console.WriteLine("2 - FireFox");
-        var browserDriwer =Int32.Parse(Console.ReadLine());
-        switch (browserDriwer)
-        {
-            case 1:
-                _webDriver = new ChromeDriver(fullPathToBrowserDriver);
-                break;
-            case 2:
-                _webDriver = new FirefoxDriver(fullPathToBrowserDriver);
-                break;
-            default:
-                _webDriver = new ChromeDriver(fullPathToBrowserDriver);
-                break;
-        }*/
         _webDriver = new ChromeDriver(fullPathToBrowserDriver);
+        //_webDriver = new FirefoxDriver(fullPathToBrowserDriver);
+        
+        // Вариант 2 - поставить Хромдрайвер через Нугет,
+        // тогда _webDriver = new ChromeDriver() - пас не указывается;
     }
 
     [SetUp]
@@ -58,7 +49,7 @@ public class Tests
         public void OneTimeTearDown()
         {
             Console.Out.WriteLineAsync("OneTimeTearDown finishes");
-            _webDriver.Close();
+            _webDriver.Quit();
         }
 
     
