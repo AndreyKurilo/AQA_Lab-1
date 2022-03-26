@@ -40,7 +40,7 @@ public class TestBase
         _webDriver.FindElement(By.Name(locatorByName)).Click();
     }
 
-    protected void SetParameterOf(string idToFind, string text)
+    protected void SetParameterWithId(string idToFind, string text)
     {
         _webDriver.FindElement(By.Id(idToFind)).Click();
         _webDriver.FindElement(By.Id(idToFind)).Clear();
