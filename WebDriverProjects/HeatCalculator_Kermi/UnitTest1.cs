@@ -40,46 +40,46 @@ public class Tests
     [Test]
     public void PowerBoilerCalcilationTest()
     {
-        _webDriver
-            .Navigate()
-            .GoToUrl("https://kermi-fko.ru/raschety/raschet-kotla-otopleniya.aspx");
+       
         _webDriver.FindElement(By.XPath("//span[contains(.,'Расчет котла отопления')]")).Click();
         InputValueToField("country", "Казахстан");
         InputValueToField("city3", "Астана");
         WaitSeconds(2);
-        InputOutdoorTemperature("outdoor_t", "-30");
-        InputIndoorTemperature("indoor_t", "22");
+        SetParameterOf("outdoor_t", "-30");
+        SetParameterOf("indoor_t", "22");
+        //InputOutdoorTemperature("outdoor_t", "-30");
+        //InputIndoorTemperature("indoor_t", "22");
         InputValueToField("water_damage", "Да");
-       //_webDriver.FindElement(By.Id("water_heat")).Click();
-       InputValueToField("ventilation", "Да");
+        //_webDriver.FindElement(By.Id("water_heat")).Click();
+        InputValueToField("ventilation", "Да");
         InputValueToField("floors", "2");
-        _webDriver.FindElement(By.Id("room_height")).Click();
-        _webDriver.FindElement(By.Id("room_height")).Clear();
-        _webDriver.FindElement(By.Id("room_height")).SendKeys("3.0");
-        _webDriver.FindElement(By.Id("room_lenght")).Click();
-        _webDriver.FindElement(By.Id("room_lenght")).Clear();
-        _webDriver.FindElement(By.Id("room_lenght")).SendKeys("10");
-        _webDriver.FindElement(By.Id("room_width")).Click();
-        _webDriver.FindElement(By.Id("room_width")).Clear();
-        _webDriver.FindElement(By.Id("room_width")).SendKeys("10");
-        _webDriver.FindElement(By.Id("ceiling")).Click();
-        _webDriver.FindElement(By.Id("floor")).Click();
-        new SelectElement(_webDriver.FindElement(By.Id("floor"))).SelectByText("Фундамент");
-        _webDriver.FindElement(By.Id("floors")).Click();
-        new SelectElement(_webDriver.FindElement(By.Id("floors"))).SelectByText("1");
-        _webDriver.FindElement(By.Id("wall_material")).Click();
-        new SelectElement(_webDriver.FindElement(By.Id("wall_material"))).SelectByText("Сруб из бревен Ø25 см");
-        _webDriver.FindElement(By.Id("window")).Click();
-        new SelectElement(_webDriver.FindElement(By.Id("window"))).SelectByText("Двухкамерный стеклопакет 4-10-4-10-4");
-        _webDriver.FindElement(By.Id("wind_area")).Click();
-        _webDriver.FindElement(By.Id("wind_area")).Clear();
-        _webDriver.FindElement(By.Id("wind_area")).SendKeys("30");
-        _webDriver.FindElement(By.Id("bas")).Click();
-        _webDriver.FindElement(By.Name("button")).Click();
+        SetParameterOf("room_height", "3.0");
+        SetParameterOf("room_lenght", "10");
+        SetParameterOf("room_width", "10");
+        InputValueToField("ceiling", "Чердак");
+        InputValueToField("floor", "Фундамент");
+        InputValueToField("floors", "1");
+        InputValueToField("wall_material", "Сруб из бревен Ø25 см");
+        InputValueToField("window", "Двухкамерный стеклопакет 4-10-4-10-4");
+        SetParameterOf("wind_area", "30");
+        InputValueToField("bas", "Нет");
+        SubmitForm("button");
 
         Thread.Sleep(2000);
         var result = _webDriver.FindElement(By.Id("boiler")).GetAttribute("value");
         Assert.AreEqual("22", result);
+    }
+
+    private void SubmitForm(string locatorByName)
+    {
+        _webDriver.FindElement(By.Name(locatorByName)).Click();
+    }
+
+    private void SetParameterOf(string idToFind, string text)
+    {
+        _webDriver.FindElement(By.Id(idToFind)).Click();
+        _webDriver.FindElement(By.Id(idToFind)).Clear();
+        _webDriver.FindElement(By.Id(idToFind)).SendKeys(text);
     }
 
     private void WaitSeconds(int sec)
