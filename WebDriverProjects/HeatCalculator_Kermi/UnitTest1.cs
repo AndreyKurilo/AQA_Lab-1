@@ -44,17 +44,12 @@ public class Tests
             .Navigate()
             .GoToUrl("https://kermi-fko.ru/raschety/raschet-kotla-otopleniya.aspx");
         _webDriver.FindElement(By.XPath("//span[contains(.,'Расчет котла отопления')]")).Click();
-        _webDriver.FindElement(By.Id("country")).Click();
-        new SelectElement(_webDriver.FindElement(By.Id("country"))).SelectByText("Казахстан");
+        InputValueToField("country", "Казахстан");
         _webDriver.FindElement(By.Id("city3")).Click();
         new SelectElement(_webDriver.FindElement(By.Id("city3"))).SelectByText("Астана");
         _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
-        _webDriver.FindElement(By.Id("outdoor_t")).Click();
-        _webDriver.FindElement(By.Id("outdoor_t")).Clear();
-        _webDriver.FindElement(By.Id("outdoor_t")).SendKeys("-30");
-        _webDriver.FindElement(By.Id("indoor_t")).Click();
-        _webDriver.FindElement(By.Id("indoor_t")).Clear();
-        _webDriver.FindElement(By.Id("indoor_t")).SendKeys("22");
+        InputOutdoorTemperature("-30");
+        InputInDoorTemperature("22");
         _webDriver.FindElement(By.Id("water_damage")).Click();
         new SelectElement(_webDriver.FindElement(By.Id("water_damage"))).SelectByText("Да");
         _webDriver.FindElement(By.Id("water_heat")).Click();
@@ -88,6 +83,26 @@ public class Tests
         Thread.Sleep(2000);
         var result = _webDriver.FindElement(By.Id("boiler")).GetAttribute("value");
         Assert.AreEqual("22", result);
+    }
+
+    private void InputValueToField(string idToFind, string inputText)
+    {
+        _webDriver.FindElement(By.Id(idToFind)).Click();
+        new SelectElement(_webDriver.FindElement(By.Id(idToFind))).SelectByText(inputText);
+    }
+
+    private void InputInDoorTemperature(string text)
+    {
+        _webDriver.FindElement(By.Id("indoor_t")).Click();
+        _webDriver.FindElement(By.Id("indoor_t")).Clear();
+        _webDriver.FindElement(By.Id("indoor_t")).SendKeys(text);
+    }
+
+    private void InputOutdoorTemperature(string text)
+    {
+        _webDriver.FindElement(By.Id("outdoor_t")).Click();
+        _webDriver.FindElement(By.Id("outdoor_t")).Clear();
+        _webDriver.FindElement(By.Id("outdoor_t")).SendKeys(text);
     }
 
     [TearDown]
