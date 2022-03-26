@@ -5,12 +5,11 @@ using System.Threading;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
-namespace HeatCalculator_Kermi;
+namespace HeatCalculator_Kermi.Tests;
 
-public class Tests
+public class BoilerCalculatorTest
 {
     private IWebDriver _webDriver;
 
@@ -38,7 +37,7 @@ public class Tests
     }
 
     [Test]
-    public void PowerBoilerCalcilationTest()
+    public void PowerBoilerCalcilationTest() 
     {
        
         _webDriver.FindElement(By.XPath("//span[contains(.,'Расчет котла отопления')]")).Click();
