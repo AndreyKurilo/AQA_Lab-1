@@ -45,17 +45,14 @@ public class Tests
             .GoToUrl("https://kermi-fko.ru/raschety/raschet-kotla-otopleniya.aspx");
         _webDriver.FindElement(By.XPath("//span[contains(.,'Расчет котла отопления')]")).Click();
         InputValueToField("country", "Казахстан");
-        _webDriver.FindElement(By.Id("city3")).Click();
-        new SelectElement(_webDriver.FindElement(By.Id("city3"))).SelectByText("Астана");
-        _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
-        InputOutdoorTemperature("-30");
-        InputInDoorTemperature("22");
-        _webDriver.FindElement(By.Id("water_damage")).Click();
-        new SelectElement(_webDriver.FindElement(By.Id("water_damage"))).SelectByText("Да");
-        _webDriver.FindElement(By.Id("water_heat")).Click();
-        _webDriver.FindElement(By.Id("ventilation")).Click();
-        _webDriver.FindElement(By.Id("floors")).Click();
-        new SelectElement(_webDriver.FindElement(By.Id("floors"))).SelectByText("2");
+        InputValueToField("city3", "Астана");
+        WaitSeconds(2);
+        InputOutdoorTemperature("outdoor_t", "-30");
+        InputIndoorTemperature("indoor_t", "22");
+        InputValueToField("water_damage", "Да");
+       //_webDriver.FindElement(By.Id("water_heat")).Click();
+       InputValueToField("ventilation", "Да");
+        InputValueToField("floors", "2");
         _webDriver.FindElement(By.Id("room_height")).Click();
         _webDriver.FindElement(By.Id("room_height")).Clear();
         _webDriver.FindElement(By.Id("room_height")).SendKeys("3.0");
@@ -85,24 +82,29 @@ public class Tests
         Assert.AreEqual("22", result);
     }
 
+    private void WaitSeconds(int sec)
+    {
+        _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(sec);
+    }
+
     private void InputValueToField(string idToFind, string inputText)
     {
         _webDriver.FindElement(By.Id(idToFind)).Click();
         new SelectElement(_webDriver.FindElement(By.Id(idToFind))).SelectByText(inputText);
     }
 
-    private void InputInDoorTemperature(string text)
+    private void InputIndoorTemperature(string idToFind, string text)
     {
-        _webDriver.FindElement(By.Id("indoor_t")).Click();
-        _webDriver.FindElement(By.Id("indoor_t")).Clear();
-        _webDriver.FindElement(By.Id("indoor_t")).SendKeys(text);
+        _webDriver.FindElement(By.Id(idToFind)).Click();
+        _webDriver.FindElement(By.Id(idToFind)).Clear();
+        _webDriver.FindElement(By.Id(idToFind)).SendKeys(text);
     }
 
-    private void InputOutdoorTemperature(string text)
+    private void InputOutdoorTemperature(string idToFind, string text)
     {
-        _webDriver.FindElement(By.Id("outdoor_t")).Click();
-        _webDriver.FindElement(By.Id("outdoor_t")).Clear();
-        _webDriver.FindElement(By.Id("outdoor_t")).SendKeys(text);
+        _webDriver.FindElement(By.Id(idToFind)).Click();
+        _webDriver.FindElement(By.Id(idToFind)).Clear();
+        _webDriver.FindElement(By.Id(idToFind)).SendKeys(text);
     }
 
     [TearDown]
