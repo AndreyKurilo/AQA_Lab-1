@@ -5,12 +5,14 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 
 namespace HeatCalculator_Kermi.Tests;
 
 public class TestBase
 {
     protected IWebDriver _webDriver;
+    protected WebDriverWait _webDriverWait;
 
     [OneTimeSetUp]
     public void OneTimeSetup()
@@ -26,7 +28,7 @@ public class TestBase
 
         // Вариант 2 - поставить Хромдрайвер через Нугет,
         // тогда _webDriver = new ChromeDriver() - пас не указывается;
-
+        _webDriverWait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(20));
         _webDriver.Navigate().GoToUrl("https://kermi-fko.ru/raschety.aspx");
     }
 
@@ -84,5 +86,20 @@ public class TestBase
     {
         Console.Out.WriteLineAsync("OneTimeTearDown finishes");
         _webDriver.Quit();
+    }
+
+    protected void WaitUntilIsClickable(By locator)
+    {
+        _webDriverWait.Until(ExpectedConditions.ElementToBeClickable(locator));
+    }
+
+    protected void WaitUntilIsVisible(By locator)
+    {
+        _webDriverWait.Until(ExpectedConditions.ElementIsVisible(locator));
+    }
+
+    protected static void WaitUntilAlert(WebDriverWait wait)
+    {
+        wait.Until(ExpectedConditions.AlertState(false));
     }
 }
