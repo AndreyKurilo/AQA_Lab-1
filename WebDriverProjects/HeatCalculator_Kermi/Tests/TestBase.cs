@@ -54,8 +54,9 @@ public class TestBase
 
     protected void InputValueToField(string idToFind, string inputText)
     {
-        _webDriver.FindElement(By.Id(idToFind)).Click();
-        new SelectElement(_webDriver.FindElement(By.Id(idToFind))).SelectByText(inputText);
+        var element = _webDriver.FindElement(By.Id(idToFind));
+        element.Click();
+        new SelectElement(element).SelectByText(inputText);
     }
 
     private void InputIndoorTemperature(string idToFind, string text)
