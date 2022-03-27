@@ -37,8 +37,8 @@ public class HeatLossCalculator : TestBase
         var javaScriptExecutor = (IJavaScriptExecutor)_webDriver;
         javaScriptExecutor.ExecuteScript("arguments[0].click();", resultButton);
         var wallLossesInputField = _webDriver.FindElement(By.Id("wall_losses"));
-        var heatLossesThrowWalls = wallLossesInputField.GetAttribute("text");
-        Assert.AreEqual(heatLossesThrowWalls, "239");
+        var heatLossesThrowWalls = wallLossesInputField.GetAttribute("value");
+        Assert.AreEqual(heatLossesThrowWalls, "981");
     }
     
 }
