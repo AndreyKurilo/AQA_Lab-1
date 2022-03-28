@@ -21,6 +21,14 @@
       <Content Include="Resources\somehtml.html">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
+      <None Remove="Resources\chromedriver.exe" />
+      <Content Include="Resources\chromedriver.exe">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Resources\geckodriver.exe" />
+      <Content Include="Resources\geckodriver.exe">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
 </Project>
