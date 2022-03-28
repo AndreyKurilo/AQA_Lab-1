@@ -26,9 +26,7 @@ public class HeatLossCalculator : TestBase
         SetParameterWithId("walls_area", "100");
         InputValueToField("wall_mat_1", "Минеральная вата");
         SetParameterWithId("layer_thickness_1", "0.3");
-        var resultButton = _webDriver.FindElement(By.XPath("//input[@name='button']"));
-        var javaScriptExecutor = (IJavaScriptExecutor)_webDriver;
-        javaScriptExecutor.ExecuteScript("arguments[0].click();", resultButton);
+        ClickByResultButtonUsingJavaScriptExecutor(By.XPath("//input[@name='button']"));
         var wallLossesInputField = _webDriver.FindElement(By.Id("wall_losses"));
         var heatLossesThrowWalls = wallLossesInputField.GetAttribute("value");
         Assert.AreEqual(heatLossesThrowWalls, "981");

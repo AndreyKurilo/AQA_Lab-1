@@ -13,6 +13,8 @@ public class TestBase
 {
     protected IWebDriver _webDriver;
     protected WebDriverWait _webDriverWait;
+    protected IJavaScriptExecutor _javaScriptExecutor;
+
 
     [OneTimeSetUp]
     public void OneTimeSetup()
@@ -22,6 +24,9 @@ public class TestBase
         // Должно отобразиться в папке проекта bin (если не оттображается бин - сделать Build проекта)
         var basePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         var fullPathToBrowserDriver = $"{basePath}{Path.DirectorySeparatorChar}Resources{Path.DirectorySeparatorChar}";
+
+        _javaScriptExecutor = (IJavaScriptExecutor) _webDriver;
+
 
         _webDriver = new ChromeDriver(fullPathToBrowserDriver);
         //_webDriver = new FirefoxDriver(fullPathToBrowserDriver);
@@ -37,6 +42,20 @@ public class TestBase
     {
     }
 
+
+    [TearDown]
+    public void TearDown()
+    {
+        Console.Out.WriteLineAsync("TearDown after test metod");
+    }
+
+    [OneTimeTearDown]
+    public void OneTimeTearDown()
+    {
+        Console.Out.WriteLineAsync("OneTimeTearDown finishes");
+        _webDriver.Quit();
+    }
+
     protected void SubmitForm(string locatorByName)
     {
         _webDriver.FindElement(By.Name(locatorByName)).Click();
@@ -44,7 +63,6 @@ public class TestBase
 
     protected void SetParameterWithId(string idToFind, string text)
     {
-        _webDriver.FindElement(By.Id(idToFind)).Click();
         _webDriver.FindElement(By.Id(idToFind)).Clear();
         _webDriver.FindElement(By.Id(idToFind)).SendKeys(text);
     }
@@ -75,19 +93,6 @@ public class TestBase
         _webDriver.FindElement(By.Id(idToFind)).SendKeys(text);
     }
 
-    [TearDown]
-    public void TearDown()
-    {
-        Console.Out.WriteLineAsync("TearDown after test metod");
-    }
-
-    [OneTimeTearDown]
-    public void OneTimeTearDown()
-    {
-        Console.Out.WriteLineAsync("OneTimeTearDown finishes");
-        _webDriver.Quit();
-    }
-
     protected void WaitUntilIsClickable(By locator)
     {
         _webDriverWait.Until(ExpectedConditions.ElementToBeClickable(locator));
@@ -101,5 +106,12 @@ public class TestBase
     protected static void WaitUntilAlert(WebDriverWait wait)
     {
         wait.Until(ExpectedConditions.AlertState(false));
+    }
+
+    protected void ClickByResultButtonUsingJavaScriptExecutor(By xPath)
+    {
+        var resultButton = _webDriver.FindElement(xPath);
+        var javaScriptExecutor = (IJavaScriptExecutor) _webDriver;
+        javaScriptExecutor.ExecuteScript("arguments[0].click();", resultButton);
     }
 }
