@@ -12,20 +12,20 @@ public class IdLocatorsTests : TestBase
     public void IdLocatorTest_1()
     {
         var elementById_1 = _webDriver.FindElement(By.Id("1")).Text;
-        Assert.AreEqual(elementById_1, "Test");
+        Assert.AreEqual("Test",elementById_1);
     }
 
     [Test]
     public void IdLocatorTest_2()
     {
         var elementById_11 = _webDriver.FindElement(By.Id("11")).Text;
-        Assert.AreEqual(elementById_11, "Task");
+        Assert.AreEqual("Task",elementById_11);
     }
 
     [Test]
     public void IdLocatorTest_3()
     {
         var elementById_123 = _webDriver.FindElement(By.Id("123")).Text;
-        Assert.AreEqual(elementById_123, "Locator");
+        Assert.AreEqual("Locator",elementById_123);
     }
 }
