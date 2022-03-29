@@ -19,12 +19,32 @@ public class CssSelectorsTest : TestBase
         Assert.AreEqual("5", elementByClassName_arrow);
     }
     
-    [Test]
+    [Test] // Find total div & span
     public void CssSelector_DivSpanCount_Test()
     {
         var countDivSpan = _webDriver.FindElements(By.CssSelector("div,span")).Count;
         Assert.GreaterOrEqual(countDivSpan, 29);
     }
+    
+    [Test] // Find total span's wrapted to div
+    public void CssSelector_SpanInDivCount_Test()
+    {
+        var countDivSpan = _webDriver.FindElements(By.CssSelector("div span")).Count;
+        Assert.GreaterOrEqual(countDivSpan, 16);
+    }
 
+    [Test]
+    public void CssSelector_ElementAttribute_Test()
+    {
+        var elements_byAttribute_ids = _webDriver.FindElement(By.CssSelector("[ids]")).Text;
+        Assert.AreEqual("Test", elements_byAttribute_ids);
+    }
+
+    [Test]
+    public void CssSelector_ElementAttributeValueInDiv_Test()
+    {
+        var elements_byAttributeValueInDiv = _webDriver.FindElement(By.CssSelector("div [value='234']")).Text;
+        Assert.AreEqual("Test Title", elements_byAttributeValueInDiv);
+    }
 
 }
