@@ -1,16 +1,16 @@
-using System;
 using System.IO;
 using System.Reflection;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace Locators;
+namespace Locators.Tests;
 
-public class Tests
+public class TestBase
 {
-    private IWebDriver _webDriver;
-    private string FullPathToFile;
+    protected IWebDriver _webDriver;
+    protected string FullPathToFile;
+
 
     [OneTimeSetUp]
     public void OneTimeSetup()
@@ -25,33 +25,9 @@ public class Tests
         _webDriver.Navigate().GoToUrl(FullPathToFile);
     }
 
-    [Test]
-    public void IdLocatorTest_1()
-    {
-        //_webDriver.Navigate().GoToUrl(FullPathToFile);
-        var elementById_1 = _webDriver.FindElement(By.Id("1")).Text;
-        Assert.AreEqual(elementById_1, "Test");
-    }
-
-    [Test]
-    public void IdLocatorTest_2()
-    {
-        var elementById_11 = _webDriver.FindElement(By.Id("11")).Text;
-        Assert.AreEqual(elementById_11, "Task");
-    }
-
-    [Test]
-    public void IdLocatorTest_3()
-    {
-        var elementById_123 = _webDriver.FindElement(By.Id("123")).Text;
-        Assert.AreEqual(elementById_123, "Locator");
-    }
-
     [OneTimeTearDown]
     public void OneTimeTearDown()
     {
         _webDriver.Quit();
     }
-
-
 }
