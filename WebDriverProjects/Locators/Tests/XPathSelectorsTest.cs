@@ -44,7 +44,7 @@ public class XPathSelectorsTest : TestBase
     [Test]
     public void CssSelector_ElementAttributeValueInDiv_Test()
     {
-        var elements_byAttributeValueInDiv = _webDriver.FindElement(By.CssSelector("div [value='234']")).Text;
+        var elements_byAttributeValueInDiv = _webDriver.FindElement(By.XPath("//*[contains(value='234')]")).Text;
         Assert.AreEqual("Test Title", elements_byAttributeValueInDiv);
     }
 }
