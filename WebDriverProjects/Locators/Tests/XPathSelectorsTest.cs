@@ -8,7 +8,7 @@ public class XPathSelectorsTest : TestBase
     [Test]
     public void XPathSelector_ElementsCount_Test()
     {
-        var elements_byClass_arrow = _webDriver.FindElements(By.XPath("//@class='arrow'")).Count;
+        var elements_byClass_arrow = _webDriver.FindElements(By.XPath("//*[contains(@class, 'arrow')]")).Count;
         Assert.GreaterOrEqual(elements_byClass_arrow, 5);
     }
 
@@ -21,23 +21,23 @@ public class XPathSelectorsTest : TestBase
     }
     
     [Test] // Find total div & span
-    public void CssSelector_DivSpanCount_Test()
+    public void XPathSelector_DivSpanCount_Test()
     {
-        var countDivSpan = _webDriver.FindElements(By.CssSelector("div,span")).Count;
+        var countDivSpan = _webDriver.FindElements(By.XPath("//div,span")).Count;
         Assert.GreaterOrEqual(countDivSpan, 29);
     }
     
     [Test] // Find total span's wrapted to div
-    public void CssSelector_SpanInDivCount_Test()
+    public void XPathSelector_SpanWrapptedInDivCount_Test()
     {
-        var countDivSpan = _webDriver.FindElements(By.CssSelector("div span")).Count;
-        Assert.GreaterOrEqual(countDivSpan, 16);
+        var countDivSpan = _webDriver.FindElements(By.XPath("//div/span")).Count;
+        Assert.GreaterOrEqual(countDivSpan, 13);
     }
 
     [Test]
-    public void CssSelector_ElementAttribute_Test()
+    public void XPathSelector_ElementAttribute_Test()
     {
-        var elements_byAttribute_ids = _webDriver.FindElement(By.CssSelector("[ids]")).Text;
+        var elements_byAttribute_ids = _webDriver.FindElement(By.XPath("//*[contains(@ids, '1')]")).Text;
         Assert.AreEqual("Test", elements_byAttribute_ids);
     }
 
