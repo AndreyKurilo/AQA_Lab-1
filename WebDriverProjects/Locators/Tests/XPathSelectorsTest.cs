@@ -3,20 +3,21 @@ using OpenQA.Selenium;
 
 namespace Locators.Tests;
 
-public class CssSelectorsTest : TestBase
+public class XPathSelectorsTest : TestBase
 {
     [Test]
-    public void CssSelector_ElementsCount_Test()
+    public void XPathSelector_ElementsCount_Test()
     {
-        var elements_byClass_arrow = _webDriver.FindElements(By.CssSelector(".arrow")).Count;
+        var elements_byClass_arrow = _webDriver.FindElements(By.XPath("//@class='arrow'")).Count;
         Assert.GreaterOrEqual(elements_byClass_arrow, 5);
     }
-    
+
+        
     [Test]
-    public void CssSelector_Class_Test()
+    public void XPath_Title_1st_Test()
     {
-        var elementByClassName_arrow = _webDriver.FindElement(By.CssSelector(".arrow")).Text;
-        Assert.AreEqual("5", elementByClassName_arrow);
+        var title_1st = _webDriver.FindElement(By.XPath("//h1/span[1]")).Text;
+        Assert.AreEqual("Title 1", title_1st);
     }
     
     [Test] // Find total div & span
