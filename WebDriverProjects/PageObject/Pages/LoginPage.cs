@@ -1,11 +1,12 @@
 using System;
 using OpenQA.Selenium;
+using PageObject.Services;
 
 namespace PageObject.Pages;
 
 public class LoginPage : BasePage
 {
-    private const string END_POINT = "https://www.saucedemo.com";
+    private const string END_POINT = "/";
     
     // Description of locators
     private static readonly By UsernameInputLocator = By.Id("user-name");
@@ -19,7 +20,7 @@ public class LoginPage : BasePage
 
     protected override void OpenPage()
     {
-        Driver.Navigate().GoToUrl(END_POINT);
+        Driver.Navigate().GoToUrl(Configurator.BaseUrl+END_POINT);
     }
 
     protected override bool IsPageOpened()

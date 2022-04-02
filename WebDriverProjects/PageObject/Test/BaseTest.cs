@@ -2,6 +2,7 @@ using System;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using PageObject.Services;
 
 namespace PageObject.Test;
 
@@ -12,7 +13,7 @@ public class BaseTest
     [SetUp]
     public void Setup()
     {
-        _webDriver = new ChromeDriver();
+        _webDriver = new BrowserService().WebDriver;
     }
 
     [TearDown]
@@ -21,12 +22,9 @@ public class BaseTest
         _webDriver.Quit();
     }
     
-    /*
     public static IWebDriver Driver
     {
         get => _webDriver;
         set => _webDriver = value ?? throw new ArgumentNullException(nameof(value));
     }
-    */
-
 }

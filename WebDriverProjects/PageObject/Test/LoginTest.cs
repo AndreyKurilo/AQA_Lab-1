@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using PageObject.Pages;
+using PageObject.Services;
 
 namespace PageObject.Test;
 
@@ -9,8 +10,8 @@ public class LoginTest : BaseTest
     public void LoginSuccessTest()
     {
         LoginPage loginPage = new LoginPage(_webDriver, true);
-        loginPage.UserNameInput.SendKeys("standard_user");
-        loginPage.UserPasswordInput.SendKeys("secret_sauce");
+        loginPage.UserNameInput.SendKeys(Configurator.Username);
+        loginPage.UserPasswordInput.SendKeys(Configurator.Password);
         loginPage.LoginButton.Submit();
     }
 }
