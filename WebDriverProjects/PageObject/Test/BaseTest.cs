@@ -17,7 +17,7 @@ public class BaseTest
     }
 
     [TearDown]
-    public void TearDown()
+    public virtual void TearDown()
     {
         WebDriver.Quit();
     }
