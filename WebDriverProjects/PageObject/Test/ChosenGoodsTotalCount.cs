@@ -5,10 +5,10 @@ using PageObject.Pages;
 namespace PageObject.Test;
 
 [TestFixture]
-public class ChosenGoodsTotalSum : TestsAuthorizationFoundation
+public class ChosenGoodsTotalCount : TestsAuthorizationFoundation
 {
     [Test]
-    public void ChooseGoodItem()
+    public void ChooseAllGoodItem()
     {
         var productsPage = new ProductsPage(Driver, false);
         Assert.AreEqual(6, productsPage.GetInventoryItems().Count);

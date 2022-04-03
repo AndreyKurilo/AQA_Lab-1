@@ -34,18 +34,17 @@ public class CartPage : BasePage
     }
     
     public ReadOnlyCollection<IWebElement> GetCartItems() =>
-        Driver.FindElements(By.ClassName("inventory_item"));
+        Driver.FindElements(By.ClassName("cart_item"));
 
-    public ReadOnlyCollection<IWebElement> GetAddToCartButtons() =>
-        Driver.FindElements(By.ClassName("btn_inventory"));
+    public ReadOnlyCollection<IWebElement> ChooseRemoveButtons() =>
+        Driver.FindElements(By.ClassName("cart_button"));
 
-    public void AddAllInventoryItemsToCart()
+    public void RemoveAllInventoryItemsFromCart()
     {
-        foreach (var addToCartButton in GetAddToCartButtons())
-            addToCartButton.Click();
+        foreach (var RemoveFromCartButton in ChooseRemoveButtons())
+            RemoveFromCartButton.Click();
     }
 
-    
     public IWebElement Title => Driver.FindElement(TitleLocator);
 
 }
