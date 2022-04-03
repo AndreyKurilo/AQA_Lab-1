@@ -8,7 +8,7 @@ namespace PageObject.Test;
 public class ChosenGoodsTotalSum : TestsAuthorizationFoundation
 {
     [Test]
-    public void ChoseGoodItem()
+    public void ChooseGoodItem()
     {
         var productsPage = new ProductsPage(Driver, false);
         Assert.AreEqual(6, productsPage.GetInventoryItems().Count);
