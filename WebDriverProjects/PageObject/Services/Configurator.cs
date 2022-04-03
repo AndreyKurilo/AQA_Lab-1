@@ -16,6 +16,11 @@ namespace PageObject.Services
         public static string BrowserType => Configuration[nameof(BrowserType)];
         public static int WaitTimeout => int.Parse(Configuration[nameof(WaitTimeout)]);
 
+        public static string FirstName => Configuration[nameof(FirstName)];
+        public static string LastName => Configuration[nameof(LastName)];
+        public static string PostalCode => Configuration[nameof(PostalCode)];
+
+
         static Configurator()
         {
             s_configuration = new Lazy<IConfiguration>(BuildConfiguration);

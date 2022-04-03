@@ -10,10 +10,13 @@ public class MakeOrderBuyAllProductsTest : TestsAuthorizationFoundation
     {
         // Arrange
         var productsPage = new ProductsPage(Driver, false);
+        var cartPage = new CartPage(Driver, false);
         
         // Act
         productsPage.AddAllInventoryItemsToCart();
-
+        productsPage.GotoCartPage();
+        cartPage.MakeCheckOut();
+        
     }
 
 }

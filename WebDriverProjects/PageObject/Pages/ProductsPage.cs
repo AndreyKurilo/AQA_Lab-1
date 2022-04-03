@@ -52,6 +52,11 @@ public class ProductsPage : BasePage
             addToCartButton.Click();
     }
 
+    public void GotoCartPage()
+    {
+        Driver.FindElement(By.ClassName("shopping_cart_link")).Click();
+    }
+
     public IWebElement Title => Driver.FindElement(TitleLocator);
     public IWebElement Item_BackPack => Driver.FindElement(BackPack_AddLocator);
     public IWebElement Item_BikeLight => Driver.FindElement(BikeLight_AddLocator);
