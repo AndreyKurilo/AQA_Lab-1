@@ -26,14 +26,6 @@ public abstract class BasePage
         WaitForOpen();
     }
 
-    public void Login()
-    {
-        LoginPage loginPage = new LoginPage(_webDriver, true);
-        loginPage.UserNameInput.SendKeys(Configurator.Username);
-        loginPage.UserPasswordInput.SendKeys(Configurator.Password);
-        loginPage.LoginButton.Submit();
-    }
-
     private void WaitForOpen()
     {
         var secondsCount = 0;

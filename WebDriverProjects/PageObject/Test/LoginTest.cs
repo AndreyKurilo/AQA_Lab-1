@@ -9,7 +9,7 @@ public class LoginTest : BaseTest
     [Test]
     public void LoginSuccessTest()
     {
-        LoginPage loginPage = new LoginPage(_webDriver, true);
+        LoginPage loginPage = new LoginPage(WebDriver, true);
         loginPage.UserNameInput.SendKeys(Configurator.Username);
         loginPage.UserPasswordInput.SendKeys(Configurator.Password);
         loginPage.LoginButton.Submit();

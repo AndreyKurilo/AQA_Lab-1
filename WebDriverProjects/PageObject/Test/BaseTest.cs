@@ -8,23 +8,23 @@ namespace PageObject.Test;
 
 public class BaseTest
 {
-    protected static IWebDriver _webDriver;
+    protected static IWebDriver WebDriver;
 
     [SetUp]
-    public void Setup()
+    public virtual void Setup()
     {
-        _webDriver = new BrowserService().WebDriver;
+        WebDriver = new BrowserService().WebDriver;
     }
 
     [TearDown]
     public void TearDown()
     {
-        _webDriver.Quit();
+        WebDriver.Quit();
     }
     
     public static IWebDriver Driver
     {
-        get => _webDriver;
-        set => _webDriver = value ?? throw new ArgumentNullException(nameof(value));
+        get => WebDriver;
+        set => WebDriver = value ?? throw new ArgumentNullException(nameof(value));
     }
 }
