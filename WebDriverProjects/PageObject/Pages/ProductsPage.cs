@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using OpenQA.Selenium;
 using PageObject.Services;
 
@@ -7,7 +8,7 @@ namespace PageObject.Pages;
 public class ProductsPage : BasePage
 {
     private const string END_POINT = "/inventory.html";
-    
+
     private static readonly By TitleLocator = By.ClassName("title");
 
     private static readonly By BackPack_AddLocator = By.Id("add-to-cart-sauce-labs-backpack");
@@ -19,7 +20,6 @@ public class ProductsPage : BasePage
 
     public ProductsPage(IWebDriver driver, bool openPageByUrl) : base(driver, openPageByUrl)
     {
-       // Login();
     }
 
     protected override void OpenPage()
@@ -39,7 +39,19 @@ public class ProductsPage : BasePage
             return false;
         }
     }
-    
+
+    public ReadOnlyCollection<IWebElement> GetInventoryItems() =>
+        Driver.FindElements(By.ClassName("inventory_item"));
+
+    public ReadOnlyCollection<IWebElement> GetAddToCartButtons() =>
+        Driver.FindElements(By.ClassName("btn_inventory"));
+
+    public void AddAllInventoryItemsToCart()
+    {
+        foreach (var addToCartButton in GetAddToCartButtons())
+            addToCartButton.Click();
+    }
+
     public IWebElement Title => Driver.FindElement(TitleLocator);
     public IWebElement Item_BackPack => Driver.FindElement(BackPack_AddLocator);
     public IWebElement Item_BikeLight => Driver.FindElement(BikeLight_AddLocator);
@@ -47,5 +59,4 @@ public class ProductsPage : BasePage
     public IWebElement Item_FleeceJacket => Driver.FindElement(FleeceJacket_AddLocator);
     public IWebElement Item_Onesie => Driver.FindElement(Onesie_AddLocator);
     public IWebElement Item_Test_allTheThings => Driver.FindElement(Test_allTheThings_AddLocator);
-
 }
