@@ -7,7 +7,10 @@ namespace PageObject.Pages;
 public class Overview : BasePage
 {
     private const string END_POINT = "/checkout-step-two.html";
+    
+    // Description of locators
     private static readonly By TitleLocator = By.ClassName("title");
+    private static readonly By finishButtonLocator = By.Id("finish");
 
     public Overview(IWebDriver webDriver, bool openPageByUrl) : base(webDriver, openPageByUrl)
     {
