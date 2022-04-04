@@ -20,13 +20,6 @@ public class XPathSelectorsTest : TestBase
         Assert.AreEqual("Title 1", title_1st);
     }
     
-    [Test] // Find total div & span
-    public void XPathSelector_DivSpanCount_Test()
-    {
-        var countDivSpan = _webDriver.FindElements(By.XPath("//div,span")).Count;
-        Assert.GreaterOrEqual(countDivSpan, 29);
-    }
-    
     [Test] // Find total span's wrapted to div
     public void XPathSelector_SpanWrapptedInDivCount_Test()
     {
