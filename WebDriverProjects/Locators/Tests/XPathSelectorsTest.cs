@@ -35,7 +35,14 @@ public class XPathSelectorsTest : TestBase
     }
 
     [Test]
-    public void CssSelector_ElementAttributeValueInDiv_Test()
+    public void XPathSelector_SpanInDiv_Test()
+    {
+        var elements_SpanInDivCount = _webDriver.FindElements(By.XPath("//*[self:: div or self:: span]")).Count;
+        Assert.GreaterOrEqual(elements_SpanInDivCount, 16);
+    }
+
+    [Test]
+    public void XPathSelector_ElementAttributeValueInDiv_Test()
     {
         var elements_byAttributeValueInDiv = _webDriver.FindElement(By.XPath("//*[contains(@value,'234')]")).Text;
         Assert.AreEqual("Test Title", elements_byAttributeValueInDiv);
