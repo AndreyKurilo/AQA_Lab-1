@@ -10,7 +10,7 @@ public class Overview : BasePage
     
     // Description of locators
     private static readonly By TitleLocator = By.ClassName("title");
-    private static readonly By finishButtonLocator = By.Id("finish");
+    private static readonly By FinishButtonLocator = By.Id("finish");
 
     public Overview(IWebDriver webDriver, bool openPageByUrl) : base(webDriver, openPageByUrl)
     {
@@ -34,10 +34,7 @@ public class Overview : BasePage
         }
     }
     
-    public IWebElement Title => Driver.FindElement(TitleLocator);
+    public IWebElement Title => WaitService.WaitElementIsExists(TitleLocator);
+    public IWebElement FinishOrder => WaitService.WaitElementIsExists(FinishButtonLocator);
 
-    public void FinishOrder()
-    {
-        Driver.FindElement(By.Id("finish"));
-    }
 }

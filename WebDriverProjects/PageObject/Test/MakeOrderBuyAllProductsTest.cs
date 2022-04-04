@@ -27,10 +27,10 @@ public class MakeOrderBuyAllProductsTest : TestsAuthorizationFoundation
         Assert.AreEqual("Total: $140.34", totalOrderSum);
         
         // Act
-        overviewPage.FinishOrder();
+        overviewPage.FinishOrder.Click();
         var completeIndicator = Driver.FindElement(By.ClassName("title")).Text;
         
         // Assert
-        Assert.AreEqual("CHECKOUT: OVERVIEW", completeIndicator);
+        Assert.AreEqual("CHECKOUT: COMPLETE!", completeIndicator);
     }
 }
