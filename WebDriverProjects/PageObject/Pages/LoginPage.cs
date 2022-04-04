@@ -35,9 +35,15 @@ public class LoginPage : BasePage
         }
     }
     
+    // Атомарные элементы
+    public IWebElement UserNameInput => WaitService.WaitElementIsExists(UsernameInputLocator);
+    public IWebElement UserPasswordInput => WaitService.WaitElementIsExists(PasswordInputLocator);
+    public IWebElement LoginButton => WaitService.WaitElementIsExists(LoginButtonLocator);
+
+    /*
     // Атомарные методы
     public IWebElement UserNameInput => Driver.FindElement(UsernameInputLocator);
     public IWebElement UserPasswordInput => Driver.FindElement(PasswordInputLocator);
     public IWebElement LoginButton => Driver.FindElement(LoginButtonLocator);
-
+    */
 }

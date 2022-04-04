@@ -11,6 +11,8 @@ public abstract class BasePage
 {
     [ThreadStatic] private static IWebDriver _webDriver;
     private const int WAIT_FOR_PAGE_LOADING_TIME = 60;
+    private static WaitService _waitService;
+
     protected abstract void OpenPage();
 
     protected abstract bool IsPageOpened();
@@ -18,6 +20,8 @@ public abstract class BasePage
     protected BasePage(IWebDriver webDriver, bool openPageByUrl)
     {
         Driver = webDriver;
+        _waitService = new WaitService(Driver);
+
         if (openPageByUrl)
         {
             OpenPage();
@@ -48,5 +52,10 @@ public abstract class BasePage
     {
         get => _webDriver;
         set => _webDriver = value ?? throw new ArgumentNullException(nameof(value));
+    }
+    
+    public static WaitService WaitService
+    {
+        get => _waitService;
     }
 }

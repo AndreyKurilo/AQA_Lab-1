@@ -57,11 +57,11 @@ public class ProductsPage : BasePage
         Driver.FindElement(By.ClassName("shopping_cart_link")).Click();
     }
 
-    public IWebElement Title => Driver.FindElement(TitleLocator);
-    public IWebElement Item_BackPack => Driver.FindElement(BackPack_AddLocator);
-    public IWebElement Item_BikeLight => Driver.FindElement(BikeLight_AddLocator);
-    public IWebElement Item_BoltT_Shirt => Driver.FindElement(BoltT_Shirt_AddLocator);
-    public IWebElement Item_FleeceJacket => Driver.FindElement(FleeceJacket_AddLocator);
-    public IWebElement Item_Onesie => Driver.FindElement(Onesie_AddLocator);
-    public IWebElement Item_Test_allTheThings => Driver.FindElement(Test_allTheThings_AddLocator);
+    public IWebElement Title => WaitService.WaitElementIsExists(TitleLocator);
+    public IWebElement Item_BackPack => WaitService.WaitElementIsExists(BackPack_AddLocator);
+    public IWebElement Item_BikeLight => WaitService.WaitElementIsExists(BikeLight_AddLocator);
+    public IWebElement Item_BoltT_Shirt => WaitService.WaitElementIsExists(BoltT_Shirt_AddLocator);
+    public IWebElement Item_FleeceJacket => WaitService.WaitElementIsExists(FleeceJacket_AddLocator);
+    public IWebElement Item_Onesie => WaitService.WaitElementIsExists(Onesie_AddLocator);
+    public IWebElement Item_Test_allTheThings => WaitService.WaitElementIsExists(Test_allTheThings_AddLocator);
 }
