@@ -37,5 +37,4 @@ public class WaitService
     {
         return _fluentWait.Until(x => x.FindElement(locator));
     }
-
 }
