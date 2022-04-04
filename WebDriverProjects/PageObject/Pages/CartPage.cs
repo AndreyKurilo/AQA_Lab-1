@@ -45,7 +45,7 @@ public class CartPage : BasePage
             RemoveFromCartButton.Click();
     }
 
-    public void MakeCheckOut()
+    public void DoCheckOut()
     {
         Driver.FindElement(By.Id("checkout")).Click();
     }

@@ -4,13 +4,12 @@ using PageObject.Services;
 
 namespace PageObject.Pages;
 
-public class YourInformationPage : BasePage
+public class Overview : BasePage
 {
-    private const string END_POINT = "/checkout-step-one.html";
-
+    private const string END_POINT = "/checkout-step-two.html";
     private static readonly By TitleLocator = By.ClassName("title");
 
-    public YourInformationPage(IWebDriver webDriver, bool openPageByUrl) : base(webDriver, openPageByUrl)
+    public Overview(IWebDriver webDriver, bool openPageByUrl) : base(webDriver, openPageByUrl)
     {
     }
 
@@ -34,15 +33,8 @@ public class YourInformationPage : BasePage
     
     public IWebElement Title => Driver.FindElement(TitleLocator);
 
-    public void FillUsersData()
+    public void FinishOrder()
     {
-        Driver.FindElement(By.Id("first-name")).SendKeys(Configurator.FirstName);
-        Driver.FindElement(By.Id("last-name")).SendKeys(Configurator.LastName);
-        Driver.FindElement(By.Id("postal-code")).SendKeys(Configurator.PostalCode);
-    }
-
-    public void Continue()
-    {
-        Driver.FindElement(By.Id("continue")).Click();
+        Driver.FindElement(By.Id("finish"));
     }
 }
