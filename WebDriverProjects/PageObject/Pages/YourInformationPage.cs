@@ -9,6 +9,10 @@ public class YourInformationPage : BasePage
     private const string END_POINT = "/checkout-step-one.html";
 
     private static readonly By TitleLocator = By.ClassName("title");
+    private static readonly By FirstNameFieldLocator = By.Id("first-name");
+    private static readonly By LastNameFieldLocator = By.Id("last-name");
+    private static readonly By PostalCodeFieldLocator = By.Id("postal-code");
+    private static readonly By ContinueButtonLocator = By.Id("continue");
 
     public YourInformationPage(IWebDriver webDriver, bool openPageByUrl) : base(webDriver, openPageByUrl)
     {
@@ -32,17 +36,17 @@ public class YourInformationPage : BasePage
         }
     }
     
-    public IWebElement Title => Driver.FindElement(TitleLocator);
+    public IWebElement Title => WaitService.WaitElementIsExists(TitleLocator);
+    public IWebElement FirstNameField => WaitService.WaitElementIsExists(FirstNameFieldLocator);
+    public IWebElement LastNameField => WaitService.WaitElementIsExists(LastNameFieldLocator);
+    public IWebElement PostalCodeField => WaitService.WaitElementIsExists(PostalCodeFieldLocator);
+    public IWebElement ContinueButton => WaitService.WaitElementIsExists(ContinueButtonLocator);
+
 
     public void FillUsersData()
     {
-        Driver.FindElement(By.Id("first-name")).SendKeys(Configurator.FirstName);
-        Driver.FindElement(By.Id("last-name")).SendKeys(Configurator.LastName);
-        Driver.FindElement(By.Id("postal-code")).SendKeys(Configurator.PostalCode);
-    }
-
-    public void Continue()
-    {
-        Driver.FindElement(By.Id("continue")).Click();
+        FirstNameField.SendKeys(Configurator.FirstName);
+        LastNameField.SendKeys(Configurator.LastName);
+        PostalCodeField.SendKeys(Configurator.PostalCode);
     }
 }

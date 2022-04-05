@@ -18,9 +18,9 @@ public class MakeOrderBuyAllProductsTest : TestsAuthorizationFoundation
         // Act
         productsPage.AddAllInventoryItemsToCart();
         productsPage.GotoCartPage();
-        cartPage.DoCheckOut();
+        cartPage.CheckoutButton.Click();
         yourInformationPage.FillUsersData();
-        yourInformationPage.Continue();
+        yourInformationPage.ContinueButton.Click();
         var totalOrderSum = Driver.FindElement(By.CssSelector(".summary_total_label")).Text;
         
         // Assert

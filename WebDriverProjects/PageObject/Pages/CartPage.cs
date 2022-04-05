@@ -9,6 +9,7 @@ public class CartPage : BasePage
 {
     private const string END_POINT = "/cart.html";
     private static readonly By TitleLocator = By.ClassName("title");
+    private static readonly By CheckoutButtonLocator = By.Id("checkout");
 
 
     public CartPage(IWebDriver webDriver, bool openPageByUrl) : base(webDriver, openPageByUrl)
@@ -44,12 +45,8 @@ public class CartPage : BasePage
         foreach (var RemoveFromCartButton in ChooseRemoveButtons())
             RemoveFromCartButton.Click();
     }
-
-    public void DoCheckOut()
-    {
-        Driver.FindElement(By.Id("checkout")).Click();
-    }
-
-    public IWebElement Title => Driver.FindElement(TitleLocator);
+    
+    public IWebElement Title => WaitService.WaitElementIsExists(TitleLocator);
+    public IWebElement CheckoutButton => WaitService.WaitElementIsExists(CheckoutButtonLocator);
 
 }
