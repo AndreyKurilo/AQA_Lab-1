@@ -13,7 +13,7 @@ public class CatalogTVpage : PageBase
     
     // Описание локаторов
     private static readonly By itemCheckBoxLocator = By.XPath("//div[@id='schema-products']/div/div/div/div/div/label");
-    private static readonly By comparisonPageLinkLocator = By.CssSelector(".compare-button__sub_main");
+    private static readonly By comparisonPageLinkLocator = By.CssSelector(".compare-button__sub.compare-button__sub_main");
     
     // Конструктор
     public CatalogTVpage(IWebDriver webDriver, bool openPageByUrl) : base(webDriver, openPageByUrl)

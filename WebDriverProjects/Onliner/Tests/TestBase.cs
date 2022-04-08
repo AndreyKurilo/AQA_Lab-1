@@ -1,3 +1,4 @@
+using System;
 using NUnit.Framework;
 using Onliner.Services;
 using OpenQA.Selenium;
@@ -8,18 +9,23 @@ namespace Onliner.Tests;
 
 public class TestBase
 {
-    protected IWebDriver _webDriver;
+    protected static IWebDriver WebDriver;
     
     [SetUp]
     public void Setup()
     {
-        _webDriver = new BrowserService().WebDriver;
+        Driver = new BrowserService().WebDriver;
     }
 
     [TearDown]
     public void TearDown()
     {
-        _webDriver.Quit();
+        Driver.Quit();
     }
-
+    
+    public static IWebDriver Driver
+    {
+        get => WebDriver;
+        set => WebDriver = value ?? throw new ArgumentNullException(nameof(value));
+    }
 }

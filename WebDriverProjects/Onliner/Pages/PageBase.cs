@@ -19,7 +19,7 @@ public abstract class PageBase
     protected PageBase(IWebDriver webDriver, bool openPageByUrl)
     {
         Driver = webDriver;
-      //  _waitService = new WaitService(Driver);
+        //_waitService = new WaitService(Driver);
 
         if (openPageByUrl)
         {
@@ -36,7 +36,7 @@ public abstract class PageBase
 
         while (!isPageOpenedIndicator && secondsCount < WAIT_FOR_PAGE_LOADING_TIME) /// Configurator.WaitTimeout)
         {
-            Thread.Sleep(1000);
+            // Thread.Sleep(1000);
             secondsCount++;
             isPageOpenedIndicator = IsPageOpened();
 
