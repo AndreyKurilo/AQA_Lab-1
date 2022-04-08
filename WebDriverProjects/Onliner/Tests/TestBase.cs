@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Onliner.Services;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
@@ -12,7 +13,7 @@ public class TestBase
     [SetUp]
     public void Setup()
     {
-        _webDriver = new ChromeDriver();
+        _webDriver = new BrowserService().WebDriver;
     }
 
     [TearDown]
