@@ -1,12 +1,14 @@
+using System;
 using System.Collections.ObjectModel;
 using NUnit.Framework;
+using Onliner.Services;
 using OpenQA.Selenium;
 
 namespace Onliner.Pages;
 
 public class CatalogTVpage : PageBase
 {
-    private const string END_POINT = "https://catalog.onliner.by/tv";
+    private const string END_POINT = "/tv";
     private const int ITEMS_ON_PAGE = 30;
     
     // Описание локаторов
@@ -17,23 +19,21 @@ public class CatalogTVpage : PageBase
     public CatalogTVpage(IWebDriver webDriver, bool openPageByUrl) : base(webDriver, openPageByUrl)
     {
     }
-    // Old constructor
-    /*
-    public CatalogTVpage(IWebDriver _webDriver)
-    {
-        Driver = _webDriver;
-        Driver.Navigate().GoToUrl(END_POINT);
-    }
-    */
     protected override void OpenPage()
     {
-        Driver.Navigate().GoToUrl(END_POINT);
+        Driver.Navigate().GoToUrl(Configurator.BaseUrl + END_POINT);
     }
 
     protected override bool IsPageOpened()
     {
-        if(GetItemsOnTV_Page().Count == ITEMS_ON_PAGE) return true;
-        return false;
+        try
+        {
+            return GetItemsOnTV_Page().Count == ITEMS_ON_PAGE;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
     }
 
     // Атомарные элементы

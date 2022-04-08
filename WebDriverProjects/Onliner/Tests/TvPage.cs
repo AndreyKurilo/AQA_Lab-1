@@ -13,10 +13,8 @@ public class TvPage : TestBase
     {
         var numberItemsToCompare = 2;
         CatalogTVpage catalogTV = new CatalogTVpage(_webDriver, true);
-        Thread.Sleep(1000);
-
         catalogTV.AddDefiniteNumberItemsToCompare(numberItemsToCompare);
-        Thread.Sleep(10000);
+        Thread.Sleep(1000);
         //catalogTV.ComparisonPageLink.Click();
         Assert.IsTrue(catalogTV.ComparisonPageLink.Displayed);
     }
