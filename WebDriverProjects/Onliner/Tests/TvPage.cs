@@ -17,11 +17,11 @@ public class TvPage : TestBase
         catalogTV.AddDefiniteNumberItemsToCompare(numberItemsToCompare);
         Assert.IsTrue(catalogTV.ComparisonPageLink.Displayed);
         
-        /*
-        ComparePage comparePage = new ComparePage(Driver, false);
         catalogTV.ComparisonPageLink.Click();
         Thread.Sleep(10000);
+        ComparePage comparePage = new ComparePage(Driver, false);
+
         Assert.AreEqual("Сравнение товаров", comparePage.Title.Text);
-    */
+    
     }
 }

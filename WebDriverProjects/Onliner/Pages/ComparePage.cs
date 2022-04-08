@@ -7,8 +7,7 @@ namespace Onliner.Pages;
 public class ComparePage : PageBase
 {
     private const string END_POINT = "/compare";
-    private static readonly By TitleLocator = By.CssSelector("h.b-offers-title");
-
+    private static readonly By TitleLocator = By.ClassName("b-offers-title");
 
     public ComparePage(IWebDriver webDriver, bool openPageByUrl) : base(webDriver, openPageByUrl)
     {
@@ -34,5 +33,4 @@ public class ComparePage : PageBase
     }
     
     public IWebElement Title => Driver.FindElement(TitleLocator);
-
 }
