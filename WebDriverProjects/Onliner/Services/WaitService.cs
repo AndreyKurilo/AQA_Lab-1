@@ -16,6 +16,13 @@ public class WaitService
         _webDriver = driver;
         _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(Configurator.WaitTimeout));
         _explicitWait = new WebDriverWait(driver, TimeSpan.FromSeconds(Configurator.WaitTimeout));
+        _fluentWait = new DefaultWait<IWebDriver>(driver)
+        {
+            Timeout = TimeSpan.FromSeconds(Configurator.WaitTimeout),
+            PollingInterval = TimeSpan.FromMilliseconds(250)
+        };
+        _fluentWait.IgnoreExceptionTypes(typeof(NoSuchElementException));
+
     }
 
     public IWebElement WaitElementIsVisible(By locator)
