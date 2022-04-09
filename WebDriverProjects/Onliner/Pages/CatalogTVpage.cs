@@ -47,6 +47,7 @@ public class CatalogTVpage : PageBase
             GetItemsOnTV_Page()[i].Click();
         }
     }
-
-    public IWebElement ComparisonPageLink => Driver.FindElement(comparisonPageLinkLocator);
+    
+    //public IWebElement ComparisonPageLink => Driver.FindElement(comparisonPageLinkLocator);
+    public IWebElement ComparisonPageLink => WaitService.WaitElementIsExists(comparisonPageLinkLocator);
 }

@@ -29,7 +29,6 @@ public class ComparePage : PageBase
             Console.WriteLine(e);
             return false;
         }
-
     }
     
     public IWebElement Title => Driver.FindElement(TitleLocator);
