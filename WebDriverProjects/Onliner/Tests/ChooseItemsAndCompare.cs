@@ -1,13 +1,13 @@
 using System.Threading;
 using NUnit.Framework;
 using Onliner.Pages;
-using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 
 namespace Onliner.Tests;
 
-public class TvPage : TestBase
+public class ChooseItemsAndCompare : TestBase
 {
-
+    
     [Test]
     public void Test_ChooseItemsAndGotoComparisonPage()
     {
@@ -18,10 +18,11 @@ public class TvPage : TestBase
         Assert.IsTrue(catalogTV.ComparisonPageLink.Displayed);
         
         catalogTV.ComparisonPageLink.Click();
-        Thread.Sleep(10000);
         ComparePage comparePage = new ComparePage(Driver, false);
-
-        Assert.AreEqual("Сравнение товаров", comparePage.Title.Text);
-    
+        new Actions(Driver).MoveToElement(comparePage.DiagonalTvField).Click().Perform();
+        comparePage.DiagonalTvTip.Click();
+        Assert.IsTrue(comparePage.DiagonalTvTipText.Displayed); 
+        comparePage.DiagonalTvTip.Click();
+        Assert.IsTrue(comparePage.IsTextTipWindowInvisible);
     }
 }

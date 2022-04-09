@@ -34,7 +34,7 @@ public abstract class PageBase
         var secondsCount = 0;
         var isPageOpenedIndicator = IsPageOpened();
 
-        while (!isPageOpenedIndicator && secondsCount < WAIT_FOR_PAGE_LOADING_TIME) /// Configurator.WaitTimeout)
+        while (!isPageOpenedIndicator && secondsCount < (WAIT_FOR_PAGE_LOADING_TIME / Configurator.WaitTimeout))
         {
             // Thread.Sleep(1000);
             secondsCount++;
