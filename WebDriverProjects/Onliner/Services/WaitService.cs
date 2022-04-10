@@ -38,6 +38,7 @@ public class WaitService
         return _fluentWait.Until(x => x.FindElement(locator));
     }
 
+    
     public bool WaitUntilElementInvisible(By locator)
     {
         return _wait.Until(SeleniumExtras
@@ -52,6 +53,5 @@ public class WaitService
             .WaitHelpers.ExpectedConditions
             .StalenessOf(webElement));
     }
-    */
-
+*/
 }

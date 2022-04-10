@@ -1,6 +1,7 @@
 using System.Threading;
 using NUnit.Framework;
 using Onliner.Pages;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 
 namespace Onliner.Tests;
@@ -22,9 +23,11 @@ public class ChooseItemsAndCompare : TestBase
         ComparePage comparePage = new ComparePage(Driver, false);
         new Actions(Driver).MoveToElement(comparePage.DiagonalTvField).Click().Perform();
         comparePage.DiagonalTvTip.Click();
+        IWebElement tvTipText = comparePage.DiagonalTvTipText;
         Assert.IsTrue(comparePage.DiagonalTvTipText.Displayed); 
         comparePage.DiagonalTvTip.Click();
         Assert.IsTrue(comparePage.IsTextTipWindowInvisible);
+        //Assert.IsTrue(comparePage.IsTextTipWindowInvisible(tvTipText));
         var chosenItemsCount = comparePage.GetItemsOnCompare_Page().Count;
         Assert.AreEqual(numberItemsToCompare, chosenItemsCount);
         for (int i = 0; i < numberItemsToRemoveFromComparison; i++)
