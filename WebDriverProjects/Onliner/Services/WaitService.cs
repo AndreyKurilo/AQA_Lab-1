@@ -8,14 +8,12 @@ public class WaitService
 {
     private IWebDriver _webDriver;
     private readonly WebDriverWait _wait;
-    private readonly WebDriverWait _explicitWait;
     private readonly DefaultWait<IWebDriver> _fluentWait;
 
     public WaitService(IWebDriver driver)
     {
         _webDriver = driver;
         _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(Configurator.WaitTimeout));
-        _explicitWait = new WebDriverWait(driver, TimeSpan.FromSeconds(Configurator.WaitTimeout));
         _fluentWait = new DefaultWait<IWebDriver>(driver)
         {
             Timeout = TimeSpan.FromSeconds(Configurator.WaitTimeout),
@@ -42,8 +40,18 @@ public class WaitService
 
     public bool WaitUntilElementInvisible(By locator)
     {
-        return _explicitWait.Until(SeleniumExtras
+        return _wait.Until(SeleniumExtras
             .WaitHelpers.ExpectedConditions
             .InvisibilityOfElementLocated(locator));
     }
+    
+    /*
+    public bool WaitUntilElementInvisible(IWebElement webElement)
+    {
+        return _wait.Until(SeleniumExtras
+            .WaitHelpers.ExpectedConditions
+            .StalenessOf(webElement));
+    }
+    */
+
 }
