@@ -12,7 +12,6 @@ public class ComparePage : PageBase
     private static readonly By DiagonalTvFieldLocator = By.XPath("//span[contains(.,'Диагональ экрана')]");
     private static readonly By DiagonalTvTipLocator = By.XPath("//*[@id='product-table']/tbody[5]/tr[4]/td[1]/div/span");
     private static readonly By DiagonalTvTipTextLocator = By.XPath("//p[contains(.,'Размер диагонали экрана в дюймах.')]");
-    //private static readonly By ChosenItemsLocator = By.ClassName("product-summary__figure");
     private static readonly By ChosenItemsRemoveButtonLocator = 
         By.CssSelector("tr.product-table__row.product-table__row_header.product-table__row_top>th.product-table__cell>div.product-table-cell-container>a[title]");
     private static readonly By ChosenItemsOnPageLocator = 
