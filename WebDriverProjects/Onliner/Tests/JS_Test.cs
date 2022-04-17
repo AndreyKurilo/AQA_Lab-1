@@ -1,9 +1,11 @@
 ﻿using System.Threading;
+using NUnit.Allure.Core;
 using NUnit.Framework;
 using OpenQA.Selenium;
 
 namespace Onliner.Tests;
 
+[AllureNUnit]
 public class JS_Test : TestBase
 {
     // Set and Get value
