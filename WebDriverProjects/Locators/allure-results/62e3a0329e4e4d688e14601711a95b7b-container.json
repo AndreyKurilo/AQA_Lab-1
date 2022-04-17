@@ -1,0 +1,46 @@
+{
+  "uuid": "460b0d54-f076-4d25-8c0c-dd8e2575ee03-tc-0-1000",
+  "name": "Locators.Tests.ClassNameLocatorTest.ClassNameLocator_arrow_Test",
+  "children": [
+    "5ddd6058-761c-4874-947c-b1d681d6f808-tr-0-1001"
+  ],
+  "befores": [
+    {
+      "name": "OneTimeSetup",
+      "status": "passed",
+      "statusDetails": {
+        "known": false,
+        "muted": false,
+        "flaky": false
+      },
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1650218741655,
+      "stop": 1650218741655
+    }
+  ],
+  "afters": [
+    {
+      "name": "OneTimeTearDown",
+      "status": "none",
+      "statusDetails": {
+        "known": false,
+        "muted": false,
+        "flaky": false,
+        "message": "It's not possible to get status of OneTimeTearDown",
+        "trace": "See Allure.NUnit wiki"
+      },
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1650218741656,
+      "stop": 1650218741656
+    }
+  ],
+  "links": [],
+  "start": 1650218741548,
+  "stop": 1650218741705
+}

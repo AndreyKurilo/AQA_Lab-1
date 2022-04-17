@@ -1,8 +1,11 @@
-﻿using NUnit.Framework;
+﻿using NUnit.Allure.Core;
+using NUnit.Framework;
 using OpenQA.Selenium;
 
 namespace Onliner.Tests;
 
+[TestFixture]
+[AllureNUnit]
 public class IFrameTest : TestBase
 {
     [Test]

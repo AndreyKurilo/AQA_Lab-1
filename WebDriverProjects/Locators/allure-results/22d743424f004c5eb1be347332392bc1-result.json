@@ -1,0 +1,64 @@
+{
+  "uuid": "5ddd6058-761c-4874-947c-b1d681d6f808-tr-0-1001",
+  "historyId": "Locators.Tests.ClassNameLocatorTest.ClassNameLocator_arrow_Test",
+  "fullName": "Locators.Tests.ClassNameLocatorTest.ClassNameLocator_arrow_Test",
+  "labels": [
+    {
+      "name": "thread",
+      "value": "NonParallelWorker"
+    },
+    {
+      "name": "host",
+      "value": "DESKTOP-SNCVCMK"
+    },
+    {
+      "name": "package",
+      "value": "Locators.Tests"
+    },
+    {
+      "name": "testMethod",
+      "value": "ClassNameLocator_arrow_Test"
+    },
+    {
+      "name": "testClass",
+      "value": "ClassNameLocatorTest"
+    }
+  ],
+  "links": [],
+  "name": "ClassNameLocator_arrow_Test",
+  "status": "passed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false,
+    "message": "ClassNameLocator_arrow_Test"
+  },
+  "stage": "finished",
+  "steps": [
+    {
+      "name": "ClassNameLocator_arrow_Test",
+      "status": "passed",
+      "statusDetails": {
+        "known": false,
+        "muted": false,
+        "flaky": false
+      },
+      "stage": "finished",
+      "steps": [],
+      "attachments": [
+        {
+          "name": "Console Output",
+          "source": "c72404b2eebf42d1bac484a13201fef6-attachment.txt",
+          "type": "text/plain"
+        }
+      ],
+      "parameters": [],
+      "start": 1650218741555,
+      "stop": 1650218741662
+    }
+  ],
+  "attachments": [],
+  "parameters": [],
+  "start": 1650218741552,
+  "stop": 1650218741667
+}

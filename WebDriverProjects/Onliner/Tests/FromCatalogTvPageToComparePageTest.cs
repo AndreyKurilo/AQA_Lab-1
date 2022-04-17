@@ -1,10 +1,12 @@
 using System.Threading;
+using NUnit.Allure.Core;
 using NUnit.Framework;
 using Onliner.Pages;
 using OpenQA.Selenium;
 
 namespace Onliner.Tests;
 
+[AllureNUnit()]
 public class FromCatalogTvPageToComparePageTest : TestBase
 {
 

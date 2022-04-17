@@ -42,7 +42,7 @@ public class JS_Test : TestBase
         js_executor.ExecuteScript("window.scrollBy(0,250)");
         Thread.Sleep(2000);
         js_executor.ExecuteScript("window.scrollBy(0,document.body.scrollHeight)");
-        Thread.Sleep(2000);
+        //Thread.Sleep(2000);
 
         var element = Driver.FindElement(By.Id("no-siblings"));
         js_executor.ExecuteScript("arguments[0].scrollIntoView(true);", element);

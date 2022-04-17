@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using NUnit.Allure.Core;
 using NUnit.Framework;
 using Onliner.Pages;
 using Onliner.Services;
@@ -7,6 +8,7 @@ using OpenQA.Selenium;
 
 namespace Onliner.Tests;
 
+[AllureNUnit]
 public class MultiWindows_Test : TestBase
 {
     [Test]
