@@ -27,20 +27,12 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="allure-results" />
       <Folder Include="Steps" />
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="bin\Debug\net6.0\allureConfig.json" />
       <None Remove="appsettings.json" />
       <Content Include="appsettings.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Content>
-      <Content Remove="C:\Users\Andrey\.nuget\packages\allure.commons\3.5.0.73\contentFiles\any\netstandard2.0\allureConfig.Template.json" />
-      <None Remove="bin\**" />
-      <None Remove="allureConfig.json" />
-      <Content Include="allureConfig.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
     </ItemGroup>
@@ -52,5 +44,11 @@
     <ItemGroup>
       <EmbeddedResource Remove="bin\**" />
     </ItemGroup>
-
+    
+    <ItemGroup>
+        <None Update="allureConfig.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+    
 </Project>
