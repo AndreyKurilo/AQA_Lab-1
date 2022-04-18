@@ -1,0 +1,44 @@
+{
+  "uuid": "affb45c1-dabd-4aee-b0e2-17f04d9c6a1d-tc-0-1000",
+  "name": "Onliner.Tests.ActionsTest.Test_DragAndDrop",
+  "children": [
+    "d098ffda-034d-4ba5-bb31-d4ab014ac2ac-tr-0-1003"
+  ],
+  "befores": [
+    {
+      "name": "Setup",
+      "status": "passed",
+      "statusDetails": {
+        "known": false,
+        "muted": false,
+        "flaky": false
+      },
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1650296517448,
+      "stop": 1650296517448
+    }
+  ],
+  "afters": [
+    {
+      "name": "TearDown",
+      "status": "passed",
+      "statusDetails": {
+        "known": false,
+        "muted": false,
+        "flaky": false
+      },
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1650296517448,
+      "stop": 1650296517448
+    }
+  ],
+  "links": [],
+  "start": 1650296502999,
+  "stop": 1650296517450
+}

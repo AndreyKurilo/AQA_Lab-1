@@ -1,0 +1,64 @@
+{
+  "uuid": "d098ffda-034d-4ba5-bb31-d4ab014ac2ac-tr-0-1003",
+  "historyId": "Onliner.Tests.ActionsTest.Test_DragAndDrop",
+  "fullName": "Onliner.Tests.ActionsTest.Test_DragAndDrop",
+  "labels": [
+    {
+      "name": "thread",
+      "value": "NonParallelWorker"
+    },
+    {
+      "name": "host",
+      "value": "DESKTOP-SNCVCMK"
+    },
+    {
+      "name": "package",
+      "value": "Onliner.Tests"
+    },
+    {
+      "name": "testMethod",
+      "value": "Test_DragAndDrop"
+    },
+    {
+      "name": "testClass",
+      "value": "ActionsTest"
+    }
+  ],
+  "links": [],
+  "name": "Test_DragAndDrop",
+  "status": "passed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false,
+    "message": "Test_DragAndDrop"
+  },
+  "stage": "finished",
+  "steps": [
+    {
+      "name": "Test_DragAndDrop",
+      "status": "passed",
+      "statusDetails": {
+        "known": false,
+        "muted": false,
+        "flaky": false
+      },
+      "stage": "finished",
+      "steps": [],
+      "attachments": [
+        {
+          "name": "Console Output",
+          "source": "3ec59dbdf7a345c0a8fc29c15c1b67bf-attachment.txt",
+          "type": "text/plain"
+        }
+      ],
+      "parameters": [],
+      "start": 1650296502999,
+      "stop": 1650296517449
+    }
+  ],
+  "attachments": [],
+  "parameters": [],
+  "start": 1650296502999,
+  "stop": 1650296517449
+}

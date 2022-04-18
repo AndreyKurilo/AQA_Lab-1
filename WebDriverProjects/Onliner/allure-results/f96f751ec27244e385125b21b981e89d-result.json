@@ -1,0 +1,67 @@
+{
+  "uuid": "29fc6090-f72c-4854-8653-3c64b6ed466f-tr-0-1001",
+  "historyId": "Onliner.Tests.ActionsTest.Test_Click",
+  "fullName": "Onliner.Tests.ActionsTest.Test_Click",
+  "labels": [
+    {
+      "name": "thread",
+      "value": "NonParallelWorker"
+    },
+    {
+      "name": "host",
+      "value": "DESKTOP-SNCVCMK"
+    },
+    {
+      "name": "package",
+      "value": "Onliner.Tests"
+    },
+    {
+      "name": "testMethod",
+      "value": "Test_Click"
+    },
+    {
+      "name": "testClass",
+      "value": "ActionsTest"
+    }
+  ],
+  "links": [],
+  "name": "Test_Click",
+  "status": "failed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false,
+    "message": "OpenQA.Selenium.NoSuchElementException : Unable to locate element: pg",
+    "trace": "   at OpenQA.Selenium.WebDriver.UnpackAndThrowOnError(Response errorResponse)\r\n   at OpenQA.Selenium.WebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)\r\n   at OpenQA.Selenium.WebDriver.FindElement(String mechanism, String value)\r\n   at OpenQA.Selenium.By.<.ctor>b__11_0(ISearchContext context)\r\n   at OpenQA.Selenium.By.FindElement(ISearchContext context)\r\n   at OpenQA.Selenium.WebDriver.FindElement(By by)\r\n   at Onliner.Tests.ActionsTest.Test_Click() in D:\\Test\\ITechArt\\Git\\AQA_Lab-1\\WebDriverProjects\\Onliner\\Tests\\ActionsTest.cs:line 20"
+  },
+  "stage": "finished",
+  "steps": [
+    {
+      "name": "Test_Click",
+      "status": "failed",
+      "statusDetails": {
+        "known": false,
+        "muted": false,
+        "flaky": false,
+        "message": "OpenQA.Selenium.NoSuchElementException : Unable to locate element: pg",
+        "trace": "   at OpenQA.Selenium.WebDriver.UnpackAndThrowOnError(Response errorResponse)\r\n   at OpenQA.Selenium.WebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)\r\n   at OpenQA.Selenium.WebDriver.FindElement(String mechanism, String value)\r\n   at OpenQA.Selenium.By.<.ctor>b__11_0(ISearchContext context)\r\n   at OpenQA.Selenium.By.FindElement(ISearchContext context)\r\n   at OpenQA.Selenium.WebDriver.FindElement(By by)\r\n   at Onliner.Tests.ActionsTest.Test_Click() in D:\\Test\\ITechArt\\Git\\AQA_Lab-1\\WebDriverProjects\\Onliner\\Tests\\ActionsTest.cs:line 20"
+      },
+      "stage": "finished",
+      "steps": [],
+      "attachments": [
+        {
+          "name": "Console Output",
+          "source": "72861ed7bfb74959b8ac9e045745c8ba-attachment.txt",
+          "type": "text/plain"
+        }
+      ],
+      "parameters": [],
+      "start": 1650296372896,
+      "stop": 1650296388330
+    }
+  ],
+  "attachments": [],
+  "parameters": [],
+  "start": 1650296372895,
+  "stop": 1650296388334
+}

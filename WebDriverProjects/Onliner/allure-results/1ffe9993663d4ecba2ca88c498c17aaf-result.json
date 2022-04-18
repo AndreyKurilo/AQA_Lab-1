@@ -1,0 +1,67 @@
+{
+  "uuid": "e9c13533-6a11-4926-bcbf-584eef9a68c5-tr-0-1002",
+  "historyId": "Onliner.Tests.ActionsTest.Test_Hover",
+  "fullName": "Onliner.Tests.ActionsTest.Test_Hover",
+  "labels": [
+    {
+      "name": "thread",
+      "value": "NonParallelWorker"
+    },
+    {
+      "name": "host",
+      "value": "DESKTOP-SNCVCMK"
+    },
+    {
+      "name": "package",
+      "value": "Onliner.Tests"
+    },
+    {
+      "name": "testMethod",
+      "value": "Test_Hover"
+    },
+    {
+      "name": "testClass",
+      "value": "ActionsTest"
+    }
+  ],
+  "links": [],
+  "name": "Test_Hover",
+  "status": "failed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false,
+    "message": "  Expected: True\r\n  But was:  False\r\n",
+    "trace": "   at Onliner.Tests.ActionsTest.Test_Hover() in D:\\Test\\ITechArt\\Git\\AQA_Lab-1\\WebDriverProjects\\Onliner\\Tests\\ActionsTest.cs:line 41\r\n"
+  },
+  "stage": "finished",
+  "steps": [
+    {
+      "name": "Test_Hover",
+      "status": "failed",
+      "statusDetails": {
+        "known": false,
+        "muted": false,
+        "flaky": false,
+        "message": "  Expected: True\r\n  But was:  False\r\n",
+        "trace": "   at Onliner.Tests.ActionsTest.Test_Hover() in D:\\Test\\ITechArt\\Git\\AQA_Lab-1\\WebDriverProjects\\Onliner\\Tests\\ActionsTest.cs:line 41\r\n"
+      },
+      "stage": "finished",
+      "steps": [],
+      "attachments": [
+        {
+          "name": "Console Output",
+          "source": "737da809f56d4056b74a9a576b5636ab-attachment.txt",
+          "type": "text/plain"
+        }
+      ],
+      "parameters": [],
+      "start": 1650296403308,
+      "stop": 1650296415104
+    }
+  ],
+  "attachments": [],
+  "parameters": [],
+  "start": 1650296403308,
+  "stop": 1650296415104
+}

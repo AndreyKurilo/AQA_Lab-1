@@ -1,0 +1,44 @@
+{
+  "uuid": "49c903e9-967d-4b72-b47d-8e6499157351-tc-0-1000",
+  "name": "Onliner.Tests.ActionsTest.Test_Click",
+  "children": [
+    "29fc6090-f72c-4854-8653-3c64b6ed466f-tr-0-1001"
+  ],
+  "befores": [
+    {
+      "name": "Setup",
+      "status": "passed",
+      "statusDetails": {
+        "known": false,
+        "muted": false,
+        "flaky": false
+      },
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1650296388320,
+      "stop": 1650296388320
+    }
+  ],
+  "afters": [
+    {
+      "name": "TearDown",
+      "status": "passed",
+      "statusDetails": {
+        "known": false,
+        "muted": false,
+        "flaky": false
+      },
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1650296388320,
+      "stop": 1650296388320
+    }
+  ],
+  "links": [],
+  "start": 1650296372891,
+  "stop": 1650296388375
+}
