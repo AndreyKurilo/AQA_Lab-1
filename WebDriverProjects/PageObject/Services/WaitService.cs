@@ -37,4 +37,10 @@ public class WaitService
     {
         return _fluentWait.Until(x => x.FindElement(locator));
     }
+    
+    public IWebElement WaitElementIsClickable(IWebElement webElement)
+    {
+        return _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(webElement));
+    }
+
 }
