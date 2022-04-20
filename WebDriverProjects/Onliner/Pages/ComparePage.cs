@@ -49,5 +49,4 @@ public class ComparePage : PageBase
     public IWebElement DiagonalTvTip => WaitService.WaitElementIsExists(DiagonalTvTipLocator);
     public IWebElement DiagonalTvTipText => WaitService.WaitElementIsVisible(DiagonalTvTipTextLocator);
     public bool IsTextTipWindowInvisible => WaitService.WaitUntilElementInvisible(DiagonalTvTipTextLocator);
-    //public bool IsTextTipWindowInvisible(IWebElement webElement) => WaitService.WaitUntilElementInvisible(webElement);
 }

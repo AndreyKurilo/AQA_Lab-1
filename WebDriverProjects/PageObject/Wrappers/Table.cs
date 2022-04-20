@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -24,12 +25,12 @@ public class Table
     {
         var index = GetHeaders.TakeWhile(header => !header.Text.Normalize().Equals(headerName)).Count();
         var targetIndex = GetHeaders.TakeWhile(header => !header.Text.Normalize().Equals(targetHeaderName)).Count();
-
+        
         if (index > GetHeaders.Count)
         {
             throw new AssertionException("ddd");
         }
-        
+
         foreach (var row in GetRows)
         {
             var cells = GetCells(row);
@@ -42,4 +43,19 @@ public class Table
         return null;
     }
 
+    public UIElement FindElementByText(string text)
+    {
+        string elementText;
+        foreach (var row in GetRows)
+        {
+            foreach (var cell in GetCells(row))
+            {
+                elementText = cell.Text.Normalize();
+                if (elementText.Equals(text))
+                    return new UIElement(_driver, cell);
+            }
+        }
+
+        return null;
+    }
 }

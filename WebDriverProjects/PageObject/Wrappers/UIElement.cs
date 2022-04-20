@@ -5,7 +5,7 @@ using PageObject.Services;
 
 namespace PageObject.Wrappers;
 
-public class UIElement
+public class UIElement: IWebElement
 {
         private By _locator;
     private IWebDriver _driver;
@@ -92,12 +92,12 @@ public class UIElement
         return _webElement.GetShadowRoot();
     }
 
-    public string TagName { get; set; }
-    public string Text { get; set; }
-    public bool Enabled { get; set; }
-    public bool Selected { get; set; }
-    public Point Location { get; set; }
-    public Size Size { get; set; }
-    public bool Displayed { get; set; }
+    public string TagName => _webElement.TagName;
+    public string Text => _webElement.Text;
+    public bool Enabled => _webElement.Enabled;
+    public bool Selected => _webElement.Selected;
+    public Point Location => _webElement.Location;
+    public Size Size => _webElement.Size;
+    public bool Displayed => _webElement.Displayed;
 
 }
