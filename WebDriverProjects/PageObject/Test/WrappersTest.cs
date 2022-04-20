@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using PageObject.Wrappers;
 
 namespace PageObject.Test;
@@ -44,5 +45,27 @@ public class WrappersTest : BaseTest
         var elementText = element.Text.Normalize();
         
         Assert.AreEqual("Adipisci0", elementText);
+    }
+
+    [Test]
+    public void SliderTest()
+    {
+        var minRange = 0.0;
+        var middleRange = 2.5;
+        var maxRange = 5.0;
+        Driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/horizontal_slider");
+        Actions actions = new Actions(Driver);
+        actions.MoveToElement(Driver.FindElement(By.TagName("input"))).Click().Perform();
+        
+        Slider slider = new Slider(Driver);
+        
+        slider.SliderMove(minRange);
+        Assert.AreEqual("0.0", slider.SlidersRange.Text);
+        
+        slider.SliderMove(middleRange);
+        Assert.AreEqual("2.5", slider.SlidersRange.Text);
+        
+        slider.SliderMove(maxRange);
+        Assert.AreEqual("5.0", slider.SlidersRange.Text);
     }
 }
