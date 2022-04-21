@@ -59,13 +59,13 @@ public class WrappersTest : BaseTest
         
         Slider slider = new Slider(Driver);
         
-        slider.SliderMove(minRange);
-        Assert.AreEqual("0.0", slider.SlidersRange.Text);
+        slider.SliderMove(minRange); 
+        Assert.AreEqual("0", slider.SlidersRange.Text);
         
         slider.SliderMove(middleRange);
         Assert.AreEqual("2.5", slider.SlidersRange.Text);
         
         slider.SliderMove(maxRange);
-        Assert.AreEqual("5.0", slider.SlidersRange.Text);
+        Assert.AreEqual("5", slider.SlidersRange.Text);
     }
 }
