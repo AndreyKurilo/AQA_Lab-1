@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Net;
 using NLog;
 using NUnit.Framework;
 using TestRail.ApiTesting;
@@ -89,7 +90,7 @@ public class MilestoneTest : BaseTest
         };
 
         var actualMilestone = MilestoneService!.UpdateMilestone(milestone);
-        milestone = actualMilestone.Result;
+        _milestone = actualMilestone.Result;
         _logger.Info(milestone.ToString());
         
         Assert.AreEqual("AK Milestone Test 2 updated", _milestone.Name);
@@ -100,9 +101,13 @@ public class MilestoneTest : BaseTest
     public void DeleteMilestoneTest()
     {
         Debug.Assert(MilestoneService != null, nameof(MilestoneService) + " != null");
-        _logger.Info(MilestoneService.DeleteMilestone(_milestone.Id.ToString()));
+        var milestoneId = _milestone.Id.ToString();
+        var statusCode = MilestoneService.DeleteMilestone(milestoneId);
+        var milestonesCount = MilestoneService?.GetMilestones(_project.Id).Result.Size;
+        _logger.Info(statusCode);
         
-        Assert.AreEqual(1, MilestoneService?.GetMilestones(_project.Id).Result.Size);
+        Assert.AreEqual(HttpStatusCode.OK, statusCode);
+        Assert.AreEqual(1, milestonesCount);
     }
     
     [Test]

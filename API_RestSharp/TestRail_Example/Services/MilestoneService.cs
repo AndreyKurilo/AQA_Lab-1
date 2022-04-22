@@ -56,17 +56,15 @@ public class MilestoneService : IMilestonesService, IDisposable
     public HttpStatusCode DeleteMilestone(string mileStoneId)
     {
         var request = new RestRequest("index.php?/api/v2/delete_milestone/{milestone_id}", Method.Post)
-            .AddUrlSegment("project_id", mileStoneId)
+            .AddUrlSegment("milestone_id", mileStoneId)
             .AddJsonBody("{}");
         
         return _client.ExecuteAsync(request).Result.StatusCode;
-
     }
 
     public void Dispose()
     {
         _client?.Dispose();
         GC.SuppressFinalize(this);
-
     }
 }
