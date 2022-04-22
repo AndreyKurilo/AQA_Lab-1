@@ -7,7 +7,6 @@ public record Milestone
 {
     [JsonPropertyName("id")] public int Id { get; set; }
     [JsonPropertyName("projectId")] public int ProjectId { get; set; }
-
     [JsonPropertyName("name")] public string? Name { get; init; }
     [JsonPropertyName("description")] public string? Description { get; set; }
     [JsonPropertyName("completed_on")] public string? CompletedOn { get; set; }
