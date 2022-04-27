@@ -1,3 +1,4 @@
+using System;
 using NLog;
 using NUnit.Framework;
 using SQL_dataBase.Databases;
@@ -24,8 +25,12 @@ public class SimpleDatabaseTest
     {
         _simpleDbConnector?.CloseConnection();
     }
-    
+
+    private Customer _customer = new Customer();
+
     [Test]
+    [Order(1)]
+
     public void GetAllCustomersTest()
     {
         _logger.Info("GetAllCustomersTest started...");
@@ -37,29 +42,33 @@ public class SimpleDatabaseTest
     }
 
     [Test]
+    [Order(2)]
+
     public void AddCustomerTest()
     {
         _logger.Info("AddCustomerTest started...");
-        
-        Assert.AreEqual(1, _customerService?.AddCustomer(new Customer
+
+        Random randomNumber = new Random();
+
+        _customer = new Customer
         {
-            firstname = "Alexandr",
-            lastname = "Trostyanko"
-        }));
+            firstname = "Any" + randomNumber.Next(0, 1000),
+            lastname = "Body",
+            age = randomNumber.Next(0, 70)
+        };
+        
+        Assert.AreEqual(1, _customerService?.AddCustomer(_customer));
         
         _logger.Info("AddCustomerTest completed...");
     }
 
     [Test]
+    [Order(3)]
+
     public void DeleteCustomerTest()
     {
         _logger.Info("AddCustomerTest started...");
-        
-        Assert.AreEqual(1, _customerService?.DeleteCustomer(new Customer
-        {
-            firstname = "Alexandr",
-            lastname = "Trostyanko"
-        }));
+        Assert.AreEqual(1, actual: _customerService?.DeleteCustomer(_customer));
         
         _logger.Info("AddCustomerTest completed...");
     }

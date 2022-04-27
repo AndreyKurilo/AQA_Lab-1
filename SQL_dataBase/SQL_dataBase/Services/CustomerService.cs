@@ -44,12 +44,13 @@ public class CustomerService
 
     public int AddCustomer(Customer customer)
     {
-        using var cmd = new NpgsqlCommand("INSERT INTO \"Customers\" (firstname, lastname) VALUES ($1, $2);", _connection)
+        using var cmd = new NpgsqlCommand("INSERT INTO \"Customers\" (firstname, lastname, age) VALUES ($1, $2, $3);", _connection)
         {
             Parameters =
             {
                 new() {Value = customer.firstname},
-                new() {Value = customer.lastname}
+                new() {Value = customer.lastname},
+                new () {Value = customer.age}
             }
         };
 
