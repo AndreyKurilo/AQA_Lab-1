@@ -30,7 +30,6 @@ public class SimpleDatabaseTest
 
     [Test]
     [Order(1)]
-
     public void GetAllCustomersTest()
     {
         _logger.Info("GetAllCustomersTest started...");
@@ -43,7 +42,6 @@ public class SimpleDatabaseTest
 
     [Test]
     [Order(2)]
-
     public void AddCustomerTest()
     {
         _logger.Info("AddCustomerTest started...");
@@ -64,7 +62,6 @@ public class SimpleDatabaseTest
 
     [Test]
     [Order(3)]
-
     public void DeleteCustomerTest()
     {
         _logger.Info("AddCustomerTest started...");

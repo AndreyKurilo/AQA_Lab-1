@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using NLog;
 using NUnit.Framework;
@@ -18,8 +19,10 @@ public class InitialDatabaseTest
     {
         using (var dbConnector = new DataBaseConnector())
         {
-            var customer1 = new Customer { firstname = "Ivan", lastname = "Petrov" };
-            var customer2 = new Customer { firstname = "Sergey", lastname = "Ivanov" };
+            Random randomNumber = new Random();
+
+            var customer1 = new Customer { firstname = "Ivan" + randomNumber.Next(0, 1000), lastname = "FromInit", age = randomNumber.Next(1, 100)};
+            var customer2 = new Customer { firstname = "Sergey" + randomNumber.Next(0, 1000), lastname = "Ivanov", age = randomNumber.Next(1, 100)};
 
             var entityCustomer1 = dbConnector.Customers.Add(customer1);
             var entityCustomer2 = dbConnector.Customers.Add(customer2);
@@ -30,11 +33,12 @@ public class InitialDatabaseTest
 
             _logger.Info(
                 $"{dbConnector.Customers.Find(entityCustomer2.Entity.id)?.firstname}" +
-                $".{dbConnector.Customers.Find(entityCustomer2.Entity.id)?.lastname}");
+                $".{dbConnector.Customers.Find(entityCustomer2.Entity.id)?.lastname}" +
+                $".{dbConnector.Customers.Find(entityCustomer2.Entity.id)?.age}");
 
             foreach (var customer in customers)
             {
-                _logger.Info($"{customer.firstname}.{customer.lastname}");
+                _logger.Info($"{customer.firstname}.{customer.lastname}.{customer.age}");
                 dbConnector.Customers.Remove(customer);
             }
         }
