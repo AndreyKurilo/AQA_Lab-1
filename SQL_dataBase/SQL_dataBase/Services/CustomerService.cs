@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using NLog;
 using Npgsql;
@@ -29,7 +30,8 @@ public class CustomerService
             {
                 id = reader.GetInt32(0),
                 firstname = reader.GetString(reader.GetOrdinal("firstname")),
-                lastname = reader.GetString(reader.GetOrdinal("lastname"))
+                lastname = reader.GetString(reader.GetOrdinal("lastname")),
+                age = reader.GetInt32(reader.GetOrdinal("age"))
             };
             
             _logger.Info(customer.ToString);
