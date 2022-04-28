@@ -69,4 +69,19 @@ public class SimpleDatabaseTest
         
         _logger.Info("AddCustomerTest completed...");
     }
+    
+    [Test]
+    [Order(4)]
+    public void DeleteCustomerTest1()
+    {
+        _logger.Info("AddCustomerTest started...");
+        Assert.AreEqual(1, actual: _customerService?.DeleteCustomer(new Customer()
+        {
+            firstname = "Sergey687",
+            lastname = "Ivanov"
+        }));
+        
+        _logger.Info("AddCustomerTest completed...");
+    }
+    
 }

@@ -36,11 +36,14 @@ public class InitialDatabaseTest
                 $".{dbConnector.Customers.Find(entityCustomer2.Entity.id)?.lastname}" +
                 $".{dbConnector.Customers.Find(entityCustomer2.Entity.id)?.age}");
 
-            foreach (var customer in customers)
+           /* foreach (var customer in customers)
             {
                 _logger.Info($"{customer.firstname}.{customer.lastname}.{customer.age}");
                 dbConnector.Customers.Remove(customer);
-            }
+            }*/
+           dbConnector.Customers.Remove(customer1);
+           dbConnector.Customers.Remove(customer2);
+           dbConnector.SaveChanges();
         }
 
         Assert.True(true, "Test passed.");
