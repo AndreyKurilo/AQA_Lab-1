@@ -35,7 +35,7 @@ public class SimpleDatabaseTest
         _logger.Info("GetAllCustomersTest started...");
         var customersList = _customerService?.GetAllCustomers();
 
-        Assert.AreEqual(4, customersList.Count);
+        Assert.AreEqual(8, customersList.Count);
 
         _logger.Info("GetAllCustomersTest completed...");
     }
