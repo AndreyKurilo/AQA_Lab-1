@@ -15,14 +15,4 @@ public record Milestone
     [JsonPropertyName("due_on")] public string? DueOn { get; set; }
     [JsonPropertyName("refs")] public string Refs { get; set; }
 
-
-//"completed_on": 1389968184,
-//"description": "...",
-//"due_on": 1391968184,
-//"id": 1,
-//"is_completed": true,
-//"name": "Release 1.5",
-//"project_id": 1,
-//"refs": "RF-1, RF-2",
-//"url": "http:///testrail/index.php?/milestones/view/1"
 }

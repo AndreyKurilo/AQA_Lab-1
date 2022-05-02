@@ -4,8 +4,9 @@ using System.IO;
 using System.Reflection;
 using Microsoft.Extensions.Configuration;
 using TestRail.ApiTesting;
+using TestRail_Example.Tests.Databases;
 
-namespace PageObject.Services
+namespace TestRail_Example.Configuration
 {
     public static class Configurator
     {

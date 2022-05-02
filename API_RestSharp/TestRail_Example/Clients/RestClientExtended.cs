@@ -3,9 +3,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using NLog;
-using PageObject.Services;
 using RestSharp;
 using RestSharp.Authenticators;
+using TestRail_Example.Configuration;
 
 namespace TestRail_Example.Clients
 {

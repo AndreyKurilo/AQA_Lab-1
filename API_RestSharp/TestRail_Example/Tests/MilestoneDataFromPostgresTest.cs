@@ -3,15 +3,33 @@ using System.Net;
 using NLog;
 using NUnit.Framework;
 using TestRail.ApiTesting;
+using TestRail_Example.Tests.Databases;
+using TestRail_Example.Tests.Models;
+using TestRail_Example.Tests.Services;
 
 namespace TestRail_Example.Tests;
 
-public class MilestoneTest : BaseTest
+public class MilestoneDataFromPostgresTest : BaseTest
 {
     private readonly Logger _logger = LogManager.GetCurrentClassLogger();
     private Project _project = null!;
-    private Milestone _milestone = null;
-    
+    private Milestone? _milestone;
+    private SimpleDBConnector _simpleDbConnector = null!;
+    private MilestoneTestDataService _milestoneTestDataService = null!;
+    private MilestoneTestData? _milestoneTestData;
+
+    [SetUp]
+    public void SetUp()
+    {
+        _simpleDbConnector = new SimpleDBConnector();
+        _milestoneTestDataService = new MilestoneTestDataService(_simpleDbConnector.Connection);
+
+        _milestoneTestData = _milestoneTestDataService.GetAllEMilestoneTestData()[0];
+    }
+
+    [TearDown]
+    public void TearDown() => _simpleDbConnector.CloseConnection();
+
     [Test]
     [Order(1)]
     public void AddProjectTest()
@@ -28,7 +46,7 @@ public class MilestoneTest : BaseTest
         _project = actualProject.Result;
         _logger.Info(_project.ToString());
     }
-    
+
     [Test]
     [Order(2)]
     public void AddMilestoneTest()
@@ -36,22 +54,22 @@ public class MilestoneTest : BaseTest
         _milestone = new Milestone()
         {
             ProjectId = _project.Id,
-            Name = "AK Milestone Test 1",
-            Description = "AK description #1",
+            Name = _milestoneTestData!.Name,
+            Description = _milestoneTestData!.Description
         };
 
-        var actualMilestone = MilestoneService!.AddMilestone(_milestone);
+        var actualMilestone = MilestoneService.AddMilestone(_milestone);
         _milestone = actualMilestone.Result;
         _logger.Info(_milestone.ToString());
     }
 
-    
+
     [Test]
     [Order(3)]
     public void GetMilestoneTest()
     {
-        _logger.Info(MilestoneService?.GetMilestone(_project.Id.ToString()).Result.ToString());
-        Assert.AreEqual("AK Milestone Test 1", _milestone.Name);
+        _logger.Info(MilestoneService.GetMilestone(_project.Id.ToString()).Result.ToString());
+        Assert.AreEqual("AK Milestone Test 1", _milestone!.Name);
     }
 
     [Test]
@@ -65,16 +83,16 @@ public class MilestoneTest : BaseTest
             Description = "AK description for milestone 2",
         };
 
-        var actualMilestone = MilestoneService!.AddMilestone(_milestone);
+        var actualMilestone = MilestoneService.AddMilestone(_milestone);
         _milestone = actualMilestone.Result;
 
-        var milestones = MilestoneService?.GetMilestones(_project.Id).Result;
+        var milestones = MilestoneService.GetMilestones(_project.Id).Result;
         _logger.Info(milestones.Size);
         foreach (var milestone in milestones.MilestonesList)
         {
             _logger.Info(milestone.ToString);
         }
-        
+
         Assert.AreEqual(2, milestones.Size);
     }
 
@@ -85,39 +103,37 @@ public class MilestoneTest : BaseTest
         var milestone = new Milestone()
         {
             ProjectId = _project.Id,
-            Id = _milestone.Id,
-            Name = "AK Milestone Test 2 updated",
-            Description = "AK description for update",
+            Id = _milestone!.Id,
+            Name = _milestoneTestData!.UpdatedName,
+            Description = _milestoneTestData!.UpdatedDescription
         };
 
-        var actualMilestone = MilestoneService!.UpdateMilestone(milestone);
+        var actualMilestone = MilestoneService.UpdateMilestone(milestone);
         _milestone = actualMilestone.Result;
         _logger.Info(milestone.ToString());
-        
+
         Assert.AreEqual("AK Milestone Test 2 updated", _milestone.Name);
     }
-    
+
     [Test]
     [Order(6)]
     public void DeleteMilestoneTest()
     {
         Debug.Assert(MilestoneService != null, nameof(MilestoneService) + " != null");
-        var milestoneId = _milestone.Id.ToString();
+        var milestoneId = _milestone!.Id.ToString();
         var statusCode = MilestoneService.DeleteMilestone(milestoneId);
-        var milestonesCount = MilestoneService?.GetMilestones(_project.Id).Result.Size;
+        var milestonesCount = MilestoneService.GetMilestones(_project.Id).Result.Size;
         _logger.Info(statusCode);
-        
+
         Assert.AreEqual(HttpStatusCode.OK, statusCode);
         Assert.AreEqual(1, milestonesCount);
     }
-    
+
     [Test]
     [Order(7)]
     public void DeleteProjectTest()
     {
         Debug.Assert(ProjectService != null, nameof(ProjectService) + " != null");
         _logger.Info(ProjectService.DeleteProject(_project.Id.ToString()));
-        //_logger.Info(ProjectService.DeleteProject("P10"));
     }
-
 }

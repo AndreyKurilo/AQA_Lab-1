@@ -9,7 +9,7 @@ namespace TestRail_Example.Tests;
 public class BaseTest
 {
     private readonly Logger _logger = LogManager.GetCurrentClassLogger();
-    protected ProjectService? ProjectService;
+    protected ProjectService ProjectService = null!;
     protected MilestoneService MilestoneService;
     
     [OneTimeSetUp]
