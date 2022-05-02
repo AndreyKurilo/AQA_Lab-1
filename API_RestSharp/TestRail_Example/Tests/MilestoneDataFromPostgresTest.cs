@@ -16,7 +16,8 @@ public class MilestoneDataFromPostgresTest : BaseTest
     private Milestone? _milestone;
     private SimpleDBConnector _simpleDbConnector = null!;
     private MilestoneTestDataService _milestoneTestDataService = null!;
-    private MilestoneTestData? _milestoneTestData;
+    private MilestoneTestData? _milestoneTestDataForAddAndUpdate;
+    private MilestoneTestData? _milestoneTestDataForGet;
 
     [SetUp]
     public void SetUp()
@@ -24,7 +25,8 @@ public class MilestoneDataFromPostgresTest : BaseTest
         _simpleDbConnector = new SimpleDBConnector();
         _milestoneTestDataService = new MilestoneTestDataService(_simpleDbConnector.Connection);
 
-        _milestoneTestData = _milestoneTestDataService.GetAllEMilestoneTestData()[0];
+        _milestoneTestDataForAddAndUpdate = _milestoneTestDataService.GetDataForAddAndUpdate()[0];
+        _milestoneTestDataForGet = _milestoneTestDataService.GetDataForGet()[0];
     }
 
     [TearDown]
@@ -54,8 +56,8 @@ public class MilestoneDataFromPostgresTest : BaseTest
         _milestone = new Milestone()
         {
             ProjectId = _project.Id,
-            Name = _milestoneTestData!.Name,
-            Description = _milestoneTestData!.Description
+            Name = _milestoneTestDataForAddAndUpdate!.Name,
+            Description = _milestoneTestDataForAddAndUpdate!.Description
         };
 
         var actualMilestone = MilestoneService.AddMilestone(_milestone);
@@ -79,8 +81,8 @@ public class MilestoneDataFromPostgresTest : BaseTest
         _milestone = new Milestone()
         {
             ProjectId = _project.Id,
-            Name = "AK Milestone Test 2",
-            Description = "AK description for milestone 2",
+            Name = _milestoneTestDataForGet!.Name, //"AK Milestone Test 2",
+            Description = _milestoneTestDataForGet.Description //"AK description for milestone 2",
         };
 
         var actualMilestone = MilestoneService.AddMilestone(_milestone);
@@ -104,8 +106,8 @@ public class MilestoneDataFromPostgresTest : BaseTest
         {
             ProjectId = _project.Id,
             Id = _milestone!.Id,
-            Name = _milestoneTestData!.UpdatedName,
-            Description = _milestoneTestData!.UpdatedDescription
+            Name = _milestoneTestDataForAddAndUpdate!.UpdatedName,
+            Description = _milestoneTestDataForAddAndUpdate!.UpdatedDescription
         };
 
         var actualMilestone = MilestoneService.UpdateMilestone(milestone);
