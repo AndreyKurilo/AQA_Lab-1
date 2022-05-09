@@ -9,6 +9,7 @@ namespace SQL_dataBase.Tests.DataBaseTests;
 
 public class SimpleDatabaseTest
 {
+    /*
     private readonly Logger _logger = LogManager.GetCurrentClassLogger();
     private CustomerService? _customerService;
     private SimpleDBConnector? _simpleDbConnector;
@@ -83,5 +84,5 @@ public class SimpleDatabaseTest
         
         _logger.Info("AddCustomerTest completed...");
     }
-    
+    */
 }
