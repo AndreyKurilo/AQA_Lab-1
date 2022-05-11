@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task4", "Task4\Task4.csproj", "{F95D3D7A-8817-40ED-A2CE-A1284977617F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task3_Drivers", "Task3_Drivers\Task3_Drivers.csproj", "{F985C163-AE5B-4CDC-B768-EC98A0614CF4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F95D3D7A-8817-40ED-A2CE-A1284977617F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F95D3D7A-8817-40ED-A2CE-A1284977617F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F95D3D7A-8817-40ED-A2CE-A1284977617F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F95D3D7A-8817-40ED-A2CE-A1284977617F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F985C163-AE5B-4CDC-B768-EC98A0614CF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F985C163-AE5B-4CDC-B768-EC98A0614CF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F985C163-AE5B-4CDC-B768-EC98A0614CF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F985C163-AE5B-4CDC-B768-EC98A0614CF4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
