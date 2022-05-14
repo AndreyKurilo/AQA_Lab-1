@@ -12,6 +12,7 @@ public class SimpleEmployeesTest
     private readonly Logger _logger = LogManager.GetCurrentClassLogger();
     private EmployeeService? _employeeService;
     private SimpleDBConnector? _simpleDbConnector;
+    private Employee _employee = new Employee();
     private int _employeesCount;
         
     [OneTimeSetUp]
@@ -27,7 +28,6 @@ public class SimpleEmployeesTest
         _simpleDbConnector?.CloseConnection();
     }
 
-    private Employee _employee = new Employee();
     
 
     [Test]
